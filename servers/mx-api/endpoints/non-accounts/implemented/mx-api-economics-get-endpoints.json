@@ -1,0 +1,76 @@
+{
+  "openapi": "3.0.0",
+  "paths": {
+    "/economics": {
+      "get": {
+        "operationId": "NetworkController_getEconomics",
+        "summary": "Network economics",
+        "description": "Returns general economics information",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Economics"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "network"
+        ]
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Economics": {
+        "type": "object",
+        "properties": {
+          "totalSupply": {
+            "type": "number"
+          },
+          "circulatingSupply": {
+            "type": "number"
+          },
+          "staked": {
+            "type": "number"
+          },
+          "price": {
+            "type": "number"
+          },
+          "marketCap": {
+            "type": "number"
+          },
+          "apr": {
+            "type": "number"
+          },
+          "topUpApr": {
+            "type": "number"
+          },
+          "baseApr": {
+            "type": "number"
+          },
+          "tokenMarketCap": {
+            "type": "number",
+            "nullable": true
+          }
+        },
+        "required": [
+          "totalSupply",
+          "circulatingSupply",
+          "staked",
+          "price",
+          "marketCap",
+          "apr",
+          "topUpApr",
+          "baseApr",
+          "tokenMarketCap"
+        ]
+      }
+    }
+  }
+}

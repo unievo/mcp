@@ -1,0 +1,79 @@
+{
+  "openapi": "3.0.0",
+  "paths": {
+    "/shards": {
+      "get": {
+        "operationId": "ShardController_getShards",
+        "summary": "Shards",
+        "description": "Returns all available shards",
+        "parameters": [
+          {
+            "name": "from",
+            "required": false,
+            "in": "query",
+            "description": "Number of items to skip for the result set",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "size",
+            "required": false,
+            "in": "query",
+            "description": "Number of items to retrieve",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Shard"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "shards"
+        ]
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Shard": {
+        "type": "object",
+        "properties": {
+          "shard": {
+            "type": "number",
+            "description": "Shard details",
+            "example": 1
+          },
+          "validators": {
+            "type": "number",
+            "description": "Validators details",
+            "example": 800
+          },
+          "activeValidators": {
+            "type": "number",
+            "description": "Active validators details",
+            "example": 800
+          }
+        },
+        "required": [
+          "shard",
+          "validators",
+          "activeValidators"
+        ]
+      }
+    }
+  }
+}

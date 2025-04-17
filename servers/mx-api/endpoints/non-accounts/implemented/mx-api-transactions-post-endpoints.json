@@ -1,0 +1,228 @@
+{
+  "openapi": "3.0.0",
+  "paths": {
+    "/transactions": {
+      "post": {
+        "operationId": "TransactionController_createTransaction",
+        "summary": "Send transaction",
+        "description": "Posts a signed transaction on the blockchain",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TransactionCreate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TransactionSendResult"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "transactions"
+        ]
+      }
+    },
+    "/transactions/decode": {
+      "post": {
+        "operationId": "TransactionController_decodeTransaction",
+        "summary": "Decode transaction",
+        "description": "Decodes transaction action, given a minimum set of transaction details",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TransactionDecodeDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TransactionDecodeDto"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "transactions"
+        ]
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "TransactionAction": {
+        "type": "object",
+        "properties": {
+          "category": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "arguments": {
+            "type": "object"
+          }
+        },
+        "required": [
+          "category",
+          "name",
+          "description",
+          "arguments"
+        ]
+      },
+      "TransactionSendResult": {
+        "type": "object",
+        "properties": {
+          "receiver": {
+            "type": "string"
+          },
+          "receiverShard": {
+            "type": "number"
+          },
+          "sender": {
+            "type": "string"
+          },
+          "senderShard": {
+            "type": "number"
+          },
+          "status": {
+            "type": "string"
+          },
+          "txHash": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "receiver",
+          "receiverShard",
+          "sender",
+          "senderShard",
+          "status",
+          "txHash"
+        ]
+      },
+      "TransactionDecodeDto": {
+        "type": "object",
+        "properties": {
+          "action": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/TransactionAction"
+              }
+            ]
+          },
+          "data": {
+            "type": "string"
+          },
+          "receiver": {
+            "type": "string"
+          },
+          "sender": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "action",
+          "data",
+          "receiver",
+          "sender",
+          "value"
+        ]
+      },
+      "TransactionCreate": {
+        "type": "object",
+        "properties": {
+          "chainId": {
+            "type": "string"
+          },
+          "data": {
+            "type": "string"
+          },
+          "gasLimit": {
+            "type": "number"
+          },
+          "gasPrice": {
+            "type": "number"
+          },
+          "nonce": {
+            "type": "number"
+          },
+          "receiver": {
+            "type": "string"
+          },
+          "receiverUsername": {
+            "type": "object"
+          },
+          "sender": {
+            "type": "string"
+          },
+          "senderUsername": {
+            "type": "object"
+          },
+          "signature": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          },
+          "version": {
+            "type": "number"
+          },
+          "options": {
+            "type": "number"
+          },
+          "guardian": {
+            "type": "string"
+          },
+          "guardianSignature": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "chainId",
+          "data",
+          "gasLimit",
+          "gasPrice",
+          "nonce",
+          "receiver",
+          "receiverUsername",
+          "sender",
+          "senderUsername",
+          "signature",
+          "value",
+          "version",
+          "options",
+          "guardian",
+          "guardianSignature"
+        ]
+      }
+    }
+  }
+}

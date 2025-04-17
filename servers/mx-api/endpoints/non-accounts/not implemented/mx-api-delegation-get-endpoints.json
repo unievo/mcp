@@ -1,0 +1,83 @@
+{
+  "openapi": "3.0.0",
+  "paths": {
+    "/delegation": {
+      "get": {
+        "operationId": "DelegationController_getDelegationDetails",
+        "summary": "Delegation statistics",
+        "description": "Returns delegation staking contract information",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Delegation"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "delegation"
+        ]
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Amount": {
+        "type": "object",
+        "properties": {}
+      },
+      "Delegation": {
+        "type": "object",
+        "properties": {
+          "stake": {
+            "example": "\"9700000000000000000\"",
+            "title": "Amount",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Amount"
+              }
+            ]
+          },
+          "topUp": {
+            "example": "\"720000000000000000\"",
+            "title": "Amount",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Amount"
+              }
+            ]
+          },
+          "locked": {
+            "example": "\"8660000000000000000\"",
+            "title": "Amount",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Amount"
+              }
+            ]
+          },
+          "minDelegation": {
+            "example": "\"6680000000000000000\"",
+            "title": "Amount",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Amount"
+              }
+            ]
+          }
+        },
+        "required": [
+          "stake",
+          "topUp",
+          "locked",
+          "minDelegation"
+        ]
+      }
+    }
+  }
+}

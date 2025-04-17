@@ -1,0 +1,469 @@
+{
+  "openapi": "3.0.0",
+  "paths": {
+    "/providers": {
+      "get": {
+        "operationId": "ProviderController_getProviders",
+        "summary": "Providers",
+        "description": "Returns a list of all providers",
+        "parameters": [
+          {
+            "name": "identity",
+            "required": false,
+            "in": "query",
+            "description": "Search by identity",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "owner",
+            "required": false,
+            "in": "query",
+            "description": "Search by owner",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "providers",
+            "required": false,
+            "in": "query",
+            "description": "Search by multiple providers address",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "name": "withIdentityInfo",
+            "required": false,
+            "in": "query",
+            "description": "Returns identity data for providers",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "withLatestInfo",
+            "required": false,
+            "in": "query",
+            "description": "Returns providers details with latest info",
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Provider"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "providers"
+        ]
+      }
+    },
+    "/providers/{address}/accounts": {
+      "get": {
+        "operationId": "ProviderController_getProviderAccounts",
+        "summary": "Provider",
+        "description": "Returns provider delegators accounts for a given provider address",
+        "parameters": [
+          {
+            "name": "address",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "from",
+            "required": false,
+            "in": "query",
+            "description": "Number of items to skip for the result set",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "size",
+            "required": false,
+            "in": "query",
+            "description": "Number of items to retrieve",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Provider"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Provider not found"
+          }
+        },
+        "tags": [
+          "providers"
+        ]
+      }
+    },
+    "/providers/{address}/accounts/count": {
+      "get": {
+        "operationId": "ProviderController_getProviderAccountsCount",
+        "summary": "Provider",
+        "description": "Returns provider total number of delegators",
+        "parameters": [
+          {
+            "name": "address",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Provider"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Provider not found"
+          }
+        },
+        "tags": [
+          "providers"
+        ]
+      }
+    },
+    "/providers/{address}": {
+      "get": {
+        "operationId": "ProviderController_getProvider",
+        "summary": "Provider",
+        "description": "Returns provider details for a given address",
+        "parameters": [
+          {
+            "name": "address",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Provider"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Provider not found"
+          }
+        },
+        "tags": [
+          "providers"
+        ]
+      }
+    },
+    "/providers/{address}/avatar": {
+      "get": {
+        "operationId": "ProviderController_getIdentityAvatar",
+        "summary": "Provider avatar",
+        "description": "Returns the avatar for a specific provider address",
+        "parameters": [
+          {
+            "name": "address",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "404": {
+            "description": "Provider avatar not found"
+          }
+        },
+        "tags": [
+          "providers"
+        ]
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Provider": {
+        "type": "object",
+        "properties": {
+          "numNodes": {
+            "type": "number",
+            "description": "Number of nodes",
+            "example": 10
+          },
+          "stake": {
+            "type": "number",
+            "description": "Number of stake",
+            "example": 100
+          },
+          "topUp": {
+            "type": "number",
+            "description": "Number of topUp",
+            "example": 100
+          },
+          "locked": {
+            "type": "number",
+            "description": "Locked number",
+            "example": 100
+          },
+          "provider": {
+            "type": "string"
+          },
+          "owner": {
+            "type": "string",
+            "nullable": true
+          },
+          "featured": {
+            "type": "boolean",
+            "default": false
+          },
+          "serviceFee": {
+            "example": "\"5960000000000000000\"",
+            "title": "Amount",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Amount"
+              }
+            ]
+          },
+          "delegationCap": {
+            "example": "\"4120000000000000000\"",
+            "title": "Amount",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Amount"
+              }
+            ]
+          },
+          "apr": {
+            "example": "\"5540000000000000000\"",
+            "title": "Amount",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Amount"
+              }
+            ]
+          },
+          "numUsers": {
+            "example": "\"640000000000000000\"",
+            "title": "Amount",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Amount"
+              }
+            ]
+          },
+          "cumulatedRewards": {
+            "type": "string",
+            "nullable": true
+          },
+          "identity": {
+            "type": "string",
+            "nullable": true
+          },
+          "initialOwnerFunds": {
+            "type": "string"
+          },
+          "automaticActivation": {
+            "type": "boolean",
+            "default": false
+          },
+          "checkCapOnRedelegate": {
+            "type": "boolean",
+            "default": false
+          },
+          "ownerBelowRequiredBalanceThreshold": {
+            "type": "boolean",
+            "default": false
+          },
+          "totalUnStaked": {
+            "type": "string"
+          },
+          "createdNonce": {
+            "type": "number"
+          },
+          "githubProfileValidated": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "githubProfileValidatedAt": {
+            "type": "string",
+            "nullable": true
+          },
+          "githubKeysValidated": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "githubKeysValidatedAt": {
+            "type": "string",
+            "nullable": true
+          },
+          "identityInfo": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Identity"
+              }
+            ]
+          }
+        },
+        "required": [
+          "numNodes",
+          "stake",
+          "topUp",
+          "locked",
+          "provider",
+          "owner",
+          "featured",
+          "serviceFee",
+          "delegationCap",
+          "apr",
+          "numUsers",
+          "cumulatedRewards",
+          "initialOwnerFunds",
+          "automaticActivation",
+          "checkCapOnRedelegate",
+          "ownerBelowRequiredBalanceThreshold",
+          "totalUnStaked",
+          "createdNonce"
+        ]
+      },
+      "Identity": {
+        "type": "object",
+        "properties": {
+          "identity": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "avatar": {
+            "type": "string"
+          },
+          "website": {
+            "type": "string"
+          },
+          "twitter": {
+            "type": "string"
+          },
+          "location": {
+            "type": "string"
+          },
+          "score": {
+            "type": "number"
+          },
+          "validators": {
+            "type": "number"
+          },
+          "stake": {
+            "example": "\"1500000000000000000\"",
+            "title": "Amount",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Amount"
+              }
+            ]
+          },
+          "topUp": {
+            "example": "\"4600000000000000000\"",
+            "title": "Amount",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Amount"
+              }
+            ]
+          },
+          "locked": {
+            "example": "\"6470000000000000000\"",
+            "title": "Amount",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Amount"
+              }
+            ]
+          },
+          "distribution": {
+            "type": "object"
+          },
+          "providers": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "stakePercent": {
+            "type": "number"
+          },
+          "rank": {
+            "type": "number"
+          },
+          "apr": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "identity",
+          "name",
+          "description",
+          "location",
+          "validators",
+          "stake",
+          "topUp",
+          "locked",
+          "distribution"
+        ]
+      },
+      "Amount": {
+        "type": "object",
+        "properties": {}
+      }
+    }
+  }
+}

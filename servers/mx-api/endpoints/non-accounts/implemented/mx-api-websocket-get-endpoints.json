@@ -1,0 +1,46 @@
+{
+  "openapi": "3.0.0",
+  "paths": {
+    "/websocket/config": {
+      "get": {
+        "operationId": "WebsocketController_getConfiguration",
+        "summary": "Websocket configuration",
+        "description": "Returns config used for accessing websocket on the same cluster",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/WebsocketConfig"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Websocket configuration not found"
+          }
+        },
+        "tags": [
+          "websocket"
+        ]
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "WebsocketConfig": {
+        "type": "object",
+        "properties": {
+          "url": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "url"
+        ]
+      }
+    }
+  }
+}

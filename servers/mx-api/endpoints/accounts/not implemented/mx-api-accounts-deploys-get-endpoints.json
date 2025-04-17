@@ -1,0 +1,126 @@
+{
+  "openapi": "3.0.0",
+  "paths": {
+    "/accounts/{address}/deploys": {
+      "get": {
+        "operationId": "AccountController_getAccountDeploys",
+        "summary": "Account deploys details",
+        "description": "Returns deploys details for a given account",
+        "parameters": [
+          {
+            "name": "address",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "from",
+            "required": false,
+            "in": "query",
+            "description": "Number of items to skip for the result set",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "size",
+            "required": false,
+            "in": "query",
+            "description": "Number of items to retrieve",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/DeployedContract"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "accounts"
+        ]
+      }
+    },
+    "/accounts/{address}/deploys/count": {
+      "get": {
+        "operationId": "AccountController_getAccountDeploysCount",
+        "summary": "Account deploys count",
+        "description": "Returns total number of deploys for a given address",
+        "parameters": [
+          {
+            "name": "address",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "number"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "accounts"
+        ]
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "AccountAssets": {
+        "type": "object",
+        "properties": {}
+      },
+      "DeployedContract": {
+        "type": "object",
+        "properties": {
+          "address": {
+            "type": "string"
+          },
+          "deployTxHash": {
+            "type": "string"
+          },
+          "timestamp": {
+            "type": "number"
+          },
+          "assets": {
+            "nullable": true,
+            "description": "Contract assets",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/AccountAssets"
+              }
+            ]
+          }
+        },
+        "required": [
+          "address",
+          "deployTxHash",
+          "timestamp"
+        ]
+      }
+    }
+  }
+}

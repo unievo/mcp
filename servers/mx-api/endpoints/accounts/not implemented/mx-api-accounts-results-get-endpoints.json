@@ -1,0 +1,351 @@
+{
+  "openapi": "3.0.0",
+  "paths": {
+    "/accounts/{address}/results": {
+      "get": {
+        "operationId": "AccountController_getAccountScResults",
+        "summary": "Account smart contract results",
+        "description": "Returns smart contract results where the account is sender or receiver",
+        "parameters": [
+          {
+            "name": "address",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "from",
+            "required": false,
+            "in": "query",
+            "description": "Number of items to skip for the result set",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "size",
+            "required": false,
+            "in": "query",
+            "description": "Number of items to retrieve",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/SmartContractResult"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "accounts"
+        ]
+      }
+    },
+    "/accounts/{address}/results/count": {
+      "get": {
+        "operationId": "AccountController_getAccountScResultsCount",
+        "summary": "Account smart contracts results count",
+        "description": "Returns number of smart contract results where the account is sender or receiver",
+        "parameters": [
+          {
+            "name": "address",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "number"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "accounts"
+        ]
+      }
+    },
+    "/accounts/{address}/results/{scHash}": {
+      "get": {
+        "operationId": "AccountController_getAccountScResult",
+        "summary": "Account smart contract result",
+        "description": "Returns details of a smart contract result where the account is sender or receiver",
+        "parameters": [
+          {
+            "name": "address",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "scHash",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SmartContractResult"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "accounts"
+        ]
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Amount": {
+        "type": "object",
+        "properties": {}
+      },
+      "AccountAssets": {
+        "type": "object",
+        "properties": {}
+      },
+      "TransactionLog": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Transaction log ID"
+          },
+          "address": {
+            "type": "string",
+            "description": "Transaction log address"
+          },
+          "addressAssets": {
+            "description": "Transaction address assets",
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/AccountAssets"
+              }
+            ]
+          },
+          "events": {
+            "description": "Transaction log events",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TransactionLogEvent"
+            }
+          }
+        },
+        "required": [
+          "id",
+          "address",
+          "events"
+        ]
+      },
+      "TransactionAction": {
+        "type": "object",
+        "properties": {
+          "category": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "arguments": {
+            "type": "object"
+          }
+        },
+        "required": [
+          "category",
+          "name",
+          "description",
+          "arguments"
+        ]
+      },
+      "SmartContractResult": {
+        "type": "object",
+        "properties": {
+          "hash": {
+            "type": "string"
+          },
+          "timestamp": {
+            "type": "number"
+          },
+          "nonce": {
+            "type": "number"
+          },
+          "gasLimit": {
+            "type": "number"
+          },
+          "gasPrice": {
+            "type": "number"
+          },
+          "value": {
+            "example": "\"3350000000000000000\"",
+            "title": "Amount",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Amount"
+              }
+            ]
+          },
+          "sender": {
+            "type": "string"
+          },
+          "receiver": {
+            "type": "string"
+          },
+          "senderAssets": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/AccountAssets"
+              }
+            ]
+          },
+          "receiverAssets": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/AccountAssets"
+              }
+            ]
+          },
+          "relayedValue": {
+            "type": "string"
+          },
+          "data": {
+            "type": "string"
+          },
+          "prevTxHash": {
+            "type": "string"
+          },
+          "originalTxHash": {
+            "type": "string"
+          },
+          "callType": {
+            "type": "string"
+          },
+          "miniBlockHash": {
+            "type": "string",
+            "nullable": true
+          },
+          "logs": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/TransactionLog"
+              }
+            ]
+          },
+          "returnMessage": {
+            "type": "string",
+            "nullable": true
+          },
+          "action": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/TransactionAction"
+              }
+            ]
+          },
+          "function": {
+            "type": "string",
+            "nullable": true
+          },
+          "status": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "required": [
+          "hash",
+          "timestamp",
+          "nonce",
+          "gasLimit",
+          "gasPrice",
+          "value",
+          "sender",
+          "receiver",
+          "data",
+          "prevTxHash",
+          "originalTxHash",
+          "callType",
+          "status"
+        ]
+      },
+      "TransactionLogEvent": {
+        "type": "object",
+        "properties": {
+          "address": {
+            "type": "string"
+          },
+          "addressAssets": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/AccountAssets"
+              }
+            ]
+          },
+          "identifier": {
+            "type": "string"
+          },
+          "topics": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "data": {
+            "type": "string"
+          },
+          "additionalData": {
+            "type": "object"
+          }
+        },
+        "required": [
+          "address",
+          "addressAssets",
+          "identifier",
+          "topics",
+          "data",
+          "additionalData"
+        ]
+      }
+    }
+  }
+}

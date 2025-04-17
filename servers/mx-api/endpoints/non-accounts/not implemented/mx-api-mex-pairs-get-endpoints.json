@@ -1,0 +1,204 @@
+{
+  "openapi": "3.0.0",
+  "paths": {
+    "/mex-pairs": {
+      "get": {
+        "operationId": "MexController_getMexPairsTemp",
+        "summary": "xExchange pairs",
+        "description": "Returns active liquidity pools available on xExchange",
+        "deprecated": true,
+        "parameters": [
+          {
+            "name": "from",
+            "required": false,
+            "in": "query",
+            "description": "Number of items to skip for the result set",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "size",
+            "required": false,
+            "in": "query",
+            "description": "Number of items to retrieve",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "exchange",
+            "required": false,
+            "in": "query",
+            "description": "Filter by exchange",
+            "schema": {
+              "enum": [
+                "xexchange",
+                "unknown"
+              ],
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/MexPair"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "xexchange"
+        ]
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "MexPair": {
+        "type": "object",
+        "properties": {
+          "address": {
+            "type": "string"
+          },
+          "id": {
+            "type": "string"
+          },
+          "symbol": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "price": {
+            "type": "number"
+          },
+          "basePrevious24hPrice": {
+            "type": "number"
+          },
+          "quotePrevious24hPrice": {
+            "type": "number"
+          },
+          "baseId": {
+            "type": "string",
+            "example": "MEX-455c57"
+          },
+          "baseSymbol": {
+            "type": "string",
+            "example": "MEX"
+          },
+          "baseName": {
+            "type": "string",
+            "example": "MEX"
+          },
+          "basePrice": {
+            "type": "number",
+            "example": 0.00020596180499578328
+          },
+          "quoteId": {
+            "type": "string",
+            "example": "WEGLD-bd4d79"
+          },
+          "quoteSymbol": {
+            "type": "string",
+            "example": "WEGLD"
+          },
+          "quoteName": {
+            "type": "string",
+            "example": "WrappedEGLD"
+          },
+          "quotePrice": {
+            "type": "number",
+            "example": 145.26032
+          },
+          "totalValue": {
+            "type": "number",
+            "example": "347667206.84174806"
+          },
+          "volume24h": {
+            "type": "number",
+            "example": "2109423.4531209776"
+          },
+          "state": {
+            "type": "string",
+            "enum": [
+              "active",
+              "inactive",
+              "paused",
+              "partial"
+            ]
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "core",
+              "community",
+              "ecosystem",
+              "experimental",
+              "unlisted"
+            ]
+          },
+          "exchange": {
+            "type": "string",
+            "example": "jungledex"
+          },
+          "tradesCount": {
+            "type": "number",
+            "nullable": true
+          },
+          "tradesCount24h": {
+            "type": "number",
+            "nullable": true
+          },
+          "deployedAt": {
+            "type": "number",
+            "nullable": true
+          },
+          "hasFarms": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "hasDualFarms": {
+            "type": "boolean",
+            "nullable": true
+          }
+        },
+        "required": [
+          "address",
+          "id",
+          "symbol",
+          "name",
+          "price",
+          "basePrevious24hPrice",
+          "quotePrevious24hPrice",
+          "baseId",
+          "baseSymbol",
+          "baseName",
+          "basePrice",
+          "quoteId",
+          "quoteSymbol",
+          "quoteName",
+          "quotePrice",
+          "totalValue",
+          "volume24h",
+          "state",
+          "type",
+          "exchange",
+          "tradesCount",
+          "tradesCount24h",
+          "deployedAt",
+          "hasFarms",
+          "hasDualFarms"
+        ]
+      }
+    }
+  }
+}

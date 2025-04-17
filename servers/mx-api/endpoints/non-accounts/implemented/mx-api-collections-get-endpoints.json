@@ -1,0 +1,2871 @@
+{
+  "openapi": "3.0.0",
+  "paths": {
+    "/collections": {
+      "get": {
+        "operationId": "CollectionController_getNftCollections",
+        "summary": "Collections",
+        "description": "Returns non-fungible/semi-fungible/meta-esdt collections",
+        "parameters": [
+          {
+            "name": "from",
+            "required": false,
+            "in": "query",
+            "description": "Number of items to skip for the result set",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "size",
+            "required": false,
+            "in": "query",
+            "description": "Number of items to retrieve",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "search",
+            "required": false,
+            "in": "query",
+            "description": "Search by collection identifier",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "identifiers",
+            "required": false,
+            "in": "query",
+            "description": "Search by collection identifiers, comma-separated",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "name": "type",
+            "required": false,
+            "in": "query",
+            "description": "Filter by type (NonFungibleESDT/SemiFungibleESDT/MetaESDT)",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "name": "subType",
+            "required": false,
+            "in": "query",
+            "description": "Filter by type (NonFungibleESDTv2/DynamicNonFungibleESDT/DynamicSemiFungibleESDT)",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "name": "creator",
+            "required": false,
+            "in": "query",
+            "description": "Filter collections where the given address has a creator role",
+            "deprecated": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "before",
+            "required": false,
+            "in": "query",
+            "description": "Return all collections before given timestamp",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "after",
+            "required": false,
+            "in": "query",
+            "description": "Return all collections after given timestamp",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "canCreate",
+            "required": false,
+            "in": "query",
+            "description": "Filter by address with canCreate role",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "canBurn",
+            "required": false,
+            "in": "query",
+            "description": "Filter by address with canBurn role",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "canAddQuantity",
+            "required": false,
+            "in": "query",
+            "description": "Filter by address with canAddQuantity role",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "canUpdateAttributes",
+            "required": false,
+            "in": "query",
+            "description": "Filter by address with canUpdateAttributes role",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "canAddUri",
+            "required": false,
+            "in": "query",
+            "description": "Filter by address with canAddUri role",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "canTransferRole",
+            "required": false,
+            "in": "query",
+            "description": "Filter by address with canTransferRole role",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "excludeMetaESDT",
+            "required": false,
+            "in": "query",
+            "description": "Do not include collections of type \"MetaESDT\" in the response",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "sort",
+            "required": false,
+            "in": "query",
+            "description": "Sorting criteria",
+            "schema": {
+              "enum": [
+                "timestamp",
+                "verifiedAndHolderCount"
+              ],
+              "type": "string"
+            }
+          },
+          {
+            "name": "order",
+            "required": false,
+            "in": "query",
+            "description": "Sorting order (asc / desc)",
+            "schema": {
+              "enum": [
+                "asc",
+                "desc"
+              ],
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/NftCollection"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "collections"
+        ]
+      }
+    },
+    "/collections/count": {
+      "get": {
+        "operationId": "CollectionController_getCollectionCount",
+        "summary": "Collection count",
+        "description": "Returns non-fungible/semi-fungible/meta-esdt collection count",
+        "parameters": [
+          {
+            "name": "search",
+            "required": false,
+            "in": "query",
+            "description": "Search by collection identifier",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "type",
+            "required": false,
+            "in": "query",
+            "description": "Filter by type (NonFungibleESDT/SemiFungibleESDT/MetaESDT)",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "name": "subType",
+            "required": true,
+            "in": "query",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "name": "creator",
+            "required": false,
+            "in": "query",
+            "description": "Filter collections where the given address has a creator role",
+            "deprecated": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "before",
+            "required": false,
+            "in": "query",
+            "description": "Return all collections before given timestamp",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "after",
+            "required": false,
+            "in": "query",
+            "description": "Return all collections after given timestamp",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "canCreate",
+            "required": false,
+            "in": "query",
+            "description": "Filter by address with canCreate role",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "canBurn",
+            "required": false,
+            "in": "query",
+            "description": "Filter by address with canBurn role",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "canAddQuantity",
+            "required": false,
+            "in": "query",
+            "description": "Filter by address with canAddQuantity role",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "canUpdateAttributes",
+            "required": false,
+            "in": "query",
+            "description": "Filter by address with canUpdateAttributes role",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "canAddUri",
+            "required": false,
+            "in": "query",
+            "description": "Filter by address with canAddUri role",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "canTransferRole",
+            "required": false,
+            "in": "query",
+            "description": "Filter by address with canTransferRole role",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "excludeMetaESDT",
+            "required": false,
+            "in": "query",
+            "description": "Do not include collections of type \"MetaESDT\" in the response",
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "number"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "collections"
+        ]
+      }
+    },
+    "/collections/{collection}": {
+      "get": {
+        "operationId": "CollectionController_getNftCollection",
+        "summary": "Collection details",
+        "description": "Returns non-fungible/semi-fungible/meta-esdt collection details",
+        "parameters": [
+          {
+            "name": "collection",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NftCollectionDetailed"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Token collection not found"
+          }
+        },
+        "tags": [
+          "collections"
+        ]
+      }
+    },
+    "/collections/{collection}/ranks": {
+      "get": {
+        "operationId": "CollectionController_getNftCollectionRanks",
+        "summary": "Collection ranks",
+        "description": "Returns NFT ranks in case the custom ranking preferred algorithm was set",
+        "parameters": [
+          {
+            "name": "collection",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/NftRank"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Token collection not found"
+          }
+        },
+        "tags": [
+          "collections"
+        ]
+      }
+    },
+    "/collections/{collection}/nfts": {
+      "get": {
+        "operationId": "CollectionController_getNfts",
+        "summary": "Collection NFTs",
+        "description": "Returns non-fungible/semi-fungible/meta-esdt tokens that belong to a collection",
+        "parameters": [
+          {
+            "name": "collection",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "from",
+            "required": false,
+            "in": "query",
+            "description": "Number of items to skip for the result set",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "size",
+            "required": false,
+            "in": "query",
+            "description": "Number of items to retrieve",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "search",
+            "required": false,
+            "in": "query",
+            "description": "Search by collection identifier",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "identifiers",
+            "required": false,
+            "in": "query",
+            "description": "Search by token identifiers, comma-separated",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "name": "name",
+            "required": false,
+            "in": "query",
+            "description": "Get all nfts by name",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "tags",
+            "required": false,
+            "in": "query",
+            "description": "Filter by one or more comma-separated tags",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "name": "creator",
+            "required": false,
+            "in": "query",
+            "description": "Return all NFTs associated with a given creator",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "isWhitelistedStorage",
+            "required": false,
+            "in": "query",
+            "description": "Return all NFTs that are whitelisted in storage",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "hasUris",
+            "required": false,
+            "in": "query",
+            "description": "Return all NFTs that have one or more uris",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "isNsfw",
+            "required": false,
+            "in": "query",
+            "description": "Filter by NSFW status",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "nonceBefore",
+            "required": false,
+            "in": "query",
+            "description": "Return all NFTs with given nonce before the given number",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "nonceAfter",
+            "required": false,
+            "in": "query",
+            "description": "Return all NFTs with given nonce after the given number",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "withOwner",
+            "required": false,
+            "in": "query",
+            "description": "Return owner where type = NonFungibleESDT",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "withSupply",
+            "required": false,
+            "in": "query",
+            "description": "Return supply where type = SemiFungibleESDT",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "sort",
+            "required": false,
+            "in": "query",
+            "description": "Sorting criteria",
+            "schema": {
+              "enum": [
+                "timestamp",
+                "rank",
+                "nonce"
+              ],
+              "type": "string"
+            }
+          },
+          {
+            "name": "order",
+            "required": false,
+            "in": "query",
+            "description": "Sorting order (asc / desc)",
+            "schema": {
+              "enum": [
+                "asc",
+                "desc"
+              ],
+              "type": "string"
+            }
+          },
+          {
+            "name": "traits",
+            "required": false,
+            "in": "query",
+            "description": "Filter NFTs by traits. Key-value format (<key1>:<value1>;<key2>:<value2>)",
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Nft"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Token collection not found"
+          }
+        },
+        "tags": [
+          "collections"
+        ]
+      }
+    },
+    "/collections/{collection}/nfts/count": {
+      "get": {
+        "operationId": "CollectionController_getNftCount",
+        "summary": "Collection NFT count",
+        "description": "Returns non-fungible/semi-fungible/meta-esdt token count that belong to a collection",
+        "parameters": [
+          {
+            "name": "collection",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "search",
+            "required": false,
+            "in": "query",
+            "description": "Search by collection identifier",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "identifiers",
+            "required": false,
+            "in": "query",
+            "description": "Search by token identifiers, comma-separated",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "name": "name",
+            "required": false,
+            "in": "query",
+            "description": "Get all nfts by name",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "tags",
+            "required": false,
+            "in": "query",
+            "description": "Filter by one or more comma-separated tags",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "name": "creator",
+            "required": false,
+            "in": "query",
+            "description": "Return all NFTs associated with a given creator",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "isWhitelistedStorage",
+            "required": false,
+            "in": "query",
+            "description": "Return all NFTs that are whitelisted in storage",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "hasUris",
+            "required": false,
+            "in": "query",
+            "description": "Return all NFTs that have one or more uris",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "nonceBefore",
+            "required": false,
+            "in": "query",
+            "description": "Return all NFTs with given nonce before the given number",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "nonceAfter",
+            "required": false,
+            "in": "query",
+            "description": "Return all NFTs with given nonce after the given number",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "traits",
+            "required": false,
+            "in": "query",
+            "description": "Filter NFTs by traits. Key-value format (<key1>:<value1>;<key2>:<value2>)",
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "number"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Token collection not found"
+          }
+        },
+        "tags": [
+          "collections"
+        ]
+      }
+    },
+    "/collections/{identifier}/accounts": {
+      "get": {
+        "operationId": "CollectionController_getNftAccounts",
+        "summary": "Collection accounts",
+        "description": "Returns a list of addresses and balances for a specific collection",
+        "parameters": [
+          {
+            "name": "identifier",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "from",
+            "required": false,
+            "in": "query",
+            "description": "Number of items to skip for the result set",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "size",
+            "required": false,
+            "in": "query",
+            "description": "Number of items to retrieve",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CollectionAccount"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Collection not found"
+          }
+        },
+        "tags": [
+          "collections"
+        ]
+      }
+    },
+    "/collections/{collection}/transactions": {
+      "get": {
+        "operationId": "CollectionController_getCollectionTransactions",
+        "summary": "Collection transactions",
+        "description": "Returns a list of transactions for a specific collection.",
+        "parameters": [
+          {
+            "name": "collection",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "from",
+            "required": false,
+            "in": "query",
+            "description": "Number of items to skip for the result set",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "size",
+            "required": false,
+            "in": "query",
+            "description": "Number of items to retrieve",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "sender",
+            "required": false,
+            "in": "query",
+            "description": "Address of the transaction sender",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "receiver",
+            "required": false,
+            "in": "query",
+            "description": "Search by multiple receiver addresses, comma-separated",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "name": "senderShard",
+            "required": false,
+            "in": "query",
+            "description": "Id of the shard the sender address belongs to",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "receiverShard",
+            "required": false,
+            "in": "query",
+            "description": "Id of the shard the receiver address belongs to",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "miniBlockHash",
+            "required": false,
+            "in": "query",
+            "description": "Filter by miniblock hash",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "hashes",
+            "required": false,
+            "in": "query",
+            "description": "Filter by a comma-separated list of transaction hashes",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "name": "status",
+            "required": false,
+            "in": "query",
+            "description": "Status of the transaction (success / pending / invalid / fail)",
+            "schema": {
+              "enum": [
+                "success",
+                "pending",
+                "invalid",
+                "fail"
+              ],
+              "type": "string"
+            }
+          },
+          {
+            "name": "function",
+            "required": false,
+            "in": "query",
+            "description": "Filter transactions by function name",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "name": "before",
+            "required": false,
+            "in": "query",
+            "description": "Before timestamp",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "after",
+            "required": false,
+            "in": "query",
+            "description": "After timestamp",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "round",
+            "required": false,
+            "in": "query",
+            "description": "Filter by round number",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "order",
+            "required": false,
+            "in": "query",
+            "description": "Sort order (asc/desc)",
+            "schema": {
+              "enum": [
+                "asc",
+                "desc"
+              ],
+              "type": "string"
+            }
+          },
+          {
+            "name": "withScResults",
+            "required": false,
+            "in": "query",
+            "description": "Return scResults for transactions",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "withOperations",
+            "required": false,
+            "in": "query",
+            "description": "Return operations for transactions",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "withLogs",
+            "required": false,
+            "in": "query",
+            "description": "Return logs for transactions",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "withScamInfo",
+            "required": false,
+            "in": "query",
+            "description": "Returns scam information",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "withUsername",
+            "required": false,
+            "in": "query",
+            "description": "Integrates username in assets for all addresses present in the transactions",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "withRelayedScresults",
+            "required": false,
+            "in": "query",
+            "description": "If set to true, will include smart contract results that resemble relayed transactions",
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Transaction"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Collection not found"
+          }
+        },
+        "tags": [
+          "collections"
+        ]
+      }
+    },
+    "/collections/{collection}/transactions/count": {
+      "get": {
+        "operationId": "CollectionController_getCollectionTransactionsCount",
+        "summary": "NFT transactions count",
+        "description": "Returns the total number of transactions for a specific collection",
+        "parameters": [
+          {
+            "name": "collection",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "sender",
+            "required": false,
+            "in": "query",
+            "description": "Address of the transaction sender",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "receiver",
+            "required": false,
+            "in": "query",
+            "description": "Search by multiple receiver addresses, comma-separated",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "name": "senderShard",
+            "required": false,
+            "in": "query",
+            "description": "Id of the shard the sender address belongs to",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "receiverShard",
+            "required": false,
+            "in": "query",
+            "description": "Id of the shard the receiver address belongs to",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "miniBlockHash",
+            "required": false,
+            "in": "query",
+            "description": "Filter by miniblock hash",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "hashes",
+            "required": false,
+            "in": "query",
+            "description": "Filter by a comma-separated list of transaction hashes",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "name": "status",
+            "required": false,
+            "in": "query",
+            "description": "Status of the transaction (success / pending / invalid / fail)",
+            "schema": {
+              "enum": [
+                "success",
+                "pending",
+                "invalid",
+                "fail"
+              ],
+              "type": "string"
+            }
+          },
+          {
+            "name": "before",
+            "required": false,
+            "in": "query",
+            "description": "Before timestamp",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "after",
+            "required": false,
+            "in": "query",
+            "description": "After timestamp",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "round",
+            "required": false,
+            "in": "query",
+            "description": "Filter by round number",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "withRelayedScresults",
+            "required": false,
+            "in": "query",
+            "description": "If set to true, will include smart contract results that resemble relayed transactions",
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "number"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Collection not found"
+          }
+        },
+        "tags": [
+          "collections"
+        ]
+      }
+    },
+    "/collections/{collection}/transfers": {
+      "get": {
+        "operationId": "CollectionController_getCollectionTransfers",
+        "summary": "Collection transactions",
+        "description": "Returns a list of transactions for a specific collection.",
+        "parameters": [
+          {
+            "name": "collection",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "from",
+            "required": false,
+            "in": "query",
+            "description": "Number of items to skip for the result set",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "size",
+            "required": false,
+            "in": "query",
+            "description": "Number of items to retrieve",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "sender",
+            "required": false,
+            "in": "query",
+            "description": "Address of the transfer sender",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "receiver",
+            "required": false,
+            "in": "query",
+            "description": "Search by multiple receiver addresses, comma-separated",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "name": "senderShard",
+            "required": false,
+            "in": "query",
+            "description": "Id of the shard the sender address belongs to",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "receiverShard",
+            "required": false,
+            "in": "query",
+            "description": "Id of the shard the receiver address belongs to",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "miniBlockHash",
+            "required": false,
+            "in": "query",
+            "description": "Filter by miniblock hash",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "hashes",
+            "required": false,
+            "in": "query",
+            "description": "Filter by a comma-separated list of transaction hashes",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "name": "status",
+            "required": false,
+            "in": "query",
+            "description": "Status of the transaction (success / pending / invalid / fail)",
+            "schema": {
+              "enum": [
+                "success",
+                "pending",
+                "invalid",
+                "fail"
+              ],
+              "type": "string"
+            }
+          },
+          {
+            "name": "function",
+            "required": false,
+            "in": "query",
+            "description": "Filter transactions by function name",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "name": "before",
+            "required": false,
+            "in": "query",
+            "description": "Before timestamp",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "after",
+            "required": false,
+            "in": "query",
+            "description": "After timestamp",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "round",
+            "required": false,
+            "in": "query",
+            "description": "Filter by round number",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "order",
+            "required": false,
+            "in": "query",
+            "description": "Sort order (asc/desc)",
+            "schema": {
+              "enum": [
+                "asc",
+                "desc"
+              ],
+              "type": "string"
+            }
+          },
+          {
+            "name": "withScResults",
+            "required": false,
+            "in": "query",
+            "description": "Return scResults for transactions",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "withOperations",
+            "required": false,
+            "in": "query",
+            "description": "Return operations for transactions",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "withLogs",
+            "required": false,
+            "in": "query",
+            "description": "Return logs for transactions",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "withScamInfo",
+            "required": false,
+            "in": "query",
+            "description": "Returns scam information",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "withUsername",
+            "required": false,
+            "in": "query",
+            "description": "Integrates username in assets for all addresses present in the transactions",
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Transaction"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Collection not found"
+          }
+        },
+        "tags": [
+          "collections"
+        ]
+      }
+    },
+    "/collections/{collection}/transfers/count": {
+      "get": {
+        "operationId": "CollectionController_getCollectionTransfersCount",
+        "summary": "NFT transfers count",
+        "description": "Returns the total number of transfers for a specific collection",
+        "parameters": [
+          {
+            "name": "collection",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "function",
+            "required": false,
+            "in": "query",
+            "description": "Filter transfers by function name",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "name": "sender",
+            "required": false,
+            "in": "query",
+            "description": "Address of the transfer sender",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "receiver",
+            "required": false,
+            "in": "query",
+            "description": "Search by multiple receiver addresses, comma-separated",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "name": "senderShard",
+            "required": false,
+            "in": "query",
+            "description": "Id of the shard the sender address belongs to",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "receiverShard",
+            "required": false,
+            "in": "query",
+            "description": "Id of the shard the receiver address belongs to",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "miniBlockHash",
+            "required": false,
+            "in": "query",
+            "description": "Filter by miniblock hash",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "hashes",
+            "required": false,
+            "in": "query",
+            "description": "Filter by a comma-separated list of transfer hashes",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "name": "status",
+            "required": false,
+            "in": "query",
+            "description": "Status of the transfer (success / pending / invalid / fail)",
+            "schema": {
+              "enum": [
+                "success",
+                "pending",
+                "invalid",
+                "fail"
+              ],
+              "type": "string"
+            }
+          },
+          {
+            "name": "before",
+            "required": false,
+            "in": "query",
+            "description": "Before timestamp",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "after",
+            "required": false,
+            "in": "query",
+            "description": "After timestamp",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "round",
+            "required": false,
+            "in": "query",
+            "description": "Filter by round number",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "number"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Collection not found"
+          }
+        },
+        "tags": [
+          "collections"
+        ]
+      }
+    },
+    "/collections/{identifier}/logo/png": {
+      "get": {
+        "operationId": "CollectionController_getCollectionLogoPng",
+        "summary": "Collection png logo",
+        "description": "Returns collection PNG logo ",
+        "deprecated": true,
+        "parameters": [
+          {
+            "name": "identifier",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "collections"
+        ]
+      }
+    },
+    "/collections/{identifier}/logo/svg": {
+      "get": {
+        "operationId": "CollectionController_getTokenLogoSvg",
+        "summary": "Collection png logo",
+        "description": "Returns collection SVG logo ",
+        "deprecated": true,
+        "parameters": [
+          {
+            "name": "identifier",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "collections"
+        ]
+      }
+    },
+    "/collections/{collection}/auction/stats": {
+      "get": {
+        "operationId": "NftMarketplaceController_getCollectionStats",
+        "summary": "Collection stats",
+        "description": "Returns collection status details from nft marketplace for a given collection identifier",
+        "parameters": [
+          {
+            "name": "collection",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CollectionAuctionStats"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "marketplace"
+        ]
+      }
+    },
+    "/collections/{collection}/auctions": {
+      "get": {
+        "operationId": "NftMarketplaceController_getCollectionAuctions",
+        "summary": "Collection auctions",
+        "description": "Returns all auctions for a specific collection ",
+        "parameters": [
+          {
+            "name": "collection",
+            "required": true,
+            "in": "query",
+            "description": "Collection identifier",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "size",
+            "required": false,
+            "in": "query",
+            "description": "Number of items to retrieve",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Auctions"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "marketplace"
+        ]
+      }
+    },
+    "/collections/{collection}/auctions/count": {
+      "get": {
+        "operationId": "NftMarketplaceController_getCollectionAuctionsCount",
+        "summary": "Collection auctions count",
+        "description": "Returns total running auctions count for a specific collection ",
+        "parameters": [
+          {
+            "name": "collection",
+            "required": true,
+            "in": "query",
+            "description": "Collection identifier",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "number"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "marketplace"
+        ]
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "NftCollection": {
+        "type": "object",
+        "properties": {
+          "collection": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "NonFungibleESDT",
+              "SemiFungibleESDT",
+              "MetaESDT"
+            ]
+          },
+          "subType": {
+            "type": "string",
+            "enum": [
+              "NonFungibleESDT",
+              "SemiFungibleESDT",
+              "MetaESDT",
+              "NonFungibleESDTv2",
+              "DynamicNonFungibleESDT",
+              "DynamicSemiFungibleESDT",
+              "DynamicMetaESDT",
+              ""
+            ],
+            "nullable": true
+          },
+          "name": {
+            "type": "string"
+          },
+          "ticker": {
+            "type": "string"
+          },
+          "owner": {
+            "type": "string",
+            "nullable": true
+          },
+          "timestamp": {
+            "type": "number"
+          },
+          "canFreeze": {
+            "type": "boolean",
+            "default": false
+          },
+          "canWipe": {
+            "type": "boolean",
+            "default": false
+          },
+          "canPause": {
+            "type": "boolean",
+            "default": false
+          },
+          "canTransferNftCreateRole": {
+            "type": "boolean",
+            "default": false
+          },
+          "canChangeOwner": {
+            "type": "boolean",
+            "default": false
+          },
+          "canUpgrade": {
+            "type": "boolean",
+            "default": false
+          },
+          "canAddSpecialRoles": {
+            "type": "boolean",
+            "default": false
+          },
+          "decimals": {
+            "type": "number",
+            "nullable": true
+          },
+          "assets": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/TokenAssets"
+              }
+            ]
+          },
+          "scamInfo": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ScamInfo"
+              }
+            ]
+          },
+          "traits": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CollectionTrait"
+            }
+          },
+          "auctionStats": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/CollectionAuctionStats"
+              }
+            ]
+          },
+          "isVerified": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "holderCount": {
+            "type": "number",
+            "nullable": true
+          },
+          "nftCount": {
+            "type": "number",
+            "nullable": true
+          }
+        },
+        "required": [
+          "collection",
+          "type",
+          "subType",
+          "name",
+          "ticker",
+          "owner",
+          "timestamp",
+          "canFreeze",
+          "canWipe",
+          "canPause",
+          "canTransferNftCreateRole",
+          "canChangeOwner",
+          "canUpgrade",
+          "canAddSpecialRoles",
+          "decimals"
+        ]
+      },
+      "CollectionAccount": {
+        "type": "object",
+        "properties": {
+          "address": {
+            "type": "string",
+            "example": "erd1qga7ze0l03chfgru0a32wxqf2226nzrxnyhzer9lmudqhjgy7ycqjjyknz"
+          },
+          "balance": {
+            "type": "string",
+            "default": "1"
+          }
+        },
+        "required": [
+          "address",
+          "balance"
+        ]
+      },
+      "NftMetadata": {
+        "type": "object",
+        "properties": {
+          "description": {
+            "type": "string"
+          },
+          "fileType": {
+            "type": "string"
+          },
+          "fileUri": {
+            "type": "string"
+          },
+          "fileName": {
+            "type": "string"
+          },
+          "error": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/NftMetadataError"
+              }
+            ]
+          }
+        },
+        "required": [
+          "description",
+          "fileType",
+          "fileUri",
+          "fileName",
+          "error"
+        ]
+      },
+      "Bids": {
+        "type": "object",
+        "properties": {
+          "amount": {
+            "type": "string"
+          },
+          "token": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "amount",
+          "token"
+        ]
+      },
+      "Auctions": {
+        "type": "object",
+        "properties": {
+          "owner": {
+            "type": "string"
+          },
+          "auctionId": {
+            "type": "number"
+          },
+          "identifier": {
+            "type": "string"
+          },
+          "collection": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "running",
+              "claimable",
+              "ended",
+              "closed",
+              "unknown"
+            ]
+          },
+          "auctionType": {
+            "type": "string"
+          },
+          "createdAt": {
+            "type": "number"
+          },
+          "endsAt": {
+            "type": "number"
+          },
+          "marketplaceAuctionId": {
+            "type": "number"
+          },
+          "marketplace": {
+            "type": "string"
+          },
+          "minBid": {
+            "$ref": "#/components/schemas/Bids"
+          },
+          "maxBid": {
+            "$ref": "#/components/schemas/Bids"
+          }
+        },
+        "required": [
+          "owner",
+          "auctionId",
+          "identifier",
+          "collection",
+          "status",
+          "auctionType",
+          "createdAt",
+          "endsAt",
+          "marketplaceAuctionId",
+          "marketplace",
+          "minBid",
+          "maxBid"
+        ]
+      },
+      "NftMetadataError": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "enum": [
+              "ipfs_error",
+              "not_found",
+              "timeout",
+              "unknown_error",
+              "invalid_content_type",
+              "json_parse_error",
+              "empty_metadata"
+            ]
+          },
+          "message": {
+            "type": "string"
+          },
+          "timestamp": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "code",
+          "message",
+          "timestamp"
+        ]
+      },
+      "AccountAssets": {
+        "type": "object",
+        "properties": {}
+      },
+      "CollectionTrait": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "occurrenceCount": {
+            "type": "number"
+          },
+          "occurrencePercentage": {
+            "type": "number"
+          },
+          "attributes": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CollectionTraitAttribute"
+            }
+          }
+        },
+        "required": [
+          "name",
+          "occurrenceCount",
+          "occurrencePercentage",
+          "attributes"
+        ]
+      },
+      "NftMedia": {
+        "type": "object",
+        "properties": {
+          "url": {
+            "type": "string"
+          },
+          "originalUrl": {
+            "type": "string"
+          },
+          "thumbnailUrl": {
+            "type": "string"
+          },
+          "fileType": {
+            "type": "string"
+          },
+          "fileSize": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "url",
+          "originalUrl",
+          "thumbnailUrl",
+          "fileType",
+          "fileSize"
+        ]
+      },
+      "CollectionAuctionStats": {
+        "type": "object",
+        "properties": {
+          "activeAuctions": {
+            "type": "number"
+          },
+          "endedAuctions": {
+            "type": "number"
+          },
+          "maxPrice": {
+            "type": "string"
+          },
+          "minPrice": {
+            "type": "string"
+          },
+          "saleAverage": {
+            "type": "string"
+          },
+          "volumeTraded": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "activeAuctions",
+          "endedAuctions",
+          "maxPrice",
+          "minPrice",
+          "saleAverage",
+          "volumeTraded"
+        ]
+      },
+      "TokenAssets": {
+        "type": "object",
+        "properties": {
+          "website": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "active",
+              "inactive"
+            ],
+            "default": "inactive"
+          },
+          "pngUrl": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "svgUrl": {
+            "type": "string"
+          },
+          "ledgerSignature": {
+            "type": "string"
+          },
+          "lockedAccounts": {
+            "type": "string"
+          },
+          "extraTokens": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "preferredRankAlgorithm": {
+            "type": "string",
+            "enum": [
+              "trait",
+              "statistical",
+              "openRarity",
+              "jaccardDistances",
+              "custom"
+            ],
+            "nullable": true
+          },
+          "priceSource": {
+            "type": "number",
+            "enum": [],
+            "nullable": true
+          }
+        },
+        "required": [
+          "website",
+          "description",
+          "status",
+          "pngUrl",
+          "name",
+          "svgUrl",
+          "ledgerSignature",
+          "lockedAccounts",
+          "extraTokens",
+          "preferredRankAlgorithm",
+          "priceSource"
+        ]
+      },
+      "NftRarities": {
+        "type": "object",
+        "properties": {
+          "statistical": {
+            "$ref": "#/components/schemas/NftRarity"
+          },
+          "trait": {
+            "$ref": "#/components/schemas/NftRarity"
+          },
+          "jaccardDistances": {
+            "$ref": "#/components/schemas/NftRarity"
+          },
+          "openRarity": {
+            "$ref": "#/components/schemas/NftRarity"
+          },
+          "custom": {
+            "$ref": "#/components/schemas/NftRarity"
+          }
+        },
+        "required": [
+          "statistical",
+          "trait",
+          "jaccardDistances",
+          "openRarity",
+          "custom"
+        ]
+      },
+      "NftRarity": {
+        "type": "object",
+        "properties": {
+          "rank": {
+            "type": "number"
+          },
+          "score": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "rank",
+          "score"
+        ]
+      },
+      "CollectionRoles": {
+        "type": "object",
+        "properties": {
+          "address": {
+            "type": "string",
+            "nullable": true
+          },
+          "canCreate": {
+            "type": "boolean",
+            "default": false
+          },
+          "canBurn": {
+            "type": "boolean",
+            "default": false
+          },
+          "canAddQuantity": {
+            "type": "boolean",
+            "default": false
+          },
+          "canUpdateAttributes": {
+            "type": "boolean",
+            "default": false
+          },
+          "canAddUri": {
+            "type": "boolean",
+            "default": false
+          },
+          "canTransfer": {
+            "type": "boolean",
+            "default": false
+          },
+          "roles": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "address",
+          "canCreate",
+          "canBurn",
+          "canAddQuantity",
+          "canUpdateAttributes",
+          "canAddUri",
+          "canTransfer",
+          "roles"
+        ]
+      },
+      "UnlockMileStoneModel": {
+        "type": "object",
+        "properties": {
+          "remainingEpochs": {
+            "type": "number",
+            "description": "Remaining epochs until unlock can be performed",
+            "example": 42
+          },
+          "percent": {
+            "type": "number",
+            "description": "Percent of token unlockable after the epochs pass",
+            "example": 42
+          }
+        },
+        "required": [
+          "remainingEpochs",
+          "percent"
+        ]
+      },
+      "CollectionTraitAttribute": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "occurrenceCount": {
+            "type": "number"
+          },
+          "occurrencePercentage": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "name",
+          "occurrenceCount",
+          "occurrencePercentage"
+        ]
+      },
+      "TransactionAction": {
+        "type": "object",
+        "properties": {
+          "category": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "arguments": {
+            "type": "object"
+          }
+        },
+        "required": [
+          "category",
+          "name",
+          "description",
+          "arguments"
+        ]
+      },
+      "NftCollectionDetailed": {
+        "type": "object",
+        "properties": {
+          "collection": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "NonFungibleESDT",
+              "SemiFungibleESDT",
+              "MetaESDT"
+            ]
+          },
+          "subType": {
+            "type": "string",
+            "enum": [
+              "NonFungibleESDT",
+              "SemiFungibleESDT",
+              "MetaESDT",
+              "NonFungibleESDTv2",
+              "DynamicNonFungibleESDT",
+              "DynamicSemiFungibleESDT",
+              "DynamicMetaESDT",
+              ""
+            ],
+            "nullable": true
+          },
+          "name": {
+            "type": "string"
+          },
+          "ticker": {
+            "type": "string"
+          },
+          "owner": {
+            "type": "string",
+            "nullable": true
+          },
+          "timestamp": {
+            "type": "number"
+          },
+          "canFreeze": {
+            "type": "boolean",
+            "default": false
+          },
+          "canWipe": {
+            "type": "boolean",
+            "default": false
+          },
+          "canPause": {
+            "type": "boolean",
+            "default": false
+          },
+          "canTransferNftCreateRole": {
+            "type": "boolean",
+            "default": false
+          },
+          "canChangeOwner": {
+            "type": "boolean",
+            "default": false
+          },
+          "canUpgrade": {
+            "type": "boolean",
+            "default": false
+          },
+          "canAddSpecialRoles": {
+            "type": "boolean",
+            "default": false
+          },
+          "decimals": {
+            "type": "number",
+            "nullable": true
+          },
+          "assets": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/TokenAssets"
+              }
+            ]
+          },
+          "scamInfo": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ScamInfo"
+              }
+            ]
+          },
+          "traits": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CollectionTrait"
+            }
+          },
+          "auctionStats": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/CollectionAuctionStats"
+              }
+            ]
+          },
+          "isVerified": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "holderCount": {
+            "type": "number",
+            "nullable": true
+          },
+          "nftCount": {
+            "type": "number",
+            "nullable": true
+          },
+          "canTransfer": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "roles": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CollectionRoles"
+            }
+          }
+        },
+        "required": [
+          "collection",
+          "type",
+          "subType",
+          "name",
+          "ticker",
+          "owner",
+          "timestamp",
+          "canFreeze",
+          "canWipe",
+          "canPause",
+          "canTransferNftCreateRole",
+          "canChangeOwner",
+          "canUpgrade",
+          "canAddSpecialRoles",
+          "decimals",
+          "canTransfer",
+          "roles"
+        ]
+      },
+      "Transaction": {
+        "type": "object",
+        "properties": {
+          "txHash": {
+            "type": "string"
+          },
+          "gasLimit": {
+            "type": "number"
+          },
+          "gasPrice": {
+            "type": "number"
+          },
+          "gasUsed": {
+            "type": "number"
+          },
+          "miniBlockHash": {
+            "type": "string"
+          },
+          "nonce": {
+            "type": "number"
+          },
+          "receiver": {
+            "type": "string"
+          },
+          "receiverUsername": {
+            "type": "string",
+            "nullable": true
+          },
+          "receiverAssets": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/AccountAssets"
+              }
+            ]
+          },
+          "receiverShard": {
+            "type": "number"
+          },
+          "round": {
+            "type": "number"
+          },
+          "sender": {
+            "type": "string"
+          },
+          "senderUsername": {
+            "type": "string",
+            "nullable": true
+          },
+          "senderAssets": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/AccountAssets"
+              }
+            ]
+          },
+          "senderShard": {
+            "type": "number"
+          },
+          "signature": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          },
+          "fee": {
+            "type": "string"
+          },
+          "timestamp": {
+            "type": "number"
+          },
+          "data": {
+            "type": "string",
+            "nullable": true
+          },
+          "function": {
+            "type": "string",
+            "nullable": true
+          },
+          "action": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/TransactionAction"
+              }
+            ]
+          },
+          "scamInfo": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ScamInfo"
+              }
+            ]
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "Transaction",
+              "SmartContractResult",
+              "Reward"
+            ],
+            "nullable": true
+          },
+          "originalTxHash": {
+            "type": "string",
+            "nullable": true
+          },
+          "pendingResults": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "guardianAddress": {
+            "type": "string",
+            "nullable": true
+          },
+          "guardianSignature": {
+            "type": "string",
+            "nullable": true
+          },
+          "isRelayed": {
+            "type": "string",
+            "nullable": true
+          },
+          "relayer": {
+            "type": "string",
+            "nullable": true
+          },
+          "relayerSignature": {
+            "type": "string",
+            "nullable": true
+          },
+          "isScCall": {
+            "type": "boolean",
+            "nullable": true
+          }
+        },
+        "required": [
+          "txHash",
+          "gasLimit",
+          "gasPrice",
+          "gasUsed",
+          "miniBlockHash",
+          "nonce",
+          "receiver",
+          "receiverShard",
+          "round",
+          "sender",
+          "senderShard",
+          "signature",
+          "status",
+          "value",
+          "fee",
+          "timestamp"
+        ]
+      },
+      "Nft": {
+        "type": "object",
+        "properties": {
+          "identifier": {
+            "type": "string"
+          },
+          "collection": {
+            "type": "string"
+          },
+          "hash": {
+            "type": "string"
+          },
+          "timestamp": {
+            "type": "number",
+            "nullable": true
+          },
+          "attributes": {
+            "type": "string"
+          },
+          "nonce": {
+            "type": "number"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "NonFungibleESDT",
+              "SemiFungibleESDT",
+              "MetaESDT"
+            ]
+          },
+          "subType": {
+            "type": "string",
+            "enum": [
+              "NonFungibleESDT",
+              "SemiFungibleESDT",
+              "MetaESDT",
+              "NonFungibleESDTv2",
+              "DynamicNonFungibleESDT",
+              "DynamicSemiFungibleESDT",
+              "DynamicMetaESDT",
+              ""
+            ]
+          },
+          "name": {
+            "type": "string"
+          },
+          "creator": {
+            "type": "string"
+          },
+          "royalties": {
+            "type": "number",
+            "nullable": true
+          },
+          "uris": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "url": {
+            "type": "string"
+          },
+          "media": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/NftMedia"
+              }
+            ]
+          },
+          "isWhitelistedStorage": {
+            "type": "boolean",
+            "default": false
+          },
+          "thumbnailUrl": {
+            "type": "string"
+          },
+          "tags": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "metadata": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/NftMetadata"
+              }
+            ]
+          },
+          "owner": {
+            "type": "string",
+            "nullable": true
+          },
+          "balance": {
+            "type": "string",
+            "nullable": true
+          },
+          "supply": {
+            "example": "\"5140000000000000000\"",
+            "title": "Amount",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Amount"
+              }
+            ]
+          },
+          "decimals": {
+            "type": "number",
+            "nullable": true
+          },
+          "assets": {
+            "$ref": "#/components/schemas/TokenAssets"
+          },
+          "ticker": {
+            "type": "string"
+          },
+          "scamInfo": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ScamInfo"
+              }
+            ]
+          },
+          "score": {
+            "type": "number",
+            "nullable": true
+          },
+          "rank": {
+            "type": "number",
+            "nullable": true
+          },
+          "rarities": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/NftRarities"
+              }
+            ]
+          },
+          "isNsfw": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "unlockSchedule": {
+            "nullable": true,
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/UnlockMileStoneModel"
+            }
+          },
+          "unlockEpoch": {
+            "type": "number",
+            "nullable": true
+          }
+        },
+        "required": [
+          "identifier",
+          "collection",
+          "hash",
+          "timestamp",
+          "attributes",
+          "nonce",
+          "type",
+          "subType",
+          "name",
+          "creator",
+          "royalties",
+          "uris",
+          "url",
+          "metadata",
+          "owner",
+          "balance",
+          "supply",
+          "decimals",
+          "ticker",
+          "isNsfw"
+        ]
+      },
+      "Amount": {
+        "type": "object",
+        "properties": {}
+      },
+      "ScamInfo": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "nullable": true
+          },
+          "info": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "required": [
+          "type",
+          "info"
+        ]
+      },
+      "NftRank": {
+        "type": "object",
+        "properties": {
+          "identifier": {
+            "type": "string"
+          },
+          "rank": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "identifier",
+          "rank"
+        ]
+      }
+    }
+  }
+}

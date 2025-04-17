@@ -1,0 +1,157 @@
+{
+  "openapi": "3.0.0",
+  "paths": {
+    "/miniblocks": {
+      "get": {
+        "operationId": "MiniBlockController_getMiniBlocks",
+        "summary": "Miniblocks details",
+        "description": "Returns all distinct miniblocks",
+        "parameters": [
+          {
+            "name": "from",
+            "required": false,
+            "in": "query",
+            "description": "Number of items to skip for the result set",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "size",
+            "required": false,
+            "in": "query",
+            "description": "Number of items to retrieve",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "hashes",
+            "required": false,
+            "in": "query",
+            "description": "Filter by a comma-separated list of miniblocks hashes",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "name": "type",
+            "required": false,
+            "in": "query",
+            "description": "Sorting criteria by type",
+            "schema": {
+              "enum": [
+                "SmartContractResultBlock",
+                "TxBlock",
+                "InvalidBlock"
+              ],
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/MiniBlockDetailed"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "miniblocks"
+        ]
+      }
+    },
+    "/miniblocks/{miniBlockHash}": {
+      "get": {
+        "operationId": "MiniBlockController_getBlock",
+        "summary": "Miniblock details",
+        "description": "Returns miniblock details for a given miniBlockHash.",
+        "parameters": [
+          {
+            "name": "miniBlockHash",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MiniBlockDetailed"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Miniblock not found"
+          }
+        },
+        "tags": [
+          "miniblocks"
+        ]
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "MiniBlockDetailed": {
+        "type": "object",
+        "properties": {
+          "miniBlockHash": {
+            "type": "string",
+            "example": "c956ecbefbba25f0bcb0b182357d41287384fb8707d5860ad5cacc66f3fe0bc8"
+          },
+          "receiverBlockHash": {
+            "type": "string",
+            "example": "3d008f54446e7f3c636159e0f4934267e154541a95665477676ea7f3abbc0aa7"
+          },
+          "receiverShard": {
+            "type": "number",
+            "example": 0
+          },
+          "senderBlockHash": {
+            "type": "string",
+            "example": "3d008f54446e7f3c636159e0f4934267e154541a95665477676ea7f3abbc0aa7"
+          },
+          "senderShard": {
+            "type": "number",
+            "example": 0
+          },
+          "timestamp": {
+            "type": "number",
+            "example": 1646579514
+          },
+          "type": {
+            "type": "string",
+            "example": "TxBlock"
+          }
+        },
+        "required": [
+          "miniBlockHash",
+          "receiverBlockHash",
+          "receiverShard",
+          "senderBlockHash",
+          "senderShard",
+          "timestamp",
+          "type"
+        ]
+      }
+    }
+  }
+}

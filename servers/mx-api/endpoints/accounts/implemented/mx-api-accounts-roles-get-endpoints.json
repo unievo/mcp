@@ -1,0 +1,1273 @@
+{
+  "openapi": "3.0.0",
+  "paths": {
+    "/accounts/{address}/roles/collections": {
+      "get": {
+        "operationId": "AccountController_getAccountCollectionsWithRoles",
+        "summary": "Account collections",
+        "description": "Returns NFT/SFT/MetaESDT collections where the account is owner or has some special roles assigned to it",
+        "parameters": [
+          {
+            "name": "address",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "from",
+            "required": false,
+            "in": "query",
+            "description": "Number of items to skip for the result set",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "size",
+            "required": false,
+            "in": "query",
+            "description": "Number of items to retrieve",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "search",
+            "required": false,
+            "in": "query",
+            "description": "Search by collection identifier",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "type",
+            "required": false,
+            "in": "query",
+            "description": "Filter by type (NonFungibleESDT/SemiFungibleESDT/MetaESDT)",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "name": "subType",
+            "required": false,
+            "in": "query",
+            "description": "Filter by type (NonFungibleESDTv2/DynamicNonFungibleESDT/DynamicSemiFungibleESDT)",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "name": "owner",
+            "required": false,
+            "in": "query",
+            "description": "Filter by collection owner",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "canCreate",
+            "required": false,
+            "in": "query",
+            "description": "Filter by property canCreate (boolean)",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "canBurn",
+            "required": false,
+            "in": "query",
+            "description": "Filter by property canBurn (boolean)",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "canAddQuantity",
+            "required": false,
+            "in": "query",
+            "description": "Filter by property canAddQuantity (boolean)",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "canUpdateAttributes",
+            "required": false,
+            "in": "query",
+            "description": "Filter by property canUpdateAttributes (boolean)",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "canAddUri",
+            "required": false,
+            "in": "query",
+            "description": "Filter by property canAddUri (boolean)",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "canTransferRole",
+            "required": false,
+            "in": "query",
+            "description": "Filter by property canTransferRole (boolean)",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "excludeMetaESDT",
+            "required": false,
+            "in": "query",
+            "description": "Exclude collections of type \"MetaESDT\" in the response",
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/NftCollectionWithRoles"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "accounts"
+        ]
+      }
+    },
+    "/accounts/{address}/roles/collections/count": {
+      "get": {
+        "operationId": "AccountController_getCollectionWithRolesCount",
+        "summary": "Account collection count",
+        "description": "Returns the total number of NFT/SFT/MetaESDT collections where the account is owner or has some special roles assigned to it",
+        "parameters": [
+          {
+            "name": "address",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "search",
+            "required": false,
+            "in": "query",
+            "description": "Search by collection identifier",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "type",
+            "required": false,
+            "in": "query",
+            "description": "Filter by type (NonFungibleESDT/SemiFungibleESDT/MetaESDT)",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "name": "subType",
+            "required": false,
+            "in": "query",
+            "description": "Filter by type (NonFungibleESDTv2/DynamicNonFungibleESDT/DynamicSemiFungibleESDT)",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "name": "owner",
+            "required": false,
+            "in": "query",
+            "description": "Filter by collection owner",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "canCreate",
+            "required": false,
+            "in": "query",
+            "description": "Filter by property canCreate (boolean)",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "canBurn",
+            "required": false,
+            "in": "query",
+            "description": "Filter by property canCreate (boolean)",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "canAddQuantity",
+            "required": false,
+            "in": "query",
+            "description": "Filter by property canAddQuantity (boolean)",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "excludeMetaESDT",
+            "required": false,
+            "in": "query",
+            "description": "Exclude collections of type \"MetaESDT\" in the response",
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "number"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "accounts"
+        ]
+      }
+    },
+    "/accounts/{address}/roles/collections/{collection}": {
+      "get": {
+        "operationId": "AccountController_getAccountCollection",
+        "summary": "Account collection details",
+        "description": "Returns details about a specific NFT/SFT/MetaESDT collection from a given address",
+        "parameters": [
+          {
+            "name": "address",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "collection",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NftCollectionWithRoles"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "accounts"
+        ]
+      }
+    },
+    "/accounts/{address}/roles/tokens": {
+      "get": {
+        "operationId": "AccountController_getAccountTokensWithRoles",
+        "summary": "Account token roles",
+        "description": "Returns fungible token roles where the account is owner or has some special roles assigned to it",
+        "parameters": [
+          {
+            "name": "address",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "from",
+            "required": false,
+            "in": "query",
+            "description": "Number of items to skip for the result set",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "size",
+            "required": false,
+            "in": "query",
+            "description": "Number of items to retrieve",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "search",
+            "required": false,
+            "in": "query",
+            "description": "Search by token identifier or name",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "owner",
+            "required": false,
+            "in": "query",
+            "description": "Filter by token owner",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "canMint",
+            "required": false,
+            "in": "query",
+            "description": "Filter by property canMint (boolean)",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "canBurn",
+            "required": false,
+            "in": "query",
+            "description": "Filter by property canBurn (boolean)",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "includeMetaESDT",
+            "required": false,
+            "in": "query",
+            "description": "Include MetaESDTs in response",
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/TokenWithRoles"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "accounts"
+        ]
+      }
+    },
+    "/accounts/{address}/roles/tokens/count": {
+      "get": {
+        "operationId": "AccountController_getTokensWithRolesCount",
+        "summary": "Account token roles count",
+        "description": "Returns the total number of fungible token roles where the account is owner or has some special roles assigned to it",
+        "parameters": [
+          {
+            "name": "address",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "search",
+            "required": false,
+            "in": "query",
+            "description": "Search by token identifier or name",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "owner",
+            "required": false,
+            "in": "query",
+            "description": "Filter by token owner",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "canMint",
+            "required": false,
+            "in": "query",
+            "description": "Filter by property canMint (boolean)",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "canBurn",
+            "required": false,
+            "in": "query",
+            "description": "Filter by property canCreate (boolean)",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "includeMetaESDT",
+            "required": false,
+            "in": "query",
+            "description": "Include MetaESDTs in response",
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "number"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "accounts"
+        ]
+      }
+    },
+    "/accounts/{address}/roles/tokens/{identifier}": {
+      "get": {
+        "operationId": "AccountController_getTokenWithRoles",
+        "summary": "Account token roles details",
+        "description": "Returns details about fungible token roles where the account is owner or has some special roles assigned to it",
+        "parameters": [
+          {
+            "name": "address",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "identifier",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TokenWithRoles"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "accounts"
+        ]
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "CollectionAuctionStats": {
+        "type": "object",
+        "properties": {
+          "activeAuctions": {
+            "type": "number"
+          },
+          "endedAuctions": {
+            "type": "number"
+          },
+          "maxPrice": {
+            "type": "string"
+          },
+          "minPrice": {
+            "type": "string"
+          },
+          "saleAverage": {
+            "type": "string"
+          },
+          "volumeTraded": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "activeAuctions",
+          "endedAuctions",
+          "maxPrice",
+          "minPrice",
+          "saleAverage",
+          "volumeTraded"
+        ]
+      },
+      "TokenOwnersHistory": {
+        "type": "object",
+        "properties": {}
+      },
+      "Amount": {
+        "type": "object",
+        "properties": {}
+      },
+      "TokenAssets": {
+        "type": "object",
+        "properties": {
+          "website": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "active",
+              "inactive"
+            ],
+            "default": "inactive"
+          },
+          "pngUrl": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "svgUrl": {
+            "type": "string"
+          },
+          "ledgerSignature": {
+            "type": "string"
+          },
+          "lockedAccounts": {
+            "type": "string"
+          },
+          "extraTokens": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "preferredRankAlgorithm": {
+            "type": "string",
+            "enum": [
+              "trait",
+              "statistical",
+              "openRarity",
+              "jaccardDistances",
+              "custom"
+            ],
+            "nullable": true
+          },
+          "priceSource": {
+            "type": "number",
+            "enum": [],
+            "nullable": true
+          }
+        },
+        "required": [
+          "website",
+          "description",
+          "status",
+          "pngUrl",
+          "name",
+          "svgUrl",
+          "ledgerSignature",
+          "lockedAccounts",
+          "extraTokens",
+          "preferredRankAlgorithm",
+          "priceSource"
+        ]
+      },
+      "ScamInfo": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "nullable": true
+          },
+          "info": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "required": [
+          "type",
+          "info"
+        ]
+      },
+      "CollectionTraitAttribute": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "occurrenceCount": {
+            "type": "number"
+          },
+          "occurrencePercentage": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "name",
+          "occurrenceCount",
+          "occurrencePercentage"
+        ]
+      },
+      "CollectionTrait": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "occurrenceCount": {
+            "type": "number"
+          },
+          "occurrencePercentage": {
+            "type": "number"
+          },
+          "attributes": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CollectionTraitAttribute"
+            }
+          }
+        },
+        "required": [
+          "name",
+          "occurrenceCount",
+          "occurrencePercentage",
+          "attributes"
+        ]
+      },
+      "TokenRoles": {
+        "type": "object",
+        "properties": {
+          "address": {
+            "type": "string",
+            "nullable": true
+          },
+          "canLocalMint": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "canLocalBurn": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "canCreate": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "canBurn": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "canAddQuantity": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "canUpdateAttributes": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "canAddUri": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "canTransfer": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "roles": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "address",
+          "canLocalMint",
+          "canLocalBurn",
+          "canCreate",
+          "canBurn",
+          "canAddQuantity",
+          "canUpdateAttributes",
+          "canAddUri",
+          "canTransfer",
+          "roles"
+        ]
+      },
+      "TokenWithRoles": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": [
+              "FungibleESDT",
+              "NonFungibleESDT",
+              "SemiFungibleESDT",
+              "MetaESDT"
+            ]
+          },
+          "subType": {
+            "type": "string",
+            "enum": [
+              "NonFungibleESDT",
+              "SemiFungibleESDT",
+              "MetaESDT",
+              "NonFungibleESDTv2",
+              "DynamicNonFungibleESDT",
+              "DynamicSemiFungibleESDT",
+              "DynamicMetaESDT",
+              ""
+            ]
+          },
+          "identifier": {
+            "type": "string"
+          },
+          "collection": {
+            "type": "string",
+            "nullable": true
+          },
+          "nonce": {
+            "type": "number",
+            "nullable": true
+          },
+          "name": {
+            "type": "string"
+          },
+          "ticker": {
+            "type": "string"
+          },
+          "owner": {
+            "type": "string"
+          },
+          "minted": {
+            "example": "\"9180000000000000000\"",
+            "title": "Amount",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Amount"
+              }
+            ]
+          },
+          "burnt": {
+            "example": "\"2690000000000000000\"",
+            "title": "Amount",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Amount"
+              }
+            ]
+          },
+          "initialMinted": {
+            "example": "\"280000000000000000\"",
+            "title": "Amount",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Amount"
+              }
+            ]
+          },
+          "decimals": {
+            "type": "number"
+          },
+          "isPaused": {
+            "type": "boolean",
+            "default": false
+          },
+          "assets": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/TokenAssets"
+              }
+            ]
+          },
+          "transactions": {
+            "type": "number",
+            "nullable": true
+          },
+          "transactionsLastUpdatedAt": {
+            "type": "number",
+            "nullable": true
+          },
+          "transfers": {
+            "type": "number",
+            "nullable": true
+          },
+          "transfersLastUpdatedAt": {
+            "type": "number",
+            "nullable": true
+          },
+          "accounts": {
+            "type": "number",
+            "nullable": true
+          },
+          "accountsLastUpdatedAt": {
+            "type": "number",
+            "nullable": true
+          },
+          "canUpgrade": {
+            "type": "boolean",
+            "default": false
+          },
+          "canMint": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "canBurn": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "canChangeOwner": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "canAddSpecialRoles": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "canPause": {
+            "type": "boolean",
+            "default": false
+          },
+          "canFreeze": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "canWipe": {
+            "type": "boolean",
+            "default": false
+          },
+          "canTransferNftCreateRole": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "price": {
+            "type": "number",
+            "nullable": true
+          },
+          "marketCap": {
+            "type": "number",
+            "nullable": true
+          },
+          "supply": {
+            "example": "\"1050000000000000000\"",
+            "title": "Amount",
+            "description": "Supply amount",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Amount"
+              }
+            ]
+          },
+          "circulatingSupply": {
+            "example": "\"7390000000000000000\"",
+            "title": "Amount",
+            "description": "Circulating supply amount",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Amount"
+              }
+            ]
+          },
+          "timestamp": {
+            "type": "number",
+            "description": "Creation timestamp"
+          },
+          "mexPairType": {
+            "type": "string",
+            "enum": [
+              "core",
+              "community",
+              "ecosystem",
+              "experimental",
+              "unlisted"
+            ]
+          },
+          "totalLiquidity": {
+            "type": "number",
+            "nullable": true
+          },
+          "totalVolume24h": {
+            "type": "number",
+            "nullable": true
+          },
+          "isLowLiquidity": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "lowLiquidityThresholdPercent": {
+            "type": "number",
+            "nullable": true
+          },
+          "tradesCount": {
+            "type": "number",
+            "nullable": true
+          },
+          "ownersHistory": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/TokenOwnersHistory"
+              }
+            ]
+          },
+          "role": {
+            "$ref": "#/components/schemas/TokenRoles"
+          },
+          "address": {
+            "type": "string",
+            "nullable": true
+          },
+          "canLocalMint": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "canLocalBurn": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "canCreate": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "canAddQuantity": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "canUpdateAttributes": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "canAddUri": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "canTransfer": {
+            "type": "boolean",
+            "nullable": true
+          }
+        },
+        "required": [
+          "type",
+          "subType",
+          "identifier",
+          "name",
+          "ticker",
+          "owner",
+          "minted",
+          "burnt",
+          "initialMinted",
+          "decimals",
+          "isPaused",
+          "transactions",
+          "transactionsLastUpdatedAt",
+          "transfers",
+          "transfersLastUpdatedAt",
+          "accounts",
+          "accountsLastUpdatedAt",
+          "canUpgrade",
+          "canMint",
+          "canBurn",
+          "canChangeOwner",
+          "canAddSpecialRoles",
+          "canPause",
+          "canFreeze",
+          "canWipe",
+          "canTransferNftCreateRole",
+          "supply",
+          "circulatingSupply",
+          "timestamp",
+          "mexPairType",
+          "ownersHistory",
+          "role",
+          "address",
+          "canLocalMint",
+          "canLocalBurn",
+          "canCreate",
+          "canAddQuantity",
+          "canUpdateAttributes",
+          "canAddUri",
+          "canTransfer"
+        ]
+      },
+      "CollectionRoles": {
+        "type": "object",
+        "properties": {
+          "address": {
+            "type": "string",
+            "nullable": true
+          },
+          "canCreate": {
+            "type": "boolean",
+            "default": false
+          },
+          "canBurn": {
+            "type": "boolean",
+            "default": false
+          },
+          "canAddQuantity": {
+            "type": "boolean",
+            "default": false
+          },
+          "canUpdateAttributes": {
+            "type": "boolean",
+            "default": false
+          },
+          "canAddUri": {
+            "type": "boolean",
+            "default": false
+          },
+          "canTransfer": {
+            "type": "boolean",
+            "default": false
+          },
+          "roles": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "address",
+          "canCreate",
+          "canBurn",
+          "canAddQuantity",
+          "canUpdateAttributes",
+          "canAddUri",
+          "canTransfer",
+          "roles"
+        ]
+      },
+      "NftCollectionWithRoles": {
+        "type": "object",
+        "properties": {
+          "collection": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "NonFungibleESDT",
+              "SemiFungibleESDT",
+              "MetaESDT"
+            ]
+          },
+          "subType": {
+            "type": "string",
+            "enum": [
+              "NonFungibleESDT",
+              "SemiFungibleESDT",
+              "MetaESDT",
+              "NonFungibleESDTv2",
+              "DynamicNonFungibleESDT",
+              "DynamicSemiFungibleESDT",
+              "DynamicMetaESDT",
+              ""
+            ],
+            "nullable": true
+          },
+          "name": {
+            "type": "string"
+          },
+          "ticker": {
+            "type": "string"
+          },
+          "owner": {
+            "type": "string",
+            "nullable": true
+          },
+          "timestamp": {
+            "type": "number"
+          },
+          "canFreeze": {
+            "type": "boolean",
+            "default": false
+          },
+          "canWipe": {
+            "type": "boolean",
+            "default": false
+          },
+          "canPause": {
+            "type": "boolean",
+            "default": false
+          },
+          "canTransferNftCreateRole": {
+            "type": "boolean",
+            "default": false
+          },
+          "canChangeOwner": {
+            "type": "boolean",
+            "default": false
+          },
+          "canUpgrade": {
+            "type": "boolean",
+            "default": false
+          },
+          "canAddSpecialRoles": {
+            "type": "boolean",
+            "default": false
+          },
+          "decimals": {
+            "type": "number",
+            "nullable": true
+          },
+          "assets": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/TokenAssets"
+              }
+            ]
+          },
+          "scamInfo": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ScamInfo"
+              }
+            ]
+          },
+          "traits": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CollectionTrait"
+            }
+          },
+          "auctionStats": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/CollectionAuctionStats"
+              }
+            ]
+          },
+          "isVerified": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "holderCount": {
+            "type": "number",
+            "nullable": true
+          },
+          "nftCount": {
+            "type": "number",
+            "nullable": true
+          },
+          "role": {
+            "$ref": "#/components/schemas/CollectionRoles"
+          },
+          "canTransfer": {
+            "type": "boolean"
+          },
+          "canCreate": {
+            "type": "boolean",
+            "default": false
+          },
+          "canBurn": {
+            "type": "boolean",
+            "default": false
+          },
+          "canAddQuantity": {
+            "type": "boolean",
+            "default": false
+          },
+          "canUpdateAttributes": {
+            "type": "boolean",
+            "default": false
+          },
+          "canAddUri": {
+            "type": "boolean",
+            "default": false
+          }
+        },
+        "required": [
+          "collection",
+          "type",
+          "subType",
+          "name",
+          "ticker",
+          "owner",
+          "timestamp",
+          "canFreeze",
+          "canWipe",
+          "canPause",
+          "canTransferNftCreateRole",
+          "canChangeOwner",
+          "canUpgrade",
+          "canAddSpecialRoles",
+          "decimals",
+          "role",
+          "canTransfer",
+          "canCreate",
+          "canBurn",
+          "canAddQuantity",
+          "canUpdateAttributes",
+          "canAddUri"
+        ]
+      }
+    }
+  }
+}

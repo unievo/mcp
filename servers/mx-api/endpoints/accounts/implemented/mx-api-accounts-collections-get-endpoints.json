@@ -1,0 +1,518 @@
+{
+  "openapi": "3.0.0",
+  "paths": {
+    "/accounts/{address}/collections": {
+      "get": {
+        "operationId": "AccountController_getAccountNftCollections",
+        "summary": "Account collections",
+        "description": "Returns NFT/SFT/MetaESDT collections where the account owns one or more NFTs",
+        "parameters": [
+          {
+            "name": "address",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "from",
+            "required": false,
+            "in": "query",
+            "description": "Number of items to skip for the result set",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "size",
+            "required": false,
+            "in": "query",
+            "description": "Number of items to retrieve",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "search",
+            "required": false,
+            "in": "query",
+            "description": "Search by collection identifier",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "type",
+            "required": false,
+            "in": "query",
+            "description": "Filter by type (NonFungibleESDT/SemiFungibleESDT/MetaESDT)",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "name": "subType",
+            "required": false,
+            "in": "query",
+            "description": "Filter by type (NonFungibleESDTv2/DynamicNonFungibleESDT/DynamicSemiFungibleESDT)",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "name": "excludeMetaESDT",
+            "required": false,
+            "in": "query",
+            "description": "Exclude collections of type \"MetaESDT\" in the response",
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/NftCollectionAccount"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "accounts"
+        ]
+      }
+    },
+    "/accounts/{address}/collections/count": {
+      "get": {
+        "operationId": "AccountController_getNftCollectionCount",
+        "summary": "Account collection count",
+        "description": "Returns the total number of NFT/SFT/MetaESDT collections where the account is owner or has some special roles assigned to it",
+        "parameters": [
+          {
+            "name": "address",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "search",
+            "required": false,
+            "in": "query",
+            "description": "Search by collection identifier",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "type",
+            "required": false,
+            "in": "query",
+            "description": "Filter by type (NonFungibleESDT/SemiFungibleESDT/MetaESDT)",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "name": "subType",
+            "required": false,
+            "in": "query",
+            "description": "Filter by type (NonFungibleESDTv2/DynamicNonFungibleESDT/DynamicSemiFungibleESDT)",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "name": "excludeMetaESDT",
+            "required": false,
+            "in": "query",
+            "description": "Exclude collections of type \"MetaESDT\" in the response",
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "number"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "accounts"
+        ]
+      }
+    },
+    "/accounts/{address}/collections/{collection}": {
+      "get": {
+        "operationId": "AccountController_getAccountNftCollection",
+        "summary": "Account collection details",
+        "description": "Returns details about a specific NFT/SFT/MetaESDT collection from a given address",
+        "parameters": [
+          {
+            "name": "address",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "collection",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NftCollectionAccount"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "accounts"
+        ]
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "CollectionAuctionStats": {
+        "type": "object",
+        "properties": {
+          "activeAuctions": {
+            "type": "number"
+          },
+          "endedAuctions": {
+            "type": "number"
+          },
+          "maxPrice": {
+            "type": "string"
+          },
+          "minPrice": {
+            "type": "string"
+          },
+          "saleAverage": {
+            "type": "string"
+          },
+          "volumeTraded": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "activeAuctions",
+          "endedAuctions",
+          "maxPrice",
+          "minPrice",
+          "saleAverage",
+          "volumeTraded"
+        ]
+      },
+      "TokenAssets": {
+        "type": "object",
+        "properties": {
+          "website": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "active",
+              "inactive"
+            ],
+            "default": "inactive"
+          },
+          "pngUrl": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "svgUrl": {
+            "type": "string"
+          },
+          "ledgerSignature": {
+            "type": "string"
+          },
+          "lockedAccounts": {
+            "type": "string"
+          },
+          "extraTokens": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "preferredRankAlgorithm": {
+            "type": "string",
+            "enum": [
+              "trait",
+              "statistical",
+              "openRarity",
+              "jaccardDistances",
+              "custom"
+            ],
+            "nullable": true
+          },
+          "priceSource": {
+            "type": "number",
+            "enum": [],
+            "nullable": true
+          }
+        },
+        "required": [
+          "website",
+          "description",
+          "status",
+          "pngUrl",
+          "name",
+          "svgUrl",
+          "ledgerSignature",
+          "lockedAccounts",
+          "extraTokens",
+          "preferredRankAlgorithm",
+          "priceSource"
+        ]
+      },
+      "ScamInfo": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "nullable": true
+          },
+          "info": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "required": [
+          "type",
+          "info"
+        ]
+      },
+      "NftCollectionAccount": {
+        "type": "object",
+        "properties": {
+          "collection": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "NonFungibleESDT",
+              "SemiFungibleESDT",
+              "MetaESDT"
+            ]
+          },
+          "subType": {
+            "type": "string",
+            "enum": [
+              "NonFungibleESDT",
+              "SemiFungibleESDT",
+              "MetaESDT",
+              "NonFungibleESDTv2",
+              "DynamicNonFungibleESDT",
+              "DynamicSemiFungibleESDT",
+              "DynamicMetaESDT",
+              ""
+            ],
+            "nullable": true
+          },
+          "name": {
+            "type": "string"
+          },
+          "ticker": {
+            "type": "string"
+          },
+          "owner": {
+            "type": "string",
+            "nullable": true
+          },
+          "timestamp": {
+            "type": "number"
+          },
+          "canFreeze": {
+            "type": "boolean",
+            "default": false
+          },
+          "canWipe": {
+            "type": "boolean",
+            "default": false
+          },
+          "canPause": {
+            "type": "boolean",
+            "default": false
+          },
+          "canTransferNftCreateRole": {
+            "type": "boolean",
+            "default": false
+          },
+          "canChangeOwner": {
+            "type": "boolean",
+            "default": false
+          },
+          "canUpgrade": {
+            "type": "boolean",
+            "default": false
+          },
+          "canAddSpecialRoles": {
+            "type": "boolean",
+            "default": false
+          },
+          "decimals": {
+            "type": "number",
+            "nullable": true
+          },
+          "assets": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/TokenAssets"
+              }
+            ]
+          },
+          "scamInfo": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ScamInfo"
+              }
+            ]
+          },
+          "traits": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CollectionTrait"
+            }
+          },
+          "auctionStats": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/CollectionAuctionStats"
+              }
+            ]
+          },
+          "isVerified": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "holderCount": {
+            "type": "number",
+            "nullable": true
+          },
+          "nftCount": {
+            "type": "number",
+            "nullable": true
+          },
+          "count": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "collection",
+          "type",
+          "subType",
+          "name",
+          "ticker",
+          "owner",
+          "timestamp",
+          "canFreeze",
+          "canWipe",
+          "canPause",
+          "canTransferNftCreateRole",
+          "canChangeOwner",
+          "canUpgrade",
+          "canAddSpecialRoles",
+          "decimals",
+          "count"
+        ]
+      },
+      "CollectionTraitAttribute": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "occurrenceCount": {
+            "type": "number"
+          },
+          "occurrencePercentage": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "name",
+          "occurrenceCount",
+          "occurrencePercentage"
+        ]
+      },
+      "CollectionTrait": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "occurrenceCount": {
+            "type": "number"
+          },
+          "occurrencePercentage": {
+            "type": "number"
+          },
+          "attributes": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CollectionTraitAttribute"
+            }
+          }
+        },
+        "required": [
+          "name",
+          "occurrenceCount",
+          "occurrencePercentage",
+          "attributes"
+        ]
+      }
+    }
+  }
+}

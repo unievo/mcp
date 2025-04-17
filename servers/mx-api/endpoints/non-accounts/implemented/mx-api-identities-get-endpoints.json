@@ -1,0 +1,231 @@
+{
+  "openapi": "3.0.0",
+  "paths": {
+    "/identities": {
+      "get": {
+        "operationId": "IdentitiesController_getIdentities",
+        "summary": "Identities",
+        "description": "List of all node identities, used to group nodes by the same entity. \"Free-floating\" nodes that do not belong to any identity will also be returned",
+        "parameters": [
+          {
+            "name": "from",
+            "required": false,
+            "in": "query",
+            "description": "Number of items to skip for the result set",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "size",
+            "required": false,
+            "in": "query",
+            "description": "Number of items to retrieve",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "identities",
+            "required": false,
+            "in": "query",
+            "description": "Filter by comma-separated list of identities",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "name": "sort",
+            "required": false,
+            "in": "query",
+            "description": "Sort criteria (validators)",
+            "schema": {
+              "enum": [
+                "validators",
+                "stake"
+              ],
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Identity"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "identities"
+        ]
+      }
+    },
+    "/identities/{identifier}": {
+      "get": {
+        "operationId": "IdentitiesController_getIdentity",
+        "summary": "Identity details",
+        "description": "Returns the details of a single identity",
+        "parameters": [
+          {
+            "name": "identifier",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Identity"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Identity not found"
+          }
+        },
+        "tags": [
+          "identities"
+        ]
+      }
+    },
+    "/identities/{identifier}/avatar": {
+      "get": {
+        "operationId": "IdentitiesController_getIdentityAvatar",
+        "summary": "Identity avatar",
+        "description": "Returns the avatar of a specific identity",
+        "parameters": [
+          {
+            "name": "identifier",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "404": {
+            "description": "Identity not found"
+          }
+        },
+        "tags": [
+          "identities"
+        ]
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Identity": {
+        "type": "object",
+        "properties": {
+          "identity": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "avatar": {
+            "type": "string"
+          },
+          "website": {
+            "type": "string"
+          },
+          "twitter": {
+            "type": "string"
+          },
+          "location": {
+            "type": "string"
+          },
+          "score": {
+            "type": "number"
+          },
+          "validators": {
+            "type": "number"
+          },
+          "stake": {
+            "example": "\"1500000000000000000\"",
+            "title": "Amount",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Amount"
+              }
+            ]
+          },
+          "topUp": {
+            "example": "\"4600000000000000000\"",
+            "title": "Amount",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Amount"
+              }
+            ]
+          },
+          "locked": {
+            "example": "\"6470000000000000000\"",
+            "title": "Amount",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Amount"
+              }
+            ]
+          },
+          "distribution": {
+            "type": "object"
+          },
+          "providers": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "stakePercent": {
+            "type": "number"
+          },
+          "rank": {
+            "type": "number"
+          },
+          "apr": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "identity",
+          "name",
+          "description",
+          "location",
+          "validators",
+          "stake",
+          "topUp",
+          "locked",
+          "distribution"
+        ]
+      },
+      "Amount": {
+        "type": "object",
+        "properties": {}
+      }
+    }
+  }
+}

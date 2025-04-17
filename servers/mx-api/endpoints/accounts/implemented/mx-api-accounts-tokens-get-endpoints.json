@@ -1,0 +1,667 @@
+{
+  "openapi": "3.0.0",
+  "paths": {
+    "/accounts/{address}/tokens": {
+      "get": {
+        "operationId": "AccountController_getAccountTokens",
+        "summary": "Account tokens",
+        "description": "Returns a list of all available fungible tokens for a given address, together with their balance",
+        "parameters": [
+          {
+            "name": "address",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "from",
+            "required": false,
+            "in": "query",
+            "description": "Number of items to skip for the result set",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "size",
+            "required": false,
+            "in": "query",
+            "description": "Number of items to retrieve",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "type",
+            "required": false,
+            "in": "query",
+            "description": "Token type",
+            "schema": {
+              "enum": [
+                "FungibleESDT",
+                "MetaESDT"
+              ],
+              "type": "string"
+            }
+          },
+          {
+            "name": "subType",
+            "required": false,
+            "in": "query",
+            "description": "Token sub type",
+            "schema": {
+              "enum": [
+                "NonFungibleESDT",
+                "SemiFungibleESDT",
+                "MetaESDT",
+                "NonFungibleESDTv2",
+                "DynamicNonFungibleESDT",
+                "DynamicSemiFungibleESDT",
+                "DynamicMetaESDT",
+                ""
+              ],
+              "type": "string"
+            }
+          },
+          {
+            "name": "search",
+            "required": false,
+            "in": "query",
+            "description": "Search by collection identifier",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "name",
+            "required": false,
+            "in": "query",
+            "description": "Search by token name",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "identifier",
+            "required": false,
+            "in": "query",
+            "description": "Search by token identifier",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "identifiers",
+            "required": false,
+            "in": "query",
+            "description": "A comma-separated list of identifiers to filter by",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "includeMetaESDT",
+            "required": false,
+            "in": "query",
+            "description": "Include MetaESDTs in response",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "timestamp",
+            "required": false,
+            "in": "query",
+            "description": "Retrieve entries from timestamp",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "mexPairType",
+            "required": false,
+            "in": "query",
+            "description": "Token Mex Pair",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/TokenWithBalance"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "accounts"
+        ]
+      }
+    },
+    "/accounts/{address}/tokens/count": {
+      "get": {
+        "operationId": "AccountController_getTokenCount",
+        "summary": "Account token count",
+        "description": "Returns the total number of tokens for a given address",
+        "parameters": [
+          {
+            "name": "address",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "type",
+            "required": false,
+            "in": "query",
+            "description": "Token type",
+            "schema": {
+              "enum": [
+                "FungibleESDT",
+                "MetaESDT"
+              ],
+              "type": "string"
+            }
+          },
+          {
+            "name": "search",
+            "required": false,
+            "in": "query",
+            "description": "Search by collection identifier",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "name",
+            "required": false,
+            "in": "query",
+            "description": "Search by token name",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "identifier",
+            "required": false,
+            "in": "query",
+            "description": "Search by token identifier",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "identifiers",
+            "required": false,
+            "in": "query",
+            "description": "A comma-separated list of identifiers to filter by",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "includeMetaESDT",
+            "required": false,
+            "in": "query",
+            "description": "Include MetaESDTs in response",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "timestamp",
+            "required": false,
+            "in": "query",
+            "description": "Retrieve entries from timestamp",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "mexPairType",
+            "required": false,
+            "in": "query",
+            "description": "Token Mex Pair",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "number"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "accounts"
+        ]
+      }
+    },
+    "/accounts/{address}/tokens/{token}": {
+      "get": {
+        "operationId": "AccountController_getAccountToken",
+        "summary": "Account token details",
+        "description": "Returns details about a specific fungible token from a given address",
+        "parameters": [
+          {
+            "name": "address",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "token",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "timestamp",
+            "required": false,
+            "in": "query",
+            "description": "Retrieve entries from timestamp",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TokenWithBalance"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "accounts"
+        ]
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "TokenWithBalance": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": [
+              "FungibleESDT",
+              "NonFungibleESDT",
+              "SemiFungibleESDT",
+              "MetaESDT"
+            ]
+          },
+          "subType": {
+            "type": "string",
+            "enum": [
+              "NonFungibleESDT",
+              "SemiFungibleESDT",
+              "MetaESDT",
+              "NonFungibleESDTv2",
+              "DynamicNonFungibleESDT",
+              "DynamicSemiFungibleESDT",
+              "DynamicMetaESDT",
+              ""
+            ]
+          },
+          "identifier": {
+            "type": "string"
+          },
+          "collection": {
+            "type": "string",
+            "nullable": true
+          },
+          "nonce": {
+            "type": "number",
+            "nullable": true
+          },
+          "name": {
+            "type": "string"
+          },
+          "ticker": {
+            "type": "string"
+          },
+          "owner": {
+            "type": "string"
+          },
+          "minted": {
+            "example": "\"9180000000000000000\"",
+            "title": "Amount",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Amount"
+              }
+            ]
+          },
+          "burnt": {
+            "example": "\"2690000000000000000\"",
+            "title": "Amount",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Amount"
+              }
+            ]
+          },
+          "initialMinted": {
+            "example": "\"280000000000000000\"",
+            "title": "Amount",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Amount"
+              }
+            ]
+          },
+          "decimals": {
+            "type": "number"
+          },
+          "isPaused": {
+            "type": "boolean",
+            "default": false
+          },
+          "assets": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/TokenAssets"
+              }
+            ]
+          },
+          "transactions": {
+            "type": "number",
+            "nullable": true
+          },
+          "transactionsLastUpdatedAt": {
+            "type": "number",
+            "nullable": true
+          },
+          "transfers": {
+            "type": "number",
+            "nullable": true
+          },
+          "transfersLastUpdatedAt": {
+            "type": "number",
+            "nullable": true
+          },
+          "accounts": {
+            "type": "number",
+            "nullable": true
+          },
+          "accountsLastUpdatedAt": {
+            "type": "number",
+            "nullable": true
+          },
+          "canUpgrade": {
+            "type": "boolean",
+            "default": false
+          },
+          "canMint": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "canBurn": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "canChangeOwner": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "canAddSpecialRoles": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "canPause": {
+            "type": "boolean",
+            "default": false
+          },
+          "canFreeze": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "canWipe": {
+            "type": "boolean",
+            "default": false
+          },
+          "canTransferNftCreateRole": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "price": {
+            "type": "number",
+            "nullable": true
+          },
+          "marketCap": {
+            "type": "number",
+            "nullable": true
+          },
+          "supply": {
+            "example": "\"1050000000000000000\"",
+            "title": "Amount",
+            "description": "Supply amount",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Amount"
+              }
+            ]
+          },
+          "circulatingSupply": {
+            "example": "\"7390000000000000000\"",
+            "title": "Amount",
+            "description": "Circulating supply amount",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Amount"
+              }
+            ]
+          },
+          "timestamp": {
+            "type": "number",
+            "description": "Creation timestamp"
+          },
+          "mexPairType": {
+            "type": "string",
+            "enum": [
+              "core",
+              "community",
+              "ecosystem",
+              "experimental",
+              "unlisted"
+            ]
+          },
+          "totalLiquidity": {
+            "type": "number",
+            "nullable": true
+          },
+          "totalVolume24h": {
+            "type": "number",
+            "nullable": true
+          },
+          "isLowLiquidity": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "lowLiquidityThresholdPercent": {
+            "type": "number",
+            "nullable": true
+          },
+          "tradesCount": {
+            "type": "number",
+            "nullable": true
+          },
+          "ownersHistory": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/TokenOwnersHistory"
+              }
+            ]
+          },
+          "balance": {
+            "example": "\"5860000000000000000\"",
+            "title": "Amount",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Amount"
+              }
+            ]
+          },
+          "valueUsd": {
+            "type": "number",
+            "nullable": true
+          },
+          "attributes": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "required": [
+          "type",
+          "subType",
+          "identifier",
+          "name",
+          "ticker",
+          "owner",
+          "minted",
+          "burnt",
+          "initialMinted",
+          "decimals",
+          "isPaused",
+          "transactions",
+          "transactionsLastUpdatedAt",
+          "transfers",
+          "transfersLastUpdatedAt",
+          "accounts",
+          "accountsLastUpdatedAt",
+          "canUpgrade",
+          "canMint",
+          "canBurn",
+          "canChangeOwner",
+          "canAddSpecialRoles",
+          "canPause",
+          "canFreeze",
+          "canWipe",
+          "canTransferNftCreateRole",
+          "supply",
+          "circulatingSupply",
+          "timestamp",
+          "mexPairType",
+          "ownersHistory",
+          "balance"
+        ]
+      },
+      "Amount": {
+        "type": "object",
+        "properties": {}
+      },
+      "TokenAssets": {
+        "type": "object",
+        "properties": {
+          "website": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "active",
+              "inactive"
+            ],
+            "default": "inactive"
+          },
+          "pngUrl": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "svgUrl": {
+            "type": "string"
+          },
+          "ledgerSignature": {
+            "type": "string"
+          },
+          "lockedAccounts": {
+            "type": "string"
+          },
+          "extraTokens": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "preferredRankAlgorithm": {
+            "type": "string",
+            "enum": [
+              "trait",
+              "statistical",
+              "openRarity",
+              "jaccardDistances",
+              "custom"
+            ],
+            "nullable": true
+          },
+          "priceSource": {
+            "type": "number",
+            "enum": [],
+            "nullable": true
+          }
+        },
+        "required": [
+          "website",
+          "description",
+          "status",
+          "pngUrl",
+          "name",
+          "svgUrl",
+          "ledgerSignature",
+          "lockedAccounts",
+          "extraTokens",
+          "preferredRankAlgorithm",
+          "priceSource"
+        ]
+      },
+      "TokenOwnersHistory": {
+        "type": "object",
+        "properties": {}
+      }
+    }
+  }
+}

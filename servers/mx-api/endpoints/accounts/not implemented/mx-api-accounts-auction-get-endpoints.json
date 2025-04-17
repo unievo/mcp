@@ -1,0 +1,76 @@
+{
+  "openapi": "3.0.0",
+  "paths": {
+    "/accounts/{address}/auction/stats": {
+      "get": {
+        "operationId": "NftMarketplaceController_getAccountStats",
+        "summary": "Account stats",
+        "description": "Returns account status details from nft marketplace for a given address",
+        "parameters": [
+          {
+            "name": "address",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccountAuctionStats"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "marketplace"
+        ]
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "AccountAuctionStats": {
+        "type": "object",
+        "properties": {
+          "auctions": {
+            "type": "number"
+          },
+          "claimable": {
+            "type": "number"
+          },
+          "collected": {
+            "type": "number"
+          },
+          "collections": {
+            "type": "number"
+          },
+          "creations": {
+            "type": "number"
+          },
+          "likes": {
+            "type": "number"
+          },
+          "orders": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "auctions",
+          "claimable",
+          "collected",
+          "collections",
+          "creations",
+          "likes",
+          "orders"
+        ]
+      }
+    }
+  }
+}

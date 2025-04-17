@@ -1,0 +1,286 @@
+{
+  "openapi": "3.0.0",
+  "paths": {
+    "/events": {
+      "get": {
+        "operationId": "EventsController_getEvents",
+        "summary": "Events",
+        "description": "Returns events",
+        "parameters": [
+          {
+            "name": "from",
+            "required": false,
+            "in": "query",
+            "description": "Number of items to skip for the result set",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "size",
+            "required": false,
+            "in": "query",
+            "description": "Number of items to retrieve",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "address",
+            "required": false,
+            "in": "query",
+            "description": "Event address",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "identifier",
+            "required": false,
+            "in": "query",
+            "description": "Event identifier",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "txHash",
+            "required": false,
+            "in": "query",
+            "description": "Event transaction hash",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "shard",
+            "required": false,
+            "in": "query",
+            "description": "Event shard id",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "before",
+            "required": false,
+            "in": "query",
+            "description": "Event before timestamp",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "after",
+            "required": false,
+            "in": "query",
+            "description": "Event after timestamp",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Events"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "events"
+        ]
+      }
+    },
+    "/events/count": {
+      "get": {
+        "operationId": "EventsController_getEventsCount",
+        "summary": "Events count",
+        "description": "Returns events count",
+        "parameters": [
+          {
+            "name": "address",
+            "required": false,
+            "in": "query",
+            "description": "Event address",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "identifier",
+            "required": false,
+            "in": "query",
+            "description": "Event identifier",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "txHash",
+            "required": false,
+            "in": "query",
+            "description": "Event transaction hash",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "shard",
+            "required": false,
+            "in": "query",
+            "description": "Event shard id",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "before",
+            "required": false,
+            "in": "query",
+            "description": "Event before timestamp",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "after",
+            "required": false,
+            "in": "query",
+            "description": "Event after timestamp",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "number"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "events"
+        ]
+      }
+    },
+    "/events/{txHash}": {
+      "get": {
+        "operationId": "EventsController_getEvent",
+        "summary": "Event",
+        "description": "Returns event",
+        "parameters": [
+          {
+            "name": "txHash",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Events"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "events"
+        ]
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Events": {
+        "type": "object",
+        "properties": {
+          "txHash": {
+            "type": "string",
+            "description": "Transaction hash."
+          },
+          "logAddress": {
+            "type": "string",
+            "description": "Log address."
+          },
+          "identifier": {
+            "type": "string",
+            "description": "Event identifier."
+          },
+          "address": {
+            "type": "string",
+            "description": "Event address."
+          },
+          "data": {
+            "type": "string",
+            "description": "Event data."
+          },
+          "topics": {
+            "description": "Event topics.",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "shardID": {
+            "type": "number",
+            "description": "Event shard ID."
+          },
+          "additionalData": {
+            "description": "Event additional data.",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "txOrder": {
+            "type": "number",
+            "description": "Event tx order."
+          },
+          "order": {
+            "type": "number",
+            "description": "Event block order."
+          },
+          "timestamp": {
+            "type": "number",
+            "description": "Event timestamp."
+          }
+        },
+        "required": [
+          "txHash",
+          "logAddress",
+          "identifier",
+          "address",
+          "data",
+          "topics",
+          "shardID",
+          "additionalData",
+          "txOrder",
+          "order",
+          "timestamp"
+        ]
+      }
+    }
+  }
+}

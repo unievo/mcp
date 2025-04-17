@@ -1,0 +1,203 @@
+{
+  "openapi": "3.0.0",
+  "paths": {
+    "/applications": {
+      "get": {
+        "operationId": "ApplicationController_getApplications",
+        "summary": "Applications details",
+        "description": "Returns all smart contracts available on blockchain. By default it returns 25 smart contracts",
+        "parameters": [
+          {
+            "name": "from",
+            "required": false,
+            "in": "query",
+            "description": "Number of items to skip for the result set",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "size",
+            "required": false,
+            "in": "query",
+            "description": "Number of items to retrieve",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "before",
+            "required": false,
+            "in": "query",
+            "description": "Before timestamp",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "after",
+            "required": false,
+            "in": "query",
+            "description": "After timestamp",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "withTxCount",
+            "required": false,
+            "in": "query",
+            "description": "Include transaction count",
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Application"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "applications"
+        ]
+      }
+    },
+    "/applications/count": {
+      "get": {
+        "operationId": "ApplicationController_getApplicationsCount",
+        "summary": "Applications count",
+        "description": "Returns total number of smart contracts",
+        "parameters": [
+          {
+            "name": "before",
+            "required": false,
+            "in": "query",
+            "description": "Before timestamp",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "after",
+            "required": false,
+            "in": "query",
+            "description": "After timestamp",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "number"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "applications"
+        ]
+      }
+    },
+    "/applications/{address}": {
+      "get": {
+        "operationId": "ApplicationController_getApplication",
+        "summary": "Application details",
+        "description": "Returns details of a smart contract",
+        "parameters": [
+          {
+            "name": "address",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Application"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "applications"
+        ]
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "AccountAssets": {
+        "type": "object",
+        "properties": {}
+      },
+      "Application": {
+        "type": "object",
+        "properties": {
+          "contract": {
+            "type": "string"
+          },
+          "deployer": {
+            "type": "string"
+          },
+          "owner": {
+            "type": "string"
+          },
+          "codeHash": {
+            "type": "string"
+          },
+          "timestamp": {
+            "type": "number"
+          },
+          "assets": {
+            "nullable": true,
+            "description": "Contract assets",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/AccountAssets"
+              }
+            ]
+          },
+          "balance": {
+            "type": "string"
+          },
+          "txCount": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "contract",
+          "deployer",
+          "owner",
+          "codeHash",
+          "timestamp",
+          "assets",
+          "balance"
+        ]
+      }
+    }
+  }
+}

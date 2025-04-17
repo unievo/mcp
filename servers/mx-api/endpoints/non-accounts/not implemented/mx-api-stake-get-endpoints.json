@@ -1,0 +1,118 @@
+{
+  "openapi": "3.0.0",
+  "paths": {
+    "/stake": {
+      "get": {
+        "operationId": "StakeController_getGlobalStake",
+        "summary": "Stake",
+        "description": "Returns general staking information",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GlobalStake"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "stake"
+        ]
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "GlobalStake": {
+        "type": "object",
+        "properties": {
+          "totalValidators": {
+            "type": "number",
+            "default": 3200
+          },
+          "activeValidators": {
+            "type": "number",
+            "default": 3199
+          },
+          "totalObservers": {
+            "type": "number",
+            "default": 3199
+          },
+          "queueSize": {
+            "type": "number",
+            "default": 2
+          },
+          "totalStaked": {
+            "example": "\"8570000000000000000\"",
+            "title": "Amount",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Amount"
+              }
+            ]
+          },
+          "minimumAuctionQualifiedTopUp": {
+            "type": "string",
+            "nullable": true
+          },
+          "minimumAuctionQualifiedStake": {
+            "type": "string",
+            "nullable": true
+          },
+          "auctionValidators": {
+            "type": "number",
+            "nullable": true
+          },
+          "nakamotoCoefficient": {
+            "type": "number",
+            "nullable": true
+          },
+          "dangerZoneValidators": {
+            "type": "number",
+            "nullable": true
+          },
+          "eligibleValidators": {
+            "type": "number",
+            "nullable": true
+          },
+          "waitingValidators": {
+            "type": "number",
+            "nullable": true
+          },
+          "qualifiedAuctionValidators": {
+            "type": "number",
+            "nullable": true
+          },
+          "allStakedNodes": {
+            "type": "number",
+            "nullable": true
+          }
+        },
+        "required": [
+          "totalValidators",
+          "activeValidators",
+          "totalObservers",
+          "queueSize",
+          "totalStaked",
+          "minimumAuctionQualifiedTopUp",
+          "minimumAuctionQualifiedStake",
+          "auctionValidators",
+          "nakamotoCoefficient",
+          "dangerZoneValidators",
+          "eligibleValidators",
+          "waitingValidators",
+          "qualifiedAuctionValidators",
+          "allStakedNodes"
+        ]
+      },
+      "Amount": {
+        "type": "object",
+        "properties": {}
+      }
+    }
+  }
+}

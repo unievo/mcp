@@ -1,0 +1,75 @@
+{
+  "openapi": "3.0.0",
+  "paths": {
+    "/stats": {
+      "get": {
+        "operationId": "NetworkController_getStats",
+        "summary": "Network statistics",
+        "description": "Returns general network statistics",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Stats"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "network"
+        ]
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Stats": {
+        "type": "object",
+        "properties": {
+          "accounts": {
+            "type": "number"
+          },
+          "blocks": {
+            "type": "number"
+          },
+          "epoch": {
+            "type": "number"
+          },
+          "refreshRate": {
+            "type": "number"
+          },
+          "roundsPassed": {
+            "type": "number"
+          },
+          "roundsPerEpoch": {
+            "type": "number"
+          },
+          "shards": {
+            "type": "number"
+          },
+          "transactions": {
+            "type": "number"
+          },
+          "scResults": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "accounts",
+          "blocks",
+          "epoch",
+          "refreshRate",
+          "roundsPassed",
+          "roundsPerEpoch",
+          "shards",
+          "transactions",
+          "scResults"
+        ]
+      }
+    }
+  }
+}

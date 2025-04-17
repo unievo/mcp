@@ -1,0 +1,194 @@
+{
+  "openapi": "3.0.0",
+  "paths": {
+    "/auctions": {
+      "get": {
+        "operationId": "NftMarketplaceController_getAuctions",
+        "summary": "Explore auctions",
+        "description": "Returns auctions available in marketplaces ",
+        "parameters": [
+          {
+            "name": "size",
+            "required": false,
+            "in": "query",
+            "description": "Number of items to retrieve",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Auctions"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "marketplace"
+        ]
+      }
+    },
+    "/auctions/count": {
+      "get": {
+        "operationId": "NftMarketplaceController_getAuctionsCount",
+        "summary": "Auctions count",
+        "description": "Returns all auctions count available on marketplaces ",
+        "parameters": [
+          {
+            "name": "status",
+            "required": false,
+            "in": "query",
+            "description": "Returns auctions count with specified status",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "number"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "marketplace"
+        ]
+      }
+    },
+    "/auctions/{id}": {
+      "get": {
+        "operationId": "NftMarketplaceController_getAuctionId",
+        "summary": "Auction details",
+        "description": "Returns auction details for a specific auction identifier ",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "auctionId",
+            "required": true,
+            "in": "query",
+            "description": "Auction identifier",
+            "schema": {}
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Auctions"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "marketplace"
+        ]
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Bids": {
+        "type": "object",
+        "properties": {
+          "amount": {
+            "type": "string"
+          },
+          "token": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "amount",
+          "token"
+        ]
+      },
+      "Auctions": {
+        "type": "object",
+        "properties": {
+          "owner": {
+            "type": "string"
+          },
+          "auctionId": {
+            "type": "number"
+          },
+          "identifier": {
+            "type": "string"
+          },
+          "collection": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "running",
+              "claimable",
+              "ended",
+              "closed",
+              "unknown"
+            ]
+          },
+          "auctionType": {
+            "type": "string"
+          },
+          "createdAt": {
+            "type": "number"
+          },
+          "endsAt": {
+            "type": "number"
+          },
+          "marketplaceAuctionId": {
+            "type": "number"
+          },
+          "marketplace": {
+            "type": "string"
+          },
+          "minBid": {
+            "$ref": "#/components/schemas/Bids"
+          },
+          "maxBid": {
+            "$ref": "#/components/schemas/Bids"
+          }
+        },
+        "required": [
+          "owner",
+          "auctionId",
+          "identifier",
+          "collection",
+          "status",
+          "auctionType",
+          "createdAt",
+          "endsAt",
+          "marketplaceAuctionId",
+          "marketplace",
+          "minBid",
+          "maxBid"
+        ]
+      }
+    }
+  }
+}

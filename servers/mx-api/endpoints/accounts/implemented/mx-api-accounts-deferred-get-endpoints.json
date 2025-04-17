@@ -1,0 +1,71 @@
+{
+  "openapi": "3.0.0",
+  "paths": {
+    "/accounts/{address}/deferred": {
+      "get": {
+        "operationId": "AccountController_getAccountDeferred",
+        "summary": "Account deferred payment details",
+        "description": "Returns deferred payments from legacy staking",
+        "parameters": [
+          {
+            "name": "address",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/AccountDeferred"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "accounts"
+        ]
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "AccountDeferred": {
+        "type": "object",
+        "properties": {
+          "deferredPayment": {
+            "example": "\"9040000000000000000\"",
+            "title": "Amount",
+            "description": "Deferred payment amount",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Amount"
+              }
+            ]
+          },
+          "secondsLeft": {
+            "type": "number",
+            "description": "Seconds left until unbonding time"
+          }
+        },
+        "required": [
+          "deferredPayment",
+          "secondsLeft"
+        ]
+      },
+      "Amount": {
+        "type": "object",
+        "properties": {}
+      }
+    }
+  }
+}

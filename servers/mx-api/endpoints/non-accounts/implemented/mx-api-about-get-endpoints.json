@@ -1,0 +1,107 @@
+{
+  "openapi": "3.0.0",
+  "paths": {
+    "/about": {
+      "get": {
+        "operationId": "NetworkController_getAbout",
+        "summary": "About",
+        "description": "Returns general information about API deployment",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/About"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "network"
+        ]
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "About": {
+        "type": "object",
+        "properties": {
+          "appVersion": {
+            "type": "string",
+            "nullable": true
+          },
+          "pluginsVersion": {
+            "type": "string",
+            "nullable": true
+          },
+          "network": {
+            "type": "string"
+          },
+          "cluster": {
+            "type": "string"
+          },
+          "version": {
+            "type": "string"
+          },
+          "indexerVersion": {
+            "type": "string"
+          },
+          "gatewayVersion": {
+            "type": "string"
+          },
+          "scamEngineVersion": {
+            "type": "string",
+            "nullable": true
+          },
+          "features": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/FeatureConfigs"
+              }
+            ]
+          }
+        },
+        "required": [
+          "appVersion",
+          "network",
+          "version",
+          "indexerVersion",
+          "gatewayVersion",
+          "features"
+        ]
+      },
+      "FeatureConfigs": {
+        "type": "object",
+        "properties": {
+          "updateCollectionExtraDetails": {
+            "type": "boolean",
+            "description": "Update Collection extra details flag activation value"
+          },
+          "marketplace": {
+            "type": "boolean",
+            "description": "Marketplace flag activation value"
+          },
+          "exchange": {
+            "type": "boolean",
+            "description": "Exchange flag activation value"
+          },
+          "dataApi": {
+            "type": "boolean",
+            "description": "DataApi flag activation value"
+          }
+        },
+        "required": [
+          "updateCollectionExtraDetails",
+          "marketplace",
+          "exchange",
+          "dataApi"
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,178 @@
+{
+  "openapi": "3.0.0",
+  "paths": {
+    "/accounts/{address}/auctions": {
+      "get": {
+        "operationId": "NftMarketplaceController_getAccountAuctions",
+        "summary": "Account auctions",
+        "description": "Returns account auctions for a given address",
+        "parameters": [
+          {
+            "name": "address",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "from",
+            "required": false,
+            "in": "query",
+            "description": "Number of items to skip for the result set",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "size",
+            "required": false,
+            "in": "query",
+            "description": "Number of items to retrieve",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "status",
+            "required": false,
+            "in": "query",
+            "description": "Returns auctions with specified status",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Auction"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "marketplace"
+        ]
+      }
+    },
+    "/accounts/{address}/auctions/count": {
+      "get": {
+        "operationId": "NftMarketplaceController_getAccountAuctionsCount",
+        "summary": "Address auctions count",
+        "description": "Returns total running auctions count for a specific address ",
+        "parameters": [
+          {
+            "name": "address",
+            "required": true,
+            "in": "query",
+            "description": "Account address",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "number"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "marketplace"
+        ]
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Auction": {
+        "type": "object",
+        "properties": {
+          "owner": {
+            "type": "string"
+          },
+          "auctionId": {
+            "type": "number"
+          },
+          "identifier": {
+            "type": "string"
+          },
+          "collection": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "running",
+              "claimable",
+              "ended",
+              "closed",
+              "unknown"
+            ]
+          },
+          "auctionType": {
+            "type": "string"
+          },
+          "createdAt": {
+            "type": "number"
+          },
+          "endsAt": {
+            "type": "number"
+          },
+          "marketplaceAuctionId": {
+            "type": "string"
+          },
+          "marketplace": {
+            "type": "string"
+          },
+          "minBid": {
+            "$ref": "#/components/schemas/Bids"
+          },
+          "maxBid": {
+            "$ref": "#/components/schemas/Bids"
+          }
+        },
+        "required": [
+          "owner",
+          "auctionId",
+          "identifier",
+          "collection",
+          "status",
+          "auctionType",
+          "createdAt",
+          "endsAt",
+          "marketplaceAuctionId",
+          "marketplace",
+          "minBid",
+          "maxBid"
+        ]
+      },
+      "Bids": {
+        "type": "object",
+        "properties": {
+          "amount": {
+            "type": "string"
+          },
+          "token": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "amount",
+          "token"
+        ]
+      }
+    }
+  }
+}

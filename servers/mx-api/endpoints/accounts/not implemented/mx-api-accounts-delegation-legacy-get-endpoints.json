@@ -1,0 +1,87 @@
+{
+  "openapi": "3.0.0",
+  "paths": {
+    "/accounts/{address}/delegation-legacy": {
+      "get": {
+        "operationId": "AccountController_getAccountDelegationLegacy",
+        "summary": "Account legacy delegation details",
+        "description": "Returns staking information related to the legacy delegation pool",
+        "parameters": [
+          {
+            "name": "address",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "timestamp",
+            "required": false,
+            "in": "query",
+            "description": "Retrieve entry from timestamp",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccountDelegationLegacy"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "accounts"
+        ]
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "AccountDelegationLegacy": {
+        "type": "object",
+        "properties": {
+          "claimableRewards": {
+            "type": "string",
+            "default": 0
+          },
+          "userActiveStake": {
+            "type": "string",
+            "default": 0
+          },
+          "userDeferredPaymentStake": {
+            "type": "string",
+            "default": 0
+          },
+          "userUnstakedStake": {
+            "type": "string",
+            "default": 0
+          },
+          "userWaitingStake": {
+            "type": "string",
+            "default": 0
+          },
+          "userWithdrawOnlyStake": {
+            "type": "string",
+            "default": 0
+          }
+        },
+        "required": [
+          "claimableRewards",
+          "userActiveStake",
+          "userDeferredPaymentStake",
+          "userUnstakedStake",
+          "userWaitingStake",
+          "userWithdrawOnlyStake"
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,74 @@
+{
+  "openapi": "3.0.0",
+  "paths": {
+    "/nfts/process": {
+      "post": {
+        "operationId": "ProcessNftsPublicController_generateThumbnails",
+        "summary": "Trigger NFT media/metadata reprocessing",
+        "description": "Triggers NFT media/metadata reprocessing for collection owners",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProcessNftRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "NFT media/metadata reprocessing has been triggered"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "ProcessNftRequest": {
+        "type": "object",
+        "properties": {
+          "collection": {
+            "type": "string",
+            "nullable": true
+          },
+          "identifier": {
+            "type": "string",
+            "nullable": true
+          },
+          "forceRefreshMedia": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "forceRefreshMetadata": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "forceRefreshThumbnail": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "skipRefreshThumbnail": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "uploadAsset": {
+            "type": "boolean",
+            "nullable": true
+          }
+        },
+        "required": [
+          "collection",
+          "identifier",
+          "forceRefreshMedia",
+          "forceRefreshMetadata",
+          "forceRefreshThumbnail",
+          "skipRefreshThumbnail",
+          "uploadAsset"
+        ]
+      }
+    }
+  }
+}

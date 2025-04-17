@@ -1,0 +1,13 @@
+# Ignore files in the npm package
+endpoints/
+src/
+temp/
+*.sh
+*.tgz
+*.json
+test.js
+*.backup
+
+# Include files in the npm package
+!package.json
+!README.md

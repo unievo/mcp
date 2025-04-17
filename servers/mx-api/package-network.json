@@ -1,0 +1,33 @@
+{
+  "name": "@unievo/mcp-mx-api-network",
+  "version": "1.0.0",
+  "description": "MultiversX API Network MCP Server",
+  "keywords": [
+    "multiversx",
+    "api",
+    "mcp"
+  ],
+  "license": "MIT",
+  "author": "Unievo",
+  "type": "module",
+  "main": "build/mx-api-network.js",
+  "bin": {
+    "mx-api-network": "build/mx-api-network.js"
+  },
+  "types": "./build/mx-api-network.d.ts",
+  "scripts": {
+    "build": "tsc && node -e \"const fs = require('fs'); const files = ['build/mx-api-network.js']; files.forEach(file => fs.existsSync(file) && fs.chmodSync(file, '755'));\"",
+    "prepare": "npm run build",
+    "watch": "tsc --watch",
+    "inspector": "npx @modelcontextprotocol/inspector build/mx-api-network.js",
+    "start": "node build/mx-api-network.js"
+  },
+  "dependencies": {
+    "axios": "^1.6.7",
+    "@modelcontextprotocol/sdk": "^1.9.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.3.3",
+    "@types/node": "^22.14.0"
+  }
+}

@@ -1,0 +1,137 @@
+{
+  "openapi": "3.0.0",
+  "paths": {
+    "/accounts/{address}/keys": {
+      "get": {
+        "operationId": "AccountController_getAccountKeys",
+        "summary": "Account nodes",
+        "description": "Returns all active / queued nodes where the account is owner",
+        "parameters": [
+          {
+            "name": "address",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "from",
+            "required": false,
+            "in": "query",
+            "description": "Number of items to skip for the result set",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "size",
+            "required": false,
+            "in": "query",
+            "description": "Number of items to retrieve",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "status",
+            "required": false,
+            "in": "query",
+            "description": "Key status",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/AccountKey"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "accounts"
+        ]
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Amount": {
+        "type": "object",
+        "properties": {}
+      },
+      "AccountKey": {
+        "type": "object",
+        "properties": {
+          "blsKey": {
+            "type": "string",
+            "example": "2ef384d4d38bf3aad5cef34ce6eab047fba6d52b9735dbfdf7591289ed9c26ac7e816c9bb56ebf4f09129f045860f401275a91009befb4dc8ddc24ea4bc597290bd916b9f984c2a415ec9b2cfbc4a09de42c032314e6a21e69daf76302fcaa99"
+          },
+          "stake": {
+            "example": "\"4870000000000000000\"",
+            "title": "Amount",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Amount"
+              }
+            ]
+          },
+          "topUp": {
+            "example": "\"4210000000000000000\"",
+            "title": "Amount",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Amount"
+              }
+            ]
+          },
+          "status": {
+            "type": "string",
+            "example": "online"
+          },
+          "rewardAddress": {
+            "type": "string",
+            "example": "erd1qga7ze0l03chfgru0a32wxqf2226nzrxnyhzer9lmudqhjgy7ycqjjyknz"
+          },
+          "queueIndex": {
+            "type": "string",
+            "nullable": true,
+            "example": "2"
+          },
+          "queueSize": {
+            "type": "string",
+            "nullable": true,
+            "example": "100"
+          },
+          "remainingUnBondPeriod": {
+            "type": "number",
+            "example": 10
+          }
+        },
+        "required": [
+          "blsKey",
+          "stake",
+          "topUp",
+          "status",
+          "rewardAddress",
+          "queueIndex",
+          "queueSize",
+          "remainingUnBondPeriod"
+        ]
+      }
+    }
+  }
+}

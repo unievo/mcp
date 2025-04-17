@@ -1,0 +1,18 @@
+{
+  "openapi": "3.0.0",
+  "paths": {
+    "/hello": {
+      "get": {
+        "operationId": "HealthCheckController_getHello",
+        "summary": "Health check",
+        "description": "Returns 'hello', used for performing health checks",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        }
+      }
+    }
+  }
+}

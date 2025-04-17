@@ -1,0 +1,110 @@
+{
+  "openapi": "3.0.0",
+  "paths": {
+    "/dapp/config": {
+      "get": {
+        "operationId": "DappConfigController_getDappConfiguration",
+        "summary": "Dapp configuration",
+        "description": "Returns configuration used in dapps",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DappConfig"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Network configuration not found"
+          }
+        },
+        "tags": [
+          "dapp/config"
+        ]
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "DappConfig": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "example": "mainnet"
+          },
+          "name": {
+            "type": "string",
+            "example": "Mainnet"
+          },
+          "egldLabel": {
+            "type": "string",
+            "example": "EGLD"
+          },
+          "decimals": {
+            "type": "string",
+            "example": "4"
+          },
+          "egldDenomination": {
+            "type": "string",
+            "example": "18"
+          },
+          "gasPerDataByte": {
+            "type": "string",
+            "example": "1500"
+          },
+          "apiTimeout": {
+            "type": "string",
+            "example": "4000"
+          },
+          "walletConnectDeepLink": {
+            "type": "string",
+            "example": "https://maiar.page.link/?apn=com.multiversx.maiar.wallet&isi=1519405832&ibi=com.multiversx.maiar.wallet&link=https://maiar.com/"
+          },
+          "walletConnectBridgeAddresses": {
+            "example": "https://bridge.walletconnect.org",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "walletAddress": {
+            "type": "string",
+            "example": "https://wallet.multiversx.com"
+          },
+          "apiAddress": {
+            "type": "string",
+            "example": "https://api.multiversx.com"
+          },
+          "explorerAddress": {
+            "type": "string",
+            "example": "https://explorer.multiversx.com"
+          },
+          "chainId": {
+            "type": "string",
+            "example": "1"
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "egldLabel",
+          "decimals",
+          "egldDenomination",
+          "gasPerDataByte",
+          "apiTimeout",
+          "walletConnectDeepLink",
+          "walletConnectBridgeAddresses",
+          "walletAddress",
+          "apiAddress",
+          "explorerAddress",
+          "chainId"
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,120 @@
+{
+  "openapi": "3.0.0",
+  "paths": {
+    "/accounts/{address}/delegation": {
+      "get": {
+        "operationId": "AccountController_getDelegationForAddress",
+        "summary": "Account delegations with staking providers",
+        "description": "Summarizes all delegation positions with staking providers, together with unDelegation positions",
+        "parameters": [
+          {
+            "name": "address",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/AccountDelegation"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "accounts"
+        ]
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Amount": {
+        "type": "object",
+        "properties": {}
+      },
+      "AccountUndelegation": {
+        "type": "object",
+        "properties": {
+          "amount": {
+            "example": "\"3510000000000000000\"",
+            "title": "Amount",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Amount"
+              }
+            ]
+          },
+          "seconds": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "amount",
+          "seconds"
+        ]
+      },
+      "AccountDelegation": {
+        "type": "object",
+        "properties": {
+          "address": {
+            "type": "string",
+            "description": "Delegation account details"
+          },
+          "contract": {
+            "type": "string",
+            "description": "Account delegation contract"
+          },
+          "userUnBondable": {
+            "example": "\"1440000000000000000\"",
+            "title": "Amount",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Amount"
+              }
+            ]
+          },
+          "userActiveStake": {
+            "example": "\"3800000000000000000\"",
+            "title": "Amount",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Amount"
+              }
+            ]
+          },
+          "claimableRewards": {
+            "example": "\"7240000000000000000\"",
+            "title": "Amount",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Amount"
+              }
+            ]
+          },
+          "userUndelegatedList": {
+            "description": "User undelegated list details",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AccountUndelegation"
+            }
+          }
+        },
+        "required": [
+          "address",
+          "contract"
+        ]
+      }
+    }
+  }
+}

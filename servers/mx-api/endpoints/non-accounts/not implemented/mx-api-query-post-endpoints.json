@@ -1,0 +1,39 @@
+{
+  "openapi": "3.0.0",
+  "paths": {
+    "/query": {
+      "post": {
+        "operationId": "VmQueryController_query",
+        "summary": "VM query",
+        "description": "Performs a vm query on a given smart contract and returns its results",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/VmQueryRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "query"
+        ]
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "VmQueryRequest": {
+        "type": "object",
+        "properties": {}
+      }
+    }
+  }
+}

@@ -1,0 +1,97 @@
+{
+  "openapi": "3.0.0",
+  "paths": {
+    "/delegation-legacy": {
+      "get": {
+        "operationId": "DelegationLegacyController_getBlock",
+        "summary": "Legacy delegation statistics",
+        "description": "Returns legacy delegation contract global information",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DelegationLegacy"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "delegation"
+        ]
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "DelegationLegacy": {
+        "type": "object",
+        "properties": {
+          "totalWithdrawOnlyStake": {
+            "example": "\"6140000000000000000\"",
+            "title": "Amount",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Amount"
+              }
+            ]
+          },
+          "totalWaitingStake": {
+            "example": "\"4010000000000000000\"",
+            "title": "Amount",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Amount"
+              }
+            ]
+          },
+          "totalActiveStake": {
+            "example": "\"2090000000000000000\"",
+            "title": "Amount",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Amount"
+              }
+            ]
+          },
+          "totalUnstakedStake": {
+            "example": "\"1570000000000000000\"",
+            "title": "Amount",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Amount"
+              }
+            ]
+          },
+          "totalDeferredPaymentStake": {
+            "example": "\"3310000000000000000\"",
+            "title": "Amount",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Amount"
+              }
+            ]
+          },
+          "numUsers": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "totalWithdrawOnlyStake",
+          "totalWaitingStake",
+          "totalActiveStake",
+          "totalUnstakedStake",
+          "totalDeferredPaymentStake",
+          "numUsers"
+        ]
+      },
+      "Amount": {
+        "type": "object",
+        "properties": {}
+      }
+    }
+  }
+}

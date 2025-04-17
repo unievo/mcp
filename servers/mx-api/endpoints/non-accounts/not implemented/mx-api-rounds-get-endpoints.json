@@ -1,0 +1,265 @@
+{
+  "openapi": "3.0.0",
+  "paths": {
+    "/rounds": {
+      "get": {
+        "operationId": "RoundController_getRounds",
+        "summary": "Rounds",
+        "description": "Returns a list of all rounds available on blockchain",
+        "parameters": [
+          {
+            "name": "from",
+            "required": false,
+            "in": "query",
+            "description": "Number of items to skip for the result set",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "size",
+            "required": false,
+            "in": "query",
+            "description": "Number of items to retrieve",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "validator",
+            "required": false,
+            "in": "query",
+            "description": "Filter by validator",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "condition",
+            "required": false,
+            "in": "query",
+            "description": "Filter by condition",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "shard",
+            "required": false,
+            "in": "query",
+            "description": "Filter by shard identifier",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "epoch",
+            "required": false,
+            "in": "query",
+            "description": "Filter by epoch number",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Round"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "rounds"
+        ]
+      }
+    },
+    "/rounds/count": {
+      "get": {
+        "operationId": "RoundController_getRoundCount",
+        "summary": "Rounds count",
+        "description": "Returns total number of rounds",
+        "parameters": [
+          {
+            "name": "validator",
+            "required": false,
+            "in": "query",
+            "description": "Filter by validator",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "condition",
+            "required": false,
+            "in": "query",
+            "description": "Filter by condition",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "shard",
+            "required": false,
+            "in": "query",
+            "description": "Filter by shard identifier",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "epoch",
+            "required": false,
+            "in": "query",
+            "description": "Filter by epoch number",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "number"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "rounds"
+        ]
+      }
+    },
+    "/rounds/{shard}/{round}": {
+      "get": {
+        "operationId": "RoundController_getRound",
+        "summary": "Round",
+        "description": "Returns details of a given round from a specific shard",
+        "parameters": [
+          {
+            "name": "shard",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "round",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RoundDetailed"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Round not found"
+          }
+        },
+        "tags": [
+          "rounds"
+        ]
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Round": {
+        "type": "object",
+        "properties": {
+          "blockWasProposed": {
+            "type": "boolean",
+            "default": false
+          },
+          "round": {
+            "type": "number",
+            "example": 9171722
+          },
+          "shard": {
+            "type": "number",
+            "example": 1
+          },
+          "epoch": {
+            "type": "number",
+            "example": 636
+          },
+          "timestamp": {
+            "type": "number",
+            "example": 1651148112
+          }
+        },
+        "required": [
+          "blockWasProposed",
+          "round",
+          "shard",
+          "epoch",
+          "timestamp"
+        ]
+      },
+      "RoundDetailed": {
+        "type": "object",
+        "properties": {
+          "blockWasProposed": {
+            "type": "boolean",
+            "default": false
+          },
+          "round": {
+            "type": "number",
+            "example": 9171722
+          },
+          "shard": {
+            "type": "number",
+            "example": 1
+          },
+          "epoch": {
+            "type": "number",
+            "example": 636
+          },
+          "timestamp": {
+            "type": "number",
+            "example": 1651148112
+          },
+          "signers": {
+            "description": "Signers",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "blockWasProposed",
+          "round",
+          "shard",
+          "epoch",
+          "timestamp",
+          "signers"
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,56 @@
+{
+  "name": "mx-api-index",
+  "version": "1.0.0",
+  "description": "MultiversX API Index MCP Server",
+  "type": "module",
+  "main": "build/mx-api-index.js",
+  "bin": {
+    "mx-api-index": "build/mx-api-index.js",
+    "mx-api-essentials": "build/mx-api-essentials.js",
+    "mx-api-accounts": "build/mx-api-accounts.js",
+    "mx-api-collections": "build/mx-api-collections.js",
+    "mx-api-contracts": "build/mx-api-contracts.js",
+    "mx-api-network": "build/mx-api-network.js",
+    "mx-api-roles": "build/mx-api-roles.js",
+    "mx-api-tokens": "build/mx-api-tokens.js",
+    "mx-api-transactions": "build/mx-api-transactions.js"
+  },
+  "scripts": {
+    "build": "tsc && node -e \"const fs = require('fs'); const files = ['build/mx-api-index.js', 'build/mx-api-essentials.js', 'build/mx-api-accounts.js', 'build/mx-api-collections.js', 'build/mx-api-contracts.js', 'build/mx-api-network.js', 'build/mx-api-roles.js', 'build/mx-api-tokens.js', 'build/mx-api-transactions.js']; files.forEach(file => fs.existsSync(file) && fs.chmodSync(file, '755'));\"",
+    "prepare": "npm run build",
+    "watch": "tsc --watch",
+    "inspector": "npx @modelcontextprotocol/inspector build/mx-api-index.js",
+    "start": "node build/mx-api-index.js",
+    "start:essentials": "node build/mx-api-essentials.js",
+    "start:accounts": "node build/mx-api-accounts.js",
+    "start:collections": "node build/mx-api-collections.js",
+    "start:contracts": "node build/mx-api-contracts.js",
+    "start:network": "node build/mx-api-network.js",
+    "start:roles": "node build/mx-api-roles.js",
+    "start:tokens": "node build/mx-api-tokens.js",
+    "start:transactions": "node build/mx-api-transactions.js",
+    "inspector:essentials": "npx @modelcontextprotocol/inspector build/mx-api-essentials.js",
+    "inspector:accounts": "npx @modelcontextprotocol/inspector build/mx-api-accounts.js",
+    "inspector:collections": "npx @modelcontextprotocol/inspector build/mx-api-collections.js",
+    "inspector:contracts": "npx @modelcontextprotocol/inspector build/mx-api-contracts.js",
+    "inspector:network": "npx @modelcontextprotocol/inspector build/mx-api-network.js",
+    "inspector:roles": "npx @modelcontextprotocol/inspector build/mx-api-roles.js",
+    "inspector:tokens": "npx @modelcontextprotocol/inspector build/mx-api-tokens.js",
+    "inspector:transactions": "npx @modelcontextprotocol/inspector build/mx-api-transactions.js"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.9.0",
+    "axios": "^1.6.7"
+  },
+  "devDependencies": {
+    "@types/node": "^22.14.0",
+    "typescript": "^5.3.3"
+  },
+  "keywords": [
+    "multiversx",
+    "api",
+    "mcp"
+  ],
+  "author": "Unievo",
+  "license": "MIT"
+}

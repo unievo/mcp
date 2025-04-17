@@ -1,0 +1,57 @@
+{
+  "openapi": "3.0.0",
+  "paths": {
+    "/keys/{key}/unbond-period": {
+      "get": {
+        "operationId": "KeysController_getKeyUnbondPeriod",
+        "summary": "Unbonding period",
+        "description": "Returns remaining unbonding period for a given bls key",
+        "parameters": [
+          {
+            "name": "key",
+            "required": true,
+            "in": "path",
+            "description": "The BLS key of the node",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/KeyUnbondPeriod"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Key not found"
+          }
+        },
+        "tags": [
+          "keys"
+        ]
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "KeyUnbondPeriod": {
+        "type": "object",
+        "properties": {
+          "remainingUnBondPeriod": {
+            "type": "number",
+            "example": 10
+          }
+        },
+        "required": [
+          "remainingUnBondPeriod"
+        ]
+      }
+    }
+  }
+}

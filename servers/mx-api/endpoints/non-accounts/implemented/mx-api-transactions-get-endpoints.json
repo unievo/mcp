@@ -1,0 +1,1320 @@
+{
+  "openapi": "3.0.0",
+  "paths": {
+    "/transactions": {
+      "get": {
+        "operationId": "TransactionController_getTransactions",
+        "summary": "Transaction list",
+        "description": "Returns a list of transactions available on the blockchain.",
+        "parameters": [
+          {
+            "name": "from",
+            "required": false,
+            "in": "query",
+            "description": "Number of items to skip for the result set",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "size",
+            "required": false,
+            "in": "query",
+            "description": "Number of items to retrieve",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "sender",
+            "required": false,
+            "in": "query",
+            "description": "Address of the transaction sender",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "receiver",
+            "required": false,
+            "in": "query",
+            "description": "Search by multiple receiver addresses, comma-separated",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "name": "relayer",
+            "required": false,
+            "in": "query",
+            "description": "Search by a relayer address",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "token",
+            "required": false,
+            "in": "query",
+            "description": "Identifier of the token",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "senderShard",
+            "required": false,
+            "in": "query",
+            "description": "Id of the shard the sender address belongs to",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "receiverShard",
+            "required": false,
+            "in": "query",
+            "description": "Id of the shard the receiver address belongs to",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "miniBlockHash",
+            "required": false,
+            "in": "query",
+            "description": "Filter by miniblock hash",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "hashes",
+            "required": false,
+            "in": "query",
+            "description": "Filter by a comma-separated list of transaction hashes",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "name": "status",
+            "required": false,
+            "in": "query",
+            "description": "Status of the transaction (success / pending / invalid / fail)",
+            "schema": {
+              "enum": [
+                "success",
+                "pending",
+                "invalid",
+                "fail"
+              ],
+              "type": "string"
+            }
+          },
+          {
+            "name": "function",
+            "required": false,
+            "in": "query",
+            "description": "Filter transactions by function name",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "name": "condition",
+            "required": false,
+            "in": "query",
+            "description": "Condition for elastic search queries",
+            "deprecated": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "before",
+            "required": false,
+            "in": "query",
+            "description": "Before timestamp",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "after",
+            "required": false,
+            "in": "query",
+            "description": "After timestamp",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "round",
+            "required": false,
+            "in": "query",
+            "description": "Round number",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "order",
+            "required": false,
+            "in": "query",
+            "description": "Sort order (asc/desc)",
+            "schema": {
+              "enum": [
+                "asc",
+                "desc"
+              ],
+              "type": "string"
+            }
+          },
+          {
+            "name": "fields",
+            "required": false,
+            "in": "query",
+            "description": "List of fields to filter by",
+            "style": "form",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "name": "withScResults",
+            "required": false,
+            "in": "query",
+            "description": "Return results for transactions. When \"withScResults\" parameter is applied, complexity estimation is 200",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "withOperations",
+            "required": false,
+            "in": "query",
+            "description": "Return operations for transactions. When \"withOperations\" parameter is applied, complexity estimation is 200",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "withLogs",
+            "required": false,
+            "in": "query",
+            "description": "Return logs for transactions. When \"withLogs\" parameter is applied, complexity estimation is 200",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "withScamInfo",
+            "required": false,
+            "in": "query",
+            "description": "Returns scam information",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "withUsername",
+            "required": false,
+            "in": "query",
+            "description": "Integrates username in assets for all addresses present in the transactions",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "withBlockInfo",
+            "required": false,
+            "in": "query",
+            "description": "Returns sender / receiver block details",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "isRelayed",
+            "required": false,
+            "in": "query",
+            "description": "Returns relayed transactions details",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "isScCall",
+            "required": false,
+            "in": "query",
+            "description": "Returns sc call transactions details",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "withActionTransferValue",
+            "required": false,
+            "in": "query",
+            "description": "Returns value in USD and EGLD for transferred tokens within the action attribute",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "withRelayedScresults",
+            "required": false,
+            "in": "query",
+            "description": "If set to true, will include smart contract results that resemble relayed transactions",
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Transaction"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "transactions"
+        ]
+      }
+    },
+    "/transactions/count": {
+      "get": {
+        "operationId": "TransactionController_getTransactionCount",
+        "summary": "Transactions count",
+        "description": "Returns the total number of transactions",
+        "parameters": [
+          {
+            "name": "sender",
+            "required": false,
+            "in": "query",
+            "description": "Address of the transaction sender",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "receiver",
+            "required": false,
+            "in": "query",
+            "description": "Search by multiple receiver addresses, comma-separated",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "name": "token",
+            "required": false,
+            "in": "query",
+            "description": "Identifier of the token",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "senderShard",
+            "required": false,
+            "in": "query",
+            "description": "Id of the shard the sender address belongs to",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "receiverShard",
+            "required": false,
+            "in": "query",
+            "description": "Id of the shard the receiver address belongs to",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "miniBlockHash",
+            "required": false,
+            "in": "query",
+            "description": "Filter by miniblock hash",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "hashes",
+            "required": false,
+            "in": "query",
+            "description": "Filter by a comma-separated list of transaction hashes",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "name": "status",
+            "required": false,
+            "in": "query",
+            "description": "Status of the transaction (success / pending / invalid / fail)",
+            "schema": {
+              "enum": [
+                "success",
+                "pending",
+                "invalid",
+                "fail"
+              ],
+              "type": "string"
+            }
+          },
+          {
+            "name": "function",
+            "required": false,
+            "in": "query",
+            "description": "Filter transactions by function name",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "name": "condition",
+            "required": false,
+            "in": "query",
+            "description": "Condition for elastic search queries",
+            "deprecated": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "before",
+            "required": false,
+            "in": "query",
+            "description": "Before timestamp",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "after",
+            "required": false,
+            "in": "query",
+            "description": "After timestamp",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "round",
+            "required": false,
+            "in": "query",
+            "description": "Round number",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "relayer",
+            "required": false,
+            "in": "query",
+            "description": "Filter by a relayer address",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "isRelayed",
+            "required": false,
+            "in": "query",
+            "description": "Returns relayed transactions details",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "isScCall",
+            "required": false,
+            "in": "query",
+            "description": "Returns sc call transactions details",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "withRelayedScresults",
+            "required": false,
+            "in": "query",
+            "description": "If set to true, will include smart contract results that resemble relayed transactions",
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "number"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "transactions"
+        ]
+      }
+    },
+    "/transactions/{txHash}": {
+      "get": {
+        "operationId": "TransactionController_getTransaction",
+        "summary": "Transaction details",
+        "description": "Return transaction details for a given transaction hash",
+        "parameters": [
+          {
+            "name": "txHash",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "fields",
+            "required": false,
+            "in": "query",
+            "description": "List of fields to filter by",
+            "style": "form",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "name": "withActionTransferValue",
+            "required": false,
+            "in": "query",
+            "description": "Returns value in USD and EGLD for transferred tokens within the action attribute",
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TransactionDetailed"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Transaction not found"
+          }
+        },
+        "tags": [
+          "transactions"
+        ]
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "SmartContractResult": {
+        "type": "object",
+        "properties": {
+          "hash": {
+            "type": "string"
+          },
+          "timestamp": {
+            "type": "number"
+          },
+          "nonce": {
+            "type": "number"
+          },
+          "gasLimit": {
+            "type": "number"
+          },
+          "gasPrice": {
+            "type": "number"
+          },
+          "value": {
+            "example": "\"3350000000000000000\"",
+            "title": "Amount",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Amount"
+              }
+            ]
+          },
+          "sender": {
+            "type": "string"
+          },
+          "receiver": {
+            "type": "string"
+          },
+          "senderAssets": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/AccountAssets"
+              }
+            ]
+          },
+          "receiverAssets": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/AccountAssets"
+              }
+            ]
+          },
+          "relayedValue": {
+            "type": "string"
+          },
+          "data": {
+            "type": "string"
+          },
+          "prevTxHash": {
+            "type": "string"
+          },
+          "originalTxHash": {
+            "type": "string"
+          },
+          "callType": {
+            "type": "string"
+          },
+          "miniBlockHash": {
+            "type": "string",
+            "nullable": true
+          },
+          "logs": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/TransactionLog"
+              }
+            ]
+          },
+          "returnMessage": {
+            "type": "string",
+            "nullable": true
+          },
+          "action": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/TransactionAction"
+              }
+            ]
+          },
+          "function": {
+            "type": "string",
+            "nullable": true
+          },
+          "status": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "required": [
+          "hash",
+          "timestamp",
+          "nonce",
+          "gasLimit",
+          "gasPrice",
+          "value",
+          "sender",
+          "receiver",
+          "data",
+          "prevTxHash",
+          "originalTxHash",
+          "callType",
+          "status"
+        ]
+      },
+      "TransactionAction": {
+        "type": "object",
+        "properties": {
+          "category": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "arguments": {
+            "type": "object"
+          }
+        },
+        "required": [
+          "category",
+          "name",
+          "description",
+          "arguments"
+        ]
+      },
+      "TransactionLogEvent": {
+        "type": "object",
+        "properties": {
+          "address": {
+            "type": "string"
+          },
+          "addressAssets": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/AccountAssets"
+              }
+            ]
+          },
+          "identifier": {
+            "type": "string"
+          },
+          "topics": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "data": {
+            "type": "string"
+          },
+          "additionalData": {
+            "type": "object"
+          }
+        },
+        "required": [
+          "address",
+          "addressAssets",
+          "identifier",
+          "topics",
+          "data",
+          "additionalData"
+        ]
+      },
+      "AccountAssets": {
+        "type": "object",
+        "properties": {}
+      },
+      "TransactionReceipt": {
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "string"
+          },
+          "sender": {
+            "type": "string"
+          },
+          "data": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "value",
+          "sender",
+          "data"
+        ]
+      },
+      "Transaction": {
+        "type": "object",
+        "properties": {
+          "txHash": {
+            "type": "string"
+          },
+          "gasLimit": {
+            "type": "number"
+          },
+          "gasPrice": {
+            "type": "number"
+          },
+          "gasUsed": {
+            "type": "number"
+          },
+          "miniBlockHash": {
+            "type": "string"
+          },
+          "nonce": {
+            "type": "number"
+          },
+          "receiver": {
+            "type": "string"
+          },
+          "receiverUsername": {
+            "type": "string",
+            "nullable": true
+          },
+          "receiverAssets": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/AccountAssets"
+              }
+            ]
+          },
+          "receiverShard": {
+            "type": "number"
+          },
+          "round": {
+            "type": "number"
+          },
+          "sender": {
+            "type": "string"
+          },
+          "senderUsername": {
+            "type": "string",
+            "nullable": true
+          },
+          "senderAssets": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/AccountAssets"
+              }
+            ]
+          },
+          "senderShard": {
+            "type": "number"
+          },
+          "signature": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          },
+          "fee": {
+            "type": "string"
+          },
+          "timestamp": {
+            "type": "number"
+          },
+          "data": {
+            "type": "string",
+            "nullable": true
+          },
+          "function": {
+            "type": "string",
+            "nullable": true
+          },
+          "action": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/TransactionAction"
+              }
+            ]
+          },
+          "scamInfo": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ScamInfo"
+              }
+            ]
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "Transaction",
+              "SmartContractResult",
+              "Reward"
+            ],
+            "nullable": true
+          },
+          "originalTxHash": {
+            "type": "string",
+            "nullable": true
+          },
+          "pendingResults": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "guardianAddress": {
+            "type": "string",
+            "nullable": true
+          },
+          "guardianSignature": {
+            "type": "string",
+            "nullable": true
+          },
+          "isRelayed": {
+            "type": "string",
+            "nullable": true
+          },
+          "relayer": {
+            "type": "string",
+            "nullable": true
+          },
+          "relayerSignature": {
+            "type": "string",
+            "nullable": true
+          },
+          "isScCall": {
+            "type": "boolean",
+            "nullable": true
+          }
+        },
+        "required": [
+          "txHash",
+          "gasLimit",
+          "gasPrice",
+          "gasUsed",
+          "miniBlockHash",
+          "nonce",
+          "receiver",
+          "receiverShard",
+          "round",
+          "sender",
+          "senderShard",
+          "signature",
+          "status",
+          "value",
+          "fee",
+          "timestamp"
+        ]
+      },
+      "TransactionLog": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Transaction log ID"
+          },
+          "address": {
+            "type": "string",
+            "description": "Transaction log address"
+          },
+          "addressAssets": {
+            "description": "Transaction address assets",
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/AccountAssets"
+              }
+            ]
+          },
+          "events": {
+            "description": "Transaction log events",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TransactionLogEvent"
+            }
+          }
+        },
+        "required": [
+          "id",
+          "address",
+          "events"
+        ]
+      },
+      "Amount": {
+        "type": "object",
+        "properties": {}
+      },
+      "TransactionOperation": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "action": {
+            "type": "string",
+            "enum": [
+              "none",
+              "transfer",
+              "transferValueOnly",
+              "burn",
+              "addQuantity",
+              "create",
+              "localMint",
+              "localBurn",
+              "wipe",
+              "freeze",
+              "writeLog",
+              "signalError"
+            ],
+            "default": "none"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "none",
+              "nft",
+              "esdt",
+              "log",
+              "error",
+              "egld"
+            ],
+            "default": "none"
+          },
+          "esdtType": {
+            "type": "string",
+            "enum": [
+              "FungibleESDT",
+              "NonFungibleESDT",
+              "SemiFungibleESDT",
+              "MetaESDT"
+            ]
+          },
+          "identifier": {
+            "type": "string"
+          },
+          "ticker": {
+            "type": "string"
+          },
+          "collection": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          },
+          "valueUSD": {
+            "type": "number"
+          },
+          "sender": {
+            "type": "string"
+          },
+          "receiver": {
+            "type": "string"
+          },
+          "senderAssets": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/AccountAssets"
+              }
+            ]
+          },
+          "receiverAssets": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/AccountAssets"
+              }
+            ]
+          },
+          "decimals": {
+            "type": "number",
+            "nullable": true
+          },
+          "data": {
+            "type": "string",
+            "nullable": true
+          },
+          "additionalData": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "message": {
+            "type": "string",
+            "nullable": true
+          },
+          "svgUrl": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "required": [
+          "id",
+          "action",
+          "type",
+          "sender",
+          "receiver"
+        ]
+      },
+      "TransactionDetailed": {
+        "type": "object",
+        "properties": {
+          "txHash": {
+            "type": "string"
+          },
+          "gasLimit": {
+            "type": "number"
+          },
+          "gasPrice": {
+            "type": "number"
+          },
+          "gasUsed": {
+            "type": "number"
+          },
+          "miniBlockHash": {
+            "type": "string"
+          },
+          "nonce": {
+            "type": "number"
+          },
+          "receiver": {
+            "type": "string"
+          },
+          "receiverUsername": {
+            "type": "string",
+            "nullable": true
+          },
+          "receiverAssets": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/AccountAssets"
+              }
+            ]
+          },
+          "receiverShard": {
+            "type": "number"
+          },
+          "round": {
+            "type": "number"
+          },
+          "sender": {
+            "type": "string"
+          },
+          "senderUsername": {
+            "type": "string",
+            "nullable": true
+          },
+          "senderAssets": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/AccountAssets"
+              }
+            ]
+          },
+          "senderShard": {
+            "type": "number"
+          },
+          "signature": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          },
+          "fee": {
+            "type": "string"
+          },
+          "timestamp": {
+            "type": "number"
+          },
+          "data": {
+            "type": "string",
+            "nullable": true
+          },
+          "function": {
+            "type": "string",
+            "nullable": true
+          },
+          "action": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/TransactionAction"
+              }
+            ]
+          },
+          "scamInfo": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ScamInfo"
+              }
+            ]
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "Transaction",
+              "SmartContractResult",
+              "Reward"
+            ],
+            "nullable": true
+          },
+          "originalTxHash": {
+            "type": "string",
+            "nullable": true
+          },
+          "pendingResults": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "guardianAddress": {
+            "type": "string",
+            "nullable": true
+          },
+          "guardianSignature": {
+            "type": "string",
+            "nullable": true
+          },
+          "isRelayed": {
+            "type": "string",
+            "nullable": true
+          },
+          "relayer": {
+            "type": "string",
+            "nullable": true
+          },
+          "relayerSignature": {
+            "type": "string",
+            "nullable": true
+          },
+          "isScCall": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "results": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SmartContractResult"
+            }
+          },
+          "receipt": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/TransactionReceipt"
+              }
+            ]
+          },
+          "price": {
+            "type": "number",
+            "nullable": true
+          },
+          "logs": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/TransactionLog"
+              }
+            ]
+          },
+          "operations": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TransactionOperation"
+            }
+          },
+          "senderBlockHash": {
+            "type": "string",
+            "nullable": true
+          },
+          "senderBlockNonce": {
+            "type": "number",
+            "nullable": true
+          },
+          "receiverBlockHash": {
+            "type": "string",
+            "nullable": true
+          },
+          "receiverBlockNonce": {
+            "type": "number",
+            "nullable": true
+          },
+          "inTransit": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "relayedVersion": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "required": [
+          "txHash",
+          "gasLimit",
+          "gasPrice",
+          "gasUsed",
+          "miniBlockHash",
+          "nonce",
+          "receiver",
+          "receiverShard",
+          "round",
+          "sender",
+          "senderShard",
+          "signature",
+          "status",
+          "value",
+          "fee",
+          "timestamp",
+          "results",
+          "receipt",
+          "price",
+          "logs",
+          "operations",
+          "senderBlockHash",
+          "senderBlockNonce",
+          "receiverBlockHash",
+          "receiverBlockNonce",
+          "inTransit",
+          "relayedVersion"
+        ]
+      },
+      "ScamInfo": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "nullable": true
+          },
+          "info": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "required": [
+          "type",
+          "info"
+        ]
+      }
+    }
+  }
+}

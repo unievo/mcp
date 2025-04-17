@@ -1,0 +1,59 @@
+{
+  "openapi": "3.0.0",
+  "paths": {
+    "/contract-assets": {
+      "post": {
+        "operationId": "AssetsController_addContractAssets",
+        "parameters": [
+          {
+            "name": "Access-Token",
+            "required": true,
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ContractAssetsRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "assets"
+        ]
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "ContractAssetsRequest": {
+        "type": "object",
+        "properties": {
+          "contract": {
+            "type": "string",
+            "example": "erd1llllllllllllllllllllllllllllllllllllllllllllllllluqsl6e366"
+          },
+          "network": {
+            "type": "string",
+            "example": "devnet"
+          }
+        },
+        "required": [
+          "contract",
+          "network"
+        ]
+      }
+    }
+  }
+}

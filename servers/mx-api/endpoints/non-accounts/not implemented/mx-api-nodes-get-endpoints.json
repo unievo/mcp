@@ -1,0 +1,941 @@
+{
+  "openapi": "3.0.0",
+  "paths": {
+    "/nodes": {
+      "get": {
+        "operationId": "NodeController_getNodes",
+        "summary": "Nodes",
+        "description": "Returns a list of nodes of type observer or validator",
+        "parameters": [
+          {
+            "name": "from",
+            "required": false,
+            "in": "query",
+            "description": "Number of items to skip for the result set",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "size",
+            "required": false,
+            "in": "query",
+            "description": "Number of items to retrieve",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "search",
+            "required": false,
+            "in": "query",
+            "description": "Search by name, bls or version",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "keys",
+            "required": false,
+            "in": "query",
+            "description": "Search by multiple keys, comma-separated",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "name": "online",
+            "required": false,
+            "in": "query",
+            "description": "Whether node is online or not",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "type",
+            "required": false,
+            "in": "query",
+            "description": "Type of node",
+            "schema": {
+              "enum": [
+                "observer",
+                "validator"
+              ],
+              "type": "string"
+            }
+          },
+          {
+            "name": "status",
+            "required": false,
+            "in": "query",
+            "description": "Node status",
+            "schema": {
+              "enum": [
+                "new",
+                "unknown",
+                "waiting",
+                "eligible",
+                "jailed",
+                "queued",
+                "leaving",
+                "inactive",
+                "auction"
+              ],
+              "type": "string"
+            }
+          },
+          {
+            "name": "shard",
+            "required": false,
+            "in": "query",
+            "description": "Node shard",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "issues",
+            "required": false,
+            "in": "query",
+            "description": "Whether node has issues or not",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "identity",
+            "required": false,
+            "in": "query",
+            "description": "Node identity",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "provider",
+            "required": false,
+            "in": "query",
+            "description": "Node provider",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "owner",
+            "required": false,
+            "in": "query",
+            "description": "Node owner",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "auctioned",
+            "required": false,
+            "in": "query",
+            "description": "Whether node is auctioned or not",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "fullHistory",
+            "required": false,
+            "in": "query",
+            "description": "Whether node is of type 'Full History' or not",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "sort",
+            "required": false,
+            "in": "query",
+            "description": "Sorting criteria",
+            "schema": {
+              "enum": [
+                "name",
+                "version",
+                "tempRating",
+                "leaderSuccess",
+                "leaderFailure",
+                "validatorSuccess",
+                "validatorFailure",
+                "validatorIgnoredSignatures",
+                "position"
+              ],
+              "type": "string"
+            }
+          },
+          {
+            "name": "order",
+            "required": false,
+            "in": "query",
+            "description": "Sorting order (asc / desc)",
+            "schema": {
+              "enum": [
+                "asc",
+                "desc"
+              ],
+              "type": "string"
+            }
+          },
+          {
+            "name": "withIdentityInfo",
+            "required": false,
+            "in": "query",
+            "description": "Returns identity data for nodes",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "isQualified",
+            "required": false,
+            "in": "query",
+            "description": "Whether node is qualified or not",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "isAuctioned",
+            "required": false,
+            "in": "query",
+            "description": "Whether node is auctioned or not",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "isAuctionDangerZone",
+            "required": false,
+            "in": "query",
+            "description": "Whether node is in danger zone or not",
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Node"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "nodes"
+        ]
+      }
+    },
+    "/nodes/versions": {
+      "get": {
+        "operationId": "NodeController_getNodeVersions",
+        "summary": "Node versions",
+        "description": "Returns breakdown of node versions for validator nodes",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "nodes"
+        ]
+      }
+    },
+    "/nodes/count": {
+      "get": {
+        "operationId": "NodeController_getNodeCount",
+        "summary": "Nodes count",
+        "description": "Returns number of all observer/validator nodes available on blockchain",
+        "parameters": [
+          {
+            "name": "search",
+            "required": false,
+            "in": "query",
+            "description": "Search by name, bls or version",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "online",
+            "required": false,
+            "in": "query",
+            "description": "Whether node is online or not",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "type",
+            "required": false,
+            "in": "query",
+            "description": "Type of node",
+            "schema": {
+              "enum": [
+                "observer",
+                "validator"
+              ],
+              "type": "string"
+            }
+          },
+          {
+            "name": "status",
+            "required": false,
+            "in": "query",
+            "description": "Node status",
+            "schema": {
+              "enum": [
+                "new",
+                "unknown",
+                "waiting",
+                "eligible",
+                "jailed",
+                "queued",
+                "leaving",
+                "inactive",
+                "auction"
+              ],
+              "type": "string"
+            }
+          },
+          {
+            "name": "shard",
+            "required": false,
+            "in": "query",
+            "description": "Node shard",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "issues",
+            "required": false,
+            "in": "query",
+            "description": "Whether node has issues or not",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "identity",
+            "required": false,
+            "in": "query",
+            "description": "Node identity",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "provider",
+            "required": false,
+            "in": "query",
+            "description": "Node provider",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "owner",
+            "required": false,
+            "in": "query",
+            "description": "Node owner",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "auctioned",
+            "required": false,
+            "in": "query",
+            "description": "Whether node is auctioned or not",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "fullHistory",
+            "required": false,
+            "in": "query",
+            "description": "Whether node is of type 'Full History' or not",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "sort",
+            "required": false,
+            "in": "query",
+            "description": "Sorting criteria",
+            "schema": {
+              "enum": [
+                "name",
+                "version",
+                "tempRating",
+                "leaderSuccess",
+                "leaderFailure",
+                "validatorSuccess",
+                "validatorFailure",
+                "validatorIgnoredSignatures",
+                "position"
+              ],
+              "type": "string"
+            }
+          },
+          {
+            "name": "order",
+            "required": false,
+            "in": "query",
+            "description": "Sorting order (asc / desc)",
+            "schema": {
+              "enum": [
+                "asc",
+                "desc"
+              ],
+              "type": "string"
+            }
+          },
+          {
+            "name": "isQualified",
+            "required": false,
+            "in": "query",
+            "description": "Whether node is qualified or not",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "isAuctioned",
+            "required": false,
+            "in": "query",
+            "description": "Whether node is auctioned or not",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "isAuctionDangerZone",
+            "required": false,
+            "in": "query",
+            "description": "Whether node is in danger zone or not",
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "number"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "nodes"
+        ]
+      }
+    },
+    "/nodes/auctions": {
+      "get": {
+        "operationId": "NodeController_getNodesAuctions",
+        "summary": "Nodes Auctions",
+        "description": "Returns a list of nodes in auction",
+        "parameters": [
+          {
+            "name": "from",
+            "required": false,
+            "in": "query",
+            "description": "Number of items to skip for the result set",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "size",
+            "required": false,
+            "in": "query",
+            "description": "Number of items to retrieve",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "sort",
+            "required": false,
+            "in": "query",
+            "description": "Sorting criteria",
+            "schema": {
+              "enum": [
+                "auctionValidators",
+                "droppedValidators",
+                "qualifiedAuctionValidators",
+                "qualifiedStake",
+                "dangerZoneValidators"
+              ],
+              "type": "string"
+            }
+          },
+          {
+            "name": "order",
+            "required": false,
+            "in": "query",
+            "description": "Sorting order (asc / desc)",
+            "schema": {
+              "enum": [
+                "asc",
+                "desc"
+              ],
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/NodeAuction"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "nodes"
+        ]
+      }
+    },
+    "/nodes/{bls}": {
+      "get": {
+        "operationId": "NodeController_getNode",
+        "summary": "Node",
+        "description": "Returns details about a specific node for a given bls key",
+        "parameters": [
+          {
+            "name": "bls",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Node"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Node not found"
+          }
+        },
+        "tags": [
+          "nodes"
+        ]
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Identity": {
+        "type": "object",
+        "properties": {
+          "identity": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "avatar": {
+            "type": "string"
+          },
+          "website": {
+            "type": "string"
+          },
+          "twitter": {
+            "type": "string"
+          },
+          "location": {
+            "type": "string"
+          },
+          "score": {
+            "type": "number"
+          },
+          "validators": {
+            "type": "number"
+          },
+          "stake": {
+            "example": "\"1500000000000000000\"",
+            "title": "Amount",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Amount"
+              }
+            ]
+          },
+          "topUp": {
+            "example": "\"4600000000000000000\"",
+            "title": "Amount",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Amount"
+              }
+            ]
+          },
+          "locked": {
+            "example": "\"6470000000000000000\"",
+            "title": "Amount",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Amount"
+              }
+            ]
+          },
+          "distribution": {
+            "type": "object"
+          },
+          "providers": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "stakePercent": {
+            "type": "number"
+          },
+          "rank": {
+            "type": "number"
+          },
+          "apr": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "identity",
+          "name",
+          "description",
+          "location",
+          "validators",
+          "stake",
+          "topUp",
+          "locked",
+          "distribution"
+        ]
+      },
+      "Amount": {
+        "type": "object",
+        "properties": {}
+      },
+      "NodeAuction": {
+        "type": "object",
+        "properties": {
+          "identity": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string",
+            "default": 0
+          },
+          "avatar": {
+            "type": "string"
+          },
+          "provider": {
+            "type": "string"
+          },
+          "bls": {
+            "type": "string"
+          },
+          "stake": {
+            "type": "string"
+          },
+          "owner": {
+            "type": "string"
+          },
+          "distribution": {
+            "type": "object"
+          },
+          "auctionTopUp": {
+            "type": "string"
+          },
+          "qualifiedStake": {
+            "type": "string"
+          },
+          "auctionValidators": {
+            "type": "number"
+          },
+          "qualifiedAuctionValidators": {
+            "type": "number"
+          },
+          "droppedValidators": {
+            "type": "number"
+          },
+          "dangerZoneValidators": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "identity",
+          "name",
+          "bls",
+          "stake",
+          "owner",
+          "auctionTopUp",
+          "qualifiedStake",
+          "auctionValidators",
+          "qualifiedAuctionValidators",
+          "droppedValidators",
+          "dangerZoneValidators"
+        ]
+      },
+      "Node": {
+        "type": "object",
+        "properties": {
+          "bls": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "version": {
+            "type": "string",
+            "default": 0
+          },
+          "rating": {
+            "type": "number"
+          },
+          "tempRating": {
+            "type": "number"
+          },
+          "ratingModifier": {
+            "type": "number"
+          },
+          "shard": {
+            "type": "number",
+            "nullable": true
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "observer",
+              "validator"
+            ],
+            "nullable": true
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "new",
+              "unknown",
+              "waiting",
+              "eligible",
+              "jailed",
+              "queued",
+              "leaving",
+              "inactive",
+              "auction"
+            ],
+            "nullable": true
+          },
+          "online": {
+            "type": "boolean",
+            "default": false
+          },
+          "nonce": {
+            "type": "number"
+          },
+          "instances": {
+            "type": "number"
+          },
+          "owner": {
+            "type": "string"
+          },
+          "identity": {
+            "type": "string",
+            "nullable": true
+          },
+          "provider": {
+            "type": "string"
+          },
+          "issues": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "stake": {
+            "example": "\"3730000000000000000\"",
+            "title": "Amount",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Amount"
+              }
+            ]
+          },
+          "topUp": {
+            "example": "\"4120000000000000000\"",
+            "title": "Amount",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Amount"
+              }
+            ]
+          },
+          "locked": {
+            "example": "\"7520000000000000000\"",
+            "title": "Amount",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Amount"
+              }
+            ]
+          },
+          "leaderFailure": {
+            "type": "number",
+            "default": 0
+          },
+          "leaderSuccess": {
+            "type": "number",
+            "default": 15
+          },
+          "validatorFailure": {
+            "type": "number",
+            "default": 0
+          },
+          "validatorIgnoredSignatures": {
+            "type": "number",
+            "default": 0
+          },
+          "validatorSuccess": {
+            "type": "number",
+            "default": 10000
+          },
+          "position": {
+            "type": "number",
+            "default": 0
+          },
+          "auctioned": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "auctionPosition": {
+            "type": "number",
+            "nullable": true
+          },
+          "auctionTopUp": {
+            "type": "string",
+            "nullable": true
+          },
+          "auctionQualified": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "fullHistory": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "syncProgress": {
+            "type": "number",
+            "nullable": true
+          },
+          "remainingUnBondPeriod": {
+            "type": "number",
+            "example": 10
+          },
+          "isInDangerZone": {
+            "type": "boolean",
+            "example": false
+          },
+          "epochsLeft": {
+            "type": "number",
+            "example": 15
+          },
+          "identityInfo": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Identity"
+              }
+            ]
+          },
+          "qualifiedStake": {
+            "type": "string",
+            "default": 0
+          }
+        },
+        "required": [
+          "bls",
+          "name",
+          "version",
+          "rating",
+          "tempRating",
+          "ratingModifier",
+          "shard",
+          "type",
+          "status",
+          "online",
+          "nonce",
+          "instances",
+          "owner",
+          "identity",
+          "provider",
+          "issues",
+          "stake",
+          "topUp",
+          "locked",
+          "leaderFailure",
+          "leaderSuccess",
+          "validatorFailure",
+          "validatorIgnoredSignatures",
+          "validatorSuccess",
+          "position",
+          "auctioned",
+          "auctionPosition",
+          "auctionTopUp",
+          "auctionQualified",
+          "fullHistory",
+          "syncProgress",
+          "remainingUnBondPeriod",
+          "isInDangerZone",
+          "epochsLeft",
+          "qualifiedStake"
+        ]
+      }
+    }
+  }
+}

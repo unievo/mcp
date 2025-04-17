@@ -1,0 +1,6778 @@
+{
+  "openapi": "3.0.0",
+  "paths": {
+    "/accounts": {
+      "get": {
+        "operationId": "AccountController_getAccounts",
+        "summary": "Accounts details",
+        "description": "Returns all accounts available on blockchain. By default it returns 25 accounts",
+        "parameters": [
+          {
+            "name": "from",
+            "required": false,
+            "in": "query",
+            "description": "Number of items to skip for the result set",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "size",
+            "required": false,
+            "in": "query",
+            "description": "Number of items to retrieve",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "ownerAddress",
+            "required": false,
+            "in": "query",
+            "description": "Search by owner address",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "name",
+            "required": false,
+            "in": "query",
+            "description": "Filter accounts by assets name",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "tags",
+            "required": false,
+            "in": "query",
+            "description": "Filter accounts by assets tags",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "name": "sort",
+            "required": false,
+            "in": "query",
+            "description": "Sort criteria (balance / timestamp)",
+            "schema": {
+              "enum": [
+                "balance",
+                "timestamp",
+                "transfersLast24h"
+              ],
+              "type": "string"
+            }
+          },
+          {
+            "name": "order",
+            "required": false,
+            "in": "query",
+            "description": "Sort order (asc/desc)",
+            "schema": {
+              "enum": [
+                "asc",
+                "desc"
+              ],
+              "type": "string"
+            }
+          },
+          {
+            "name": "isSmartContract",
+            "required": false,
+            "in": "query",
+            "description": "Filter accounts by whether they are smart contract or not",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "withOwnerAssets",
+            "required": false,
+            "in": "query",
+            "description": "Return a list accounts with owner assets",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "withDeployInfo",
+            "required": false,
+            "in": "query",
+            "description": "Include deployedAt and deployTxHash fields in the result",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "withTxCount",
+            "required": false,
+            "in": "query",
+            "description": "Include txCount field in the result",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "withScrCount",
+            "required": false,
+            "in": "query",
+            "description": "Include scrCount field in the result",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "excludeTags",
+            "required": false,
+            "in": "query",
+            "description": "Exclude specific tags from result",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "name": "hasAssets",
+            "required": false,
+            "in": "query",
+            "description": "Returns a list of accounts that have assets",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "search",
+            "required": false,
+            "in": "query",
+            "description": "Search by account address",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "addresses",
+            "required": false,
+            "in": "query",
+            "description": "A comma-separated list of addresses to filter by",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Account"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "accounts"
+        ]
+      }
+    },
+    "/accounts/count": {
+      "get": {
+        "operationId": "AccountController_getAccountsCount",
+        "summary": "Total number of accounts",
+        "description": "Returns total number of accounts available on blockchain",
+        "parameters": [
+          {
+            "name": "ownerAddress",
+            "required": false,
+            "in": "query",
+            "description": "Search by owner address",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "isSmartContract",
+            "required": false,
+            "in": "query",
+            "description": "Return total smart contracts count",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "name",
+            "required": false,
+            "in": "query",
+            "description": "Filter accounts by assets name",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "tags",
+            "required": false,
+            "in": "query",
+            "description": "Filter accounts by assets tags",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "name": "excludeTags",
+            "required": false,
+            "in": "query",
+            "description": "Exclude specific tags from result",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "name": "hasAssets",
+            "required": false,
+            "in": "query",
+            "description": "Returns a list of accounts that have assets",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "search",
+            "required": false,
+            "in": "query",
+            "description": "Search by account address, assets name",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "number"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "accounts"
+        ]
+      }
+    },
+    "/accounts/{address}": {
+      "get": {
+        "operationId": "AccountController_getAccountDetails",
+        "summary": "Account details",
+        "description": "Returns account details for a given address",
+        "parameters": [
+          {
+            "name": "address",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "withGuardianInfo",
+            "required": false,
+            "in": "query",
+            "description": "Returns guardian data for a given address",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "withTxCount",
+            "required": false,
+            "in": "query",
+            "description": "Returns the count of the transactions for a given address",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "withScrCount",
+            "required": false,
+            "in": "query",
+            "description": "Returns the sc results count for a given address",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "withTimestamp",
+            "required": false,
+            "in": "query",
+            "description": "Returns the timestamp of the last activity for a given address",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "withAssets",
+            "required": false,
+            "in": "query",
+            "description": "Returns the assets for a given address",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "timestamp",
+            "required": false,
+            "in": "query",
+            "description": "Retrieve entry from timestamp",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccountDetailed"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "accounts"
+        ]
+      }
+    },
+    "/accounts/{address}/deferred": {
+      "get": {
+        "operationId": "AccountController_getAccountDeferred",
+        "summary": "Account deferred payment details",
+        "description": "Returns deferred payments from legacy staking",
+        "parameters": [
+          {
+            "name": "address",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/AccountDeferred"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "accounts"
+        ]
+      }
+    },
+    "/accounts/{address}/verification": {
+      "get": {
+        "operationId": "AccountController_getAccountVerification",
+        "summary": "Account verification details",
+        "description": "Returns contract verification details",
+        "parameters": [
+          {
+            "name": "address",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccountVerification"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "accounts"
+        ]
+      }
+    },
+    "/accounts/{address}/tokens": {
+      "get": {
+        "operationId": "AccountController_getAccountTokens",
+        "summary": "Account tokens",
+        "description": "Returns a list of all available fungible tokens for a given address, together with their balance",
+        "parameters": [
+          {
+            "name": "address",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "from",
+            "required": false,
+            "in": "query",
+            "description": "Number of items to skip for the result set",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "size",
+            "required": false,
+            "in": "query",
+            "description": "Number of items to retrieve",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "type",
+            "required": false,
+            "in": "query",
+            "description": "Token type",
+            "schema": {
+              "enum": [
+                "FungibleESDT",
+                "MetaESDT"
+              ],
+              "type": "string"
+            }
+          },
+          {
+            "name": "subType",
+            "required": false,
+            "in": "query",
+            "description": "Token sub type",
+            "schema": {
+              "enum": [
+                "NonFungibleESDT",
+                "SemiFungibleESDT",
+                "MetaESDT",
+                "NonFungibleESDTv2",
+                "DynamicNonFungibleESDT",
+                "DynamicSemiFungibleESDT",
+                "DynamicMetaESDT",
+                ""
+              ],
+              "type": "string"
+            }
+          },
+          {
+            "name": "search",
+            "required": false,
+            "in": "query",
+            "description": "Search by collection identifier",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "name",
+            "required": false,
+            "in": "query",
+            "description": "Search by token name",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "identifier",
+            "required": false,
+            "in": "query",
+            "description": "Search by token identifier",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "identifiers",
+            "required": false,
+            "in": "query",
+            "description": "A comma-separated list of identifiers to filter by",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "includeMetaESDT",
+            "required": false,
+            "in": "query",
+            "description": "Include MetaESDTs in response",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "timestamp",
+            "required": false,
+            "in": "query",
+            "description": "Retrieve entries from timestamp",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "mexPairType",
+            "required": false,
+            "in": "query",
+            "description": "Token Mex Pair",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/TokenWithBalance"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "accounts"
+        ]
+      }
+    },
+    "/accounts/{address}/tokens/count": {
+      "get": {
+        "operationId": "AccountController_getTokenCount",
+        "summary": "Account token count",
+        "description": "Returns the total number of tokens for a given address",
+        "parameters": [
+          {
+            "name": "address",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "type",
+            "required": false,
+            "in": "query",
+            "description": "Token type",
+            "schema": {
+              "enum": [
+                "FungibleESDT",
+                "MetaESDT"
+              ],
+              "type": "string"
+            }
+          },
+          {
+            "name": "search",
+            "required": false,
+            "in": "query",
+            "description": "Search by collection identifier",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "name",
+            "required": false,
+            "in": "query",
+            "description": "Search by token name",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "identifier",
+            "required": false,
+            "in": "query",
+            "description": "Search by token identifier",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "identifiers",
+            "required": false,
+            "in": "query",
+            "description": "A comma-separated list of identifiers to filter by",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "includeMetaESDT",
+            "required": false,
+            "in": "query",
+            "description": "Include MetaESDTs in response",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "timestamp",
+            "required": false,
+            "in": "query",
+            "description": "Retrieve entries from timestamp",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "mexPairType",
+            "required": false,
+            "in": "query",
+            "description": "Token Mex Pair",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "number"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "accounts"
+        ]
+      }
+    },
+    "/accounts/{address}/tokens/{token}": {
+      "get": {
+        "operationId": "AccountController_getAccountToken",
+        "summary": "Account token details",
+        "description": "Returns details about a specific fungible token from a given address",
+        "parameters": [
+          {
+            "name": "address",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "token",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "timestamp",
+            "required": false,
+            "in": "query",
+            "description": "Retrieve entries from timestamp",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TokenWithBalance"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "accounts"
+        ]
+      }
+    },
+    "/accounts/{address}/roles/collections": {
+      "get": {
+        "operationId": "AccountController_getAccountCollectionsWithRoles",
+        "summary": "Account collections",
+        "description": "Returns NFT/SFT/MetaESDT collections where the account is owner or has some special roles assigned to it",
+        "parameters": [
+          {
+            "name": "address",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "from",
+            "required": false,
+            "in": "query",
+            "description": "Number of items to skip for the result set",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "size",
+            "required": false,
+            "in": "query",
+            "description": "Number of items to retrieve",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "search",
+            "required": false,
+            "in": "query",
+            "description": "Search by collection identifier",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "type",
+            "required": false,
+            "in": "query",
+            "description": "Filter by type (NonFungibleESDT/SemiFungibleESDT/MetaESDT)",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "name": "subType",
+            "required": false,
+            "in": "query",
+            "description": "Filter by type (NonFungibleESDTv2/DynamicNonFungibleESDT/DynamicSemiFungibleESDT)",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "name": "owner",
+            "required": false,
+            "in": "query",
+            "description": "Filter by collection owner",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "canCreate",
+            "required": false,
+            "in": "query",
+            "description": "Filter by property canCreate (boolean)",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "canBurn",
+            "required": false,
+            "in": "query",
+            "description": "Filter by property canBurn (boolean)",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "canAddQuantity",
+            "required": false,
+            "in": "query",
+            "description": "Filter by property canAddQuantity (boolean)",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "canUpdateAttributes",
+            "required": false,
+            "in": "query",
+            "description": "Filter by property canUpdateAttributes (boolean)",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "canAddUri",
+            "required": false,
+            "in": "query",
+            "description": "Filter by property canAddUri (boolean)",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "canTransferRole",
+            "required": false,
+            "in": "query",
+            "description": "Filter by property canTransferRole (boolean)",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "excludeMetaESDT",
+            "required": false,
+            "in": "query",
+            "description": "Exclude collections of type \"MetaESDT\" in the response",
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/NftCollectionWithRoles"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "accounts"
+        ]
+      }
+    },
+    "/accounts/{address}/roles/collections/count": {
+      "get": {
+        "operationId": "AccountController_getCollectionWithRolesCount",
+        "summary": "Account collection count",
+        "description": "Returns the total number of NFT/SFT/MetaESDT collections where the account is owner or has some special roles assigned to it",
+        "parameters": [
+          {
+            "name": "address",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "search",
+            "required": false,
+            "in": "query",
+            "description": "Search by collection identifier",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "type",
+            "required": false,
+            "in": "query",
+            "description": "Filter by type (NonFungibleESDT/SemiFungibleESDT/MetaESDT)",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "name": "subType",
+            "required": false,
+            "in": "query",
+            "description": "Filter by type (NonFungibleESDTv2/DynamicNonFungibleESDT/DynamicSemiFungibleESDT)",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "name": "owner",
+            "required": false,
+            "in": "query",
+            "description": "Filter by collection owner",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "canCreate",
+            "required": false,
+            "in": "query",
+            "description": "Filter by property canCreate (boolean)",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "canBurn",
+            "required": false,
+            "in": "query",
+            "description": "Filter by property canCreate (boolean)",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "canAddQuantity",
+            "required": false,
+            "in": "query",
+            "description": "Filter by property canAddQuantity (boolean)",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "excludeMetaESDT",
+            "required": false,
+            "in": "query",
+            "description": "Exclude collections of type \"MetaESDT\" in the response",
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "number"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "accounts"
+        ]
+      }
+    },
+    "/accounts/{address}/roles/collections/{collection}": {
+      "get": {
+        "operationId": "AccountController_getAccountCollection",
+        "summary": "Account collection details",
+        "description": "Returns details about a specific NFT/SFT/MetaESDT collection from a given address",
+        "parameters": [
+          {
+            "name": "address",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "collection",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NftCollectionWithRoles"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "accounts"
+        ]
+      }
+    },
+    "/accounts/{address}/roles/tokens": {
+      "get": {
+        "operationId": "AccountController_getAccountTokensWithRoles",
+        "summary": "Account token roles",
+        "description": "Returns fungible token roles where the account is owner or has some special roles assigned to it",
+        "parameters": [
+          {
+            "name": "address",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "from",
+            "required": false,
+            "in": "query",
+            "description": "Number of items to skip for the result set",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "size",
+            "required": false,
+            "in": "query",
+            "description": "Number of items to retrieve",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "search",
+            "required": false,
+            "in": "query",
+            "description": "Search by token identifier or name",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "owner",
+            "required": false,
+            "in": "query",
+            "description": "Filter by token owner",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "canMint",
+            "required": false,
+            "in": "query",
+            "description": "Filter by property canMint (boolean)",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "canBurn",
+            "required": false,
+            "in": "query",
+            "description": "Filter by property canBurn (boolean)",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "includeMetaESDT",
+            "required": false,
+            "in": "query",
+            "description": "Include MetaESDTs in response",
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/TokenWithRoles"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "accounts"
+        ]
+      }
+    },
+    "/accounts/{address}/roles/tokens/count": {
+      "get": {
+        "operationId": "AccountController_getTokensWithRolesCount",
+        "summary": "Account token roles count",
+        "description": "Returns the total number of fungible token roles where the account is owner or has some special roles assigned to it",
+        "parameters": [
+          {
+            "name": "address",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "search",
+            "required": false,
+            "in": "query",
+            "description": "Search by token identifier or name",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "owner",
+            "required": false,
+            "in": "query",
+            "description": "Filter by token owner",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "canMint",
+            "required": false,
+            "in": "query",
+            "description": "Filter by property canMint (boolean)",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "canBurn",
+            "required": false,
+            "in": "query",
+            "description": "Filter by property canCreate (boolean)",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "includeMetaESDT",
+            "required": false,
+            "in": "query",
+            "description": "Include MetaESDTs in response",
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "number"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "accounts"
+        ]
+      }
+    },
+    "/accounts/{address}/roles/tokens/{identifier}": {
+      "get": {
+        "operationId": "AccountController_getTokenWithRoles",
+        "summary": "Account token roles details",
+        "description": "Returns details about fungible token roles where the account is owner or has some special roles assigned to it",
+        "parameters": [
+          {
+            "name": "address",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "identifier",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TokenWithRoles"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "accounts"
+        ]
+      }
+    },
+    "/accounts/{address}/collections": {
+      "get": {
+        "operationId": "AccountController_getAccountNftCollections",
+        "summary": "Account collections",
+        "description": "Returns NFT/SFT/MetaESDT collections where the account owns one or more NFTs",
+        "parameters": [
+          {
+            "name": "address",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "from",
+            "required": false,
+            "in": "query",
+            "description": "Number of items to skip for the result set",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "size",
+            "required": false,
+            "in": "query",
+            "description": "Number of items to retrieve",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "search",
+            "required": false,
+            "in": "query",
+            "description": "Search by collection identifier",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "type",
+            "required": false,
+            "in": "query",
+            "description": "Filter by type (NonFungibleESDT/SemiFungibleESDT/MetaESDT)",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "name": "subType",
+            "required": false,
+            "in": "query",
+            "description": "Filter by type (NonFungibleESDTv2/DynamicNonFungibleESDT/DynamicSemiFungibleESDT)",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "name": "excludeMetaESDT",
+            "required": false,
+            "in": "query",
+            "description": "Exclude collections of type \"MetaESDT\" in the response",
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/NftCollectionAccount"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "accounts"
+        ]
+      }
+    },
+    "/accounts/{address}/collections/count": {
+      "get": {
+        "operationId": "AccountController_getNftCollectionCount",
+        "summary": "Account collection count",
+        "description": "Returns the total number of NFT/SFT/MetaESDT collections where the account is owner or has some special roles assigned to it",
+        "parameters": [
+          {
+            "name": "address",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "search",
+            "required": false,
+            "in": "query",
+            "description": "Search by collection identifier",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "type",
+            "required": false,
+            "in": "query",
+            "description": "Filter by type (NonFungibleESDT/SemiFungibleESDT/MetaESDT)",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "name": "subType",
+            "required": false,
+            "in": "query",
+            "description": "Filter by type (NonFungibleESDTv2/DynamicNonFungibleESDT/DynamicSemiFungibleESDT)",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "name": "excludeMetaESDT",
+            "required": false,
+            "in": "query",
+            "description": "Exclude collections of type \"MetaESDT\" in the response",
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "number"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "accounts"
+        ]
+      }
+    },
+    "/accounts/{address}/collections/{collection}": {
+      "get": {
+        "operationId": "AccountController_getAccountNftCollection",
+        "summary": "Account collection details",
+        "description": "Returns details about a specific NFT/SFT/MetaESDT collection from a given address",
+        "parameters": [
+          {
+            "name": "address",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "collection",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NftCollectionAccount"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "accounts"
+        ]
+      }
+    },
+    "/accounts/{address}/nfts": {
+      "get": {
+        "operationId": "AccountController_getAccountNfts",
+        "summary": "Account NFTs",
+        "description": "Returns a list of all available NFTs/SFTs/MetaESDTs owned by the provided address",
+        "parameters": [
+          {
+            "name": "address",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "from",
+            "required": false,
+            "in": "query",
+            "description": "Number of items to skip for the result set",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "size",
+            "required": false,
+            "in": "query",
+            "description": "Number of items to retrieve",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "search",
+            "required": false,
+            "in": "query",
+            "description": "Search by collection identifier",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "identifiers",
+            "required": false,
+            "in": "query",
+            "description": "Filter by identifiers, comma-separated",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "name": "type",
+            "required": false,
+            "in": "query",
+            "description": "Filter by type (NonFungibleESDT/SemiFungibleESDT/MetaESDT)",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "name": "subType",
+            "required": false,
+            "in": "query",
+            "description": "Filter by type (NonFungibleESDTv2/DynamicNonFungibleESDT/DynamicSemiFungibleESDT)",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "name": "collection",
+            "required": false,
+            "in": "query",
+            "description": "Get all tokens by token collection. Deprecated, replaced by collections parameter",
+            "deprecated": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "collections",
+            "required": false,
+            "in": "query",
+            "description": "Get all tokens by token collections, comma-separated",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "name": "name",
+            "required": false,
+            "in": "query",
+            "description": "Get all nfts by name",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "tags",
+            "required": false,
+            "in": "query",
+            "description": "Filter by one or more comma-separated tags",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "name": "creator",
+            "required": false,
+            "in": "query",
+            "description": "Return all NFTs associated with a given creator",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "hasUris",
+            "required": false,
+            "in": "query",
+            "description": "Return all NFTs that have one or more uris",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "includeFlagged",
+            "required": false,
+            "in": "query",
+            "description": "Include NFTs that are flagged or not",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "withSupply",
+            "required": false,
+            "in": "query",
+            "description": "Return supply where type = SemiFungibleESDT",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "source",
+            "required": false,
+            "in": "query",
+            "description": "Data source of request",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "excludeMetaESDT",
+            "required": false,
+            "in": "query",
+            "description": "Exclude NFTs of type \"MetaESDT\" in the response",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "fields",
+            "required": false,
+            "in": "query",
+            "description": "List of fields to filter by",
+            "style": "form",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "name": "isScam",
+            "required": false,
+            "in": "query",
+            "description": "Filter by scam status",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "scamType",
+            "required": false,
+            "in": "query",
+            "description": "Filter by type (scam/potentialScam)",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "timestamp",
+            "required": false,
+            "in": "query",
+            "description": "Retrieve entry from timestamp",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "computeScamInfo",
+            "required": false,
+            "in": "query",
+            "description": "Compute scam info in the response",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "withScamInfo",
+            "required": false,
+            "in": "query",
+            "description": "Include scam info in the response",
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/NftAccount"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "accounts"
+        ]
+      }
+    },
+    "/accounts/{address}/nfts/count": {
+      "get": {
+        "operationId": "AccountController_getNftCount",
+        "summary": "Account NFT/SFT tokens count",
+        "description": "Returns the total number of NFT/SFT tokens from a given address, as well as the total number of a certain type of ESDT ",
+        "parameters": [
+          {
+            "name": "address",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "identifiers",
+            "required": false,
+            "in": "query",
+            "description": "Filter by identifiers, comma-separated",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "name": "search",
+            "required": false,
+            "in": "query",
+            "description": "Search by collection identifier",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "type",
+            "required": false,
+            "in": "query",
+            "description": "Filter by type (NonFungibleESDT/SemiFungibleESDT/MetaESDT)",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "name": "subType",
+            "required": false,
+            "in": "query",
+            "description": "Filter by subType",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "name": "collection",
+            "required": false,
+            "in": "query",
+            "description": "Get all tokens by token collection",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "collections",
+            "required": false,
+            "in": "query",
+            "description": "Get all tokens by token collections, comma-separated",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "name": "name",
+            "required": false,
+            "in": "query",
+            "description": "Get all nfts by name",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "tags",
+            "required": false,
+            "in": "query",
+            "description": "Filter by one or more comma-separated tags",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "name": "creator",
+            "required": false,
+            "in": "query",
+            "description": "Return all NFTs associated with a given creator",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "hasUris",
+            "required": false,
+            "in": "query",
+            "description": "Return all NFTs that have one or more uris",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "includeFlagged",
+            "required": false,
+            "in": "query",
+            "description": "Include NFTs that are flagged or not",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "excludeMetaESDT",
+            "required": false,
+            "in": "query",
+            "description": "Exclude NFTs of type \"MetaESDT\" in the response",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "isScam",
+            "required": false,
+            "in": "query",
+            "description": "Filter by scam status",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "scamType",
+            "required": false,
+            "in": "query",
+            "description": "Filter by type (scam/potentialScam)",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "timestamp",
+            "required": false,
+            "in": "query",
+            "description": "Retrieve entry from timestamp",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "number"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "accounts"
+        ]
+      }
+    },
+    "/accounts/{address}/nfts/{nft}": {
+      "get": {
+        "operationId": "AccountController_getAccountNft",
+        "summary": "Account NFT/SFT token details",
+        "description": "Returns details about a specific fungible token for a given address",
+        "parameters": [
+          {
+            "name": "address",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "nft",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "fields",
+            "required": false,
+            "in": "query",
+            "description": "List of fields to filter by",
+            "style": "form",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "name": "extract",
+            "required": false,
+            "in": "query",
+            "description": "Extract a specific field",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "timestamp",
+            "required": false,
+            "in": "query",
+            "description": "Retrieve entry from timestamp",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NftAccount"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "accounts"
+        ]
+      }
+    },
+    "/accounts/{address}/stake": {
+      "get": {
+        "operationId": "AccountController_getAccountStake",
+        "summary": "Account stake details",
+        "description": "Summarizes total staked amount for the given provider, as well as when and how much unbond will be performed",
+        "parameters": [
+          {
+            "name": "address",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "timestamp",
+            "required": false,
+            "in": "query",
+            "description": "Retrieve entry from timestamp",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProviderStake"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "accounts"
+        ]
+      }
+    },
+    "/accounts/{address}/delegation": {
+      "get": {
+        "operationId": "AccountController_getDelegationForAddress",
+        "summary": "Account delegations with staking providers",
+        "description": "Summarizes all delegation positions with staking providers, together with unDelegation positions",
+        "parameters": [
+          {
+            "name": "address",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/AccountDelegation"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "accounts"
+        ]
+      }
+    },
+    "/accounts/{address}/delegation-legacy": {
+      "get": {
+        "operationId": "AccountController_getAccountDelegationLegacy",
+        "summary": "Account legacy delegation details",
+        "description": "Returns staking information related to the legacy delegation pool",
+        "parameters": [
+          {
+            "name": "address",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "timestamp",
+            "required": false,
+            "in": "query",
+            "description": "Retrieve entry from timestamp",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccountDelegationLegacy"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "accounts"
+        ]
+      }
+    },
+    "/accounts/{address}/keys": {
+      "get": {
+        "operationId": "AccountController_getAccountKeys",
+        "summary": "Account nodes",
+        "description": "Returns all active / queued nodes where the account is owner",
+        "parameters": [
+          {
+            "name": "address",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "from",
+            "required": false,
+            "in": "query",
+            "description": "Number of items to skip for the result set",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "size",
+            "required": false,
+            "in": "query",
+            "description": "Number of items to retrieve",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "status",
+            "required": false,
+            "in": "query",
+            "description": "Key status",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/AccountKey"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "accounts"
+        ]
+      }
+    },
+    "/accounts/{address}/waiting-list": {
+      "get": {
+        "operationId": "AccountController_getAccountWaitingList",
+        "summary": "Account queued nodes",
+        "description": "Returns all nodes in the node queue where the account is owner",
+        "parameters": [
+          {
+            "name": "address",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/WaitingList"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "accounts"
+        ]
+      }
+    },
+    "/accounts/{address}/transactions": {
+      "get": {
+        "operationId": "AccountController_getAccountTransactions",
+        "summary": "Account transaction list",
+        "description": "Returns details of all transactions where the account is sender or receiver",
+        "parameters": [
+          {
+            "name": "address",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "from",
+            "required": false,
+            "in": "query",
+            "description": "Number of items to skip for the result set",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "size",
+            "required": false,
+            "in": "query",
+            "description": "Number of items to retrieve",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "sender",
+            "required": false,
+            "in": "query",
+            "description": "Address of the transaction sender",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "receiver",
+            "required": false,
+            "in": "query",
+            "description": "Search by multiple receiver addresses, comma-separated",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "name": "token",
+            "required": false,
+            "in": "query",
+            "description": "Identifier of the token",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "senderShard",
+            "required": false,
+            "in": "query",
+            "description": "Id of the shard the sender address belongs to",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "receiverShard",
+            "required": false,
+            "in": "query",
+            "description": "Id of the shard the receiver address belongs to",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "miniBlockHash",
+            "required": false,
+            "in": "query",
+            "description": "Filter by miniblock hash",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "hashes",
+            "required": false,
+            "in": "query",
+            "description": "Filter by a comma-separated list of transaction hashes",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "name": "status",
+            "required": false,
+            "in": "query",
+            "description": "Status of the transaction (success / pending / invalid / fail)",
+            "schema": {
+              "enum": [
+                "success",
+                "pending",
+                "invalid",
+                "fail"
+              ],
+              "type": "string"
+            }
+          },
+          {
+            "name": "function",
+            "required": false,
+            "in": "query",
+            "description": "Filter transactions by function name",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "name": "before",
+            "required": false,
+            "in": "query",
+            "description": "Before timestamp",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "after",
+            "required": false,
+            "in": "query",
+            "description": "After timestamp",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "round",
+            "required": false,
+            "in": "query",
+            "description": "Round number",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "order",
+            "required": false,
+            "in": "query",
+            "description": "Sort order (asc/desc)",
+            "schema": {
+              "enum": [
+                "asc",
+                "desc"
+              ],
+              "type": "string"
+            }
+          },
+          {
+            "name": "fields",
+            "required": false,
+            "in": "query",
+            "description": "List of fields to filter by",
+            "style": "form",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "name": "withScResults",
+            "required": false,
+            "in": "query",
+            "description": "Return scResults for transactions. When \"withScresults\" parameter is applied, complexity estimation is 200",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "withOperations",
+            "required": false,
+            "in": "query",
+            "description": "Return operations for transactions. When \"withOperations\" parameter is applied, complexity estimation is 200",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "withLogs",
+            "required": false,
+            "in": "query",
+            "description": "Return logs for transactions. When \"withLogs\" parameter is applied, complexity estimation is 200",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "withScamInfo",
+            "required": false,
+            "in": "query",
+            "description": "Returns scam information",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "withUsername",
+            "required": false,
+            "in": "query",
+            "description": "Integrates username in assets for all addresses present in the transactions",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "withBlockInfo",
+            "required": false,
+            "in": "query",
+            "description": "Returns sender / receiver block details",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "senderOrReceiver",
+            "required": false,
+            "in": "query",
+            "description": "One address that current address interacted with",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "isRelayed",
+            "required": false,
+            "in": "query",
+            "description": "Returns isRelayed transactions details",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "isScCall",
+            "required": false,
+            "in": "query",
+            "description": "Returns sc call transactions details",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "withActionTransferValue",
+            "required": false,
+            "in": "query",
+            "description": "Returns value in USD and EGLD for transferred tokens within the action attribute",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "withRelayedScresults",
+            "required": false,
+            "in": "query",
+            "description": "If set to true, will include smart contract results that resemble relayed transactions",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "computeScamInfo",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Transaction"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "accounts"
+        ]
+      }
+    },
+    "/accounts/{address}/transactions/count": {
+      "get": {
+        "operationId": "AccountController_getAccountTransactionsCount",
+        "summary": "Account transactions count",
+        "description": "Returns total number of transactions for a given address where the account is sender or receiver, as well as total transactions count that have a certain status",
+        "parameters": [
+          {
+            "name": "address",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "sender",
+            "required": false,
+            "in": "query",
+            "description": "Address of the transaction sender",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "receiver",
+            "required": false,
+            "in": "query",
+            "description": "Search by multiple receiver addresses, comma-separated",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "name": "token",
+            "required": false,
+            "in": "query",
+            "description": "Identifier of the token",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "senderShard",
+            "required": false,
+            "in": "query",
+            "description": "Id of the shard the sender address belongs to",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "receiverShard",
+            "required": false,
+            "in": "query",
+            "description": "Id of the shard the receiver address belongs to",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "miniBlockHash",
+            "required": false,
+            "in": "query",
+            "description": "Filter by miniblock hash",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "hashes",
+            "required": false,
+            "in": "query",
+            "description": "Filter by a comma-separated list of transaction hashes",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "name": "status",
+            "required": false,
+            "in": "query",
+            "description": "Status of the transaction (success / pending / invalid / fail)",
+            "schema": {
+              "enum": [
+                "success",
+                "pending",
+                "invalid",
+                "fail"
+              ],
+              "type": "string"
+            }
+          },
+          {
+            "name": "function",
+            "required": false,
+            "in": "query",
+            "description": "Filter transactions by function name",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "name": "before",
+            "required": false,
+            "in": "query",
+            "description": "Before timestamp",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "after",
+            "required": false,
+            "in": "query",
+            "description": "After timestamp",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "round",
+            "required": false,
+            "in": "query",
+            "description": "Round number",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "senderOrReceiver",
+            "required": false,
+            "in": "query",
+            "description": "One address that current address interacted with",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "isRelayed",
+            "required": false,
+            "in": "query",
+            "description": "Returns isRelayed transactions details",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "isScCall",
+            "required": false,
+            "in": "query",
+            "description": "Returns sc call transactions details",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "withRelayedScresults",
+            "required": false,
+            "in": "query",
+            "description": "If set to true, will include smart contract results that resemble relayed transactions",
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "number"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "accounts"
+        ]
+      }
+    },
+    "/accounts/{address}/transfers": {
+      "get": {
+        "operationId": "AccountController_getAccountTransfers",
+        "summary": "Account value transfers",
+        "description": "Returns both transfers triggerred by a user account (type = Transaction), as well as transfers triggerred by smart contracts (type = SmartContractResult), thus providing a full picture of all in/out value transfers for a given account",
+        "parameters": [
+          {
+            "name": "address",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "from",
+            "required": false,
+            "in": "query",
+            "description": "Number of items to skip for the result set",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "size",
+            "required": false,
+            "in": "query",
+            "description": "Number of items to retrieve",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "sender",
+            "required": false,
+            "in": "query",
+            "description": "Address of the transfer sender",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "name": "receiver",
+            "required": false,
+            "in": "query",
+            "description": "Search by multiple receiver addresses, comma-separated",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "name": "token",
+            "required": false,
+            "in": "query",
+            "description": "Identifier of the token",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "senderShard",
+            "required": false,
+            "in": "query",
+            "description": "Id of the shard the sender address belongs to",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "receiverShard",
+            "required": false,
+            "in": "query",
+            "description": "Id of the shard the receiver address belongs to",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "miniBlockHash",
+            "required": false,
+            "in": "query",
+            "description": "Filter by miniblock hash",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "hashes",
+            "required": false,
+            "in": "query",
+            "description": "Filter by a comma-separated list of transfer hashes",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "name": "status",
+            "required": false,
+            "in": "query",
+            "description": "Status of the transaction (success / pending / invalid / fail)",
+            "schema": {
+              "enum": [
+                "success",
+                "pending",
+                "invalid",
+                "fail"
+              ],
+              "type": "string"
+            }
+          },
+          {
+            "name": "function",
+            "required": false,
+            "in": "query",
+            "description": "Filter transactions by function name",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "name": "before",
+            "required": false,
+            "in": "query",
+            "description": "Before timestamp",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "after",
+            "required": false,
+            "in": "query",
+            "description": "After timestamp",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "round",
+            "required": false,
+            "in": "query",
+            "description": "Round number",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "fields",
+            "required": false,
+            "in": "query",
+            "description": "List of fields to filter by",
+            "style": "form",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "name": "order",
+            "required": false,
+            "in": "query",
+            "description": "Sort order (asc/desc)",
+            "schema": {
+              "enum": [
+                "asc",
+                "desc"
+              ],
+              "type": "string"
+            }
+          },
+          {
+            "name": "relayer",
+            "required": false,
+            "in": "query",
+            "description": "Address of the relayer",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "withScamInfo",
+            "required": false,
+            "in": "query",
+            "description": "Returns scam information",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "withUsername",
+            "required": false,
+            "in": "query",
+            "description": "Integrates username in assets for all addresses present in the transactions",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "withBlockInfo",
+            "required": false,
+            "in": "query",
+            "description": "Returns sender / receiver block details",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "senderOrReceiver",
+            "required": false,
+            "in": "query",
+            "description": "One address that current address interacted with",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "isScCall",
+            "required": false,
+            "in": "query",
+            "description": "Returns sc call transactions details",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "withLogs",
+            "required": false,
+            "in": "query",
+            "description": "Return logs for transfers. When \"withLogs\" parameter is applied, complexity estimation is 200",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "withOperations",
+            "required": false,
+            "in": "query",
+            "description": "Return operations for transfers. When \"withOperations\" parameter is applied, complexity estimation is 200",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "withActionTransferValue",
+            "required": false,
+            "in": "query",
+            "description": "Returns value in USD and EGLD for transferred tokens within the action attribute",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "withRefunds",
+            "required": false,
+            "in": "query",
+            "description": "Include refund transactions",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "withTxsRelayedByAddress",
+            "required": false,
+            "in": "query",
+            "description": "Include transactions that were relayed by the address",
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Transaction"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "accounts"
+        ]
+      }
+    },
+    "/accounts/{address}/transfers/count": {
+      "get": {
+        "operationId": "AccountController_getAccountTransfersCount",
+        "summary": "Account transfer count",
+        "description": "Return total count of transfers triggerred by a user account (type = Transaction), as well as transfers triggerred by smart contracts (type = SmartContractResult)",
+        "parameters": [
+          {
+            "name": "address",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "sender",
+            "required": false,
+            "in": "query",
+            "description": "Address of the transfer sender",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "name": "receiver",
+            "required": false,
+            "in": "query",
+            "description": "Search by multiple receiver addresses, comma-separated",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "name": "token",
+            "required": false,
+            "in": "query",
+            "description": "Identifier of the token",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "senderShard",
+            "required": false,
+            "in": "query",
+            "description": "Id of the shard the sender address belongs to",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "receiverShard",
+            "required": false,
+            "in": "query",
+            "description": "Id of the shard the receiver address belongs to",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "miniBlockHash",
+            "required": false,
+            "in": "query",
+            "description": "Filter by miniblock hash",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "hashes",
+            "required": false,
+            "in": "query",
+            "description": "Filter by a comma-separated list of transfer hashes",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "name": "status",
+            "required": false,
+            "in": "query",
+            "description": "Status of the transaction (success / pending / invalid / fail)",
+            "schema": {
+              "enum": [
+                "success",
+                "pending",
+                "invalid",
+                "fail"
+              ],
+              "type": "string"
+            }
+          },
+          {
+            "name": "function",
+            "required": false,
+            "in": "query",
+            "description": "Filter transfers by function name",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "name": "before",
+            "required": false,
+            "in": "query",
+            "description": "Before timestamp",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "after",
+            "required": false,
+            "in": "query",
+            "description": "After timestamp",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "round",
+            "required": false,
+            "in": "query",
+            "description": "Round number",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "senderOrReceiver",
+            "required": false,
+            "in": "query",
+            "description": "One address that current address interacted with",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "isScCall",
+            "required": false,
+            "in": "query",
+            "description": "Returns sc call transactions details",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "withRefunds",
+            "required": false,
+            "in": "query",
+            "description": "Include refund transactions",
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "number"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "accounts"
+        ]
+      }
+    },
+    "/accounts/{address}/deploys": {
+      "get": {
+        "operationId": "AccountController_getAccountDeploys",
+        "summary": "Account deploys details",
+        "description": "Returns deploys details for a given account",
+        "parameters": [
+          {
+            "name": "address",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "from",
+            "required": false,
+            "in": "query",
+            "description": "Number of items to skip for the result set",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "size",
+            "required": false,
+            "in": "query",
+            "description": "Number of items to retrieve",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/DeployedContract"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "accounts"
+        ]
+      }
+    },
+    "/accounts/{address}/deploys/count": {
+      "get": {
+        "operationId": "AccountController_getAccountDeploysCount",
+        "summary": "Account deploys count",
+        "description": "Returns total number of deploys for a given address",
+        "parameters": [
+          {
+            "name": "address",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "number"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "accounts"
+        ]
+      }
+    },
+    "/accounts/{address}/contracts": {
+      "get": {
+        "operationId": "AccountController_getAccountContracts",
+        "summary": "Account contracts details",
+        "description": "Returns contracts details for a given account",
+        "parameters": [
+          {
+            "name": "address",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "from",
+            "required": false,
+            "in": "query",
+            "description": "Number of items to skip for the result set",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "size",
+            "required": false,
+            "in": "query",
+            "description": "Number of items to retrieve",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/DeployedContract"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "accounts"
+        ]
+      }
+    },
+    "/accounts/{address}/contracts/count": {
+      "get": {
+        "operationId": "AccountController_getAccountContractsCount",
+        "summary": "Account contracts count",
+        "description": "Returns total number of contracts for a given address",
+        "parameters": [
+          {
+            "name": "address",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "number"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "accounts"
+        ]
+      }
+    },
+    "/accounts/{address}/upgrades": {
+      "get": {
+        "operationId": "AccountController_getContractUpgrades",
+        "summary": "Account upgrades details",
+        "description": "Returns all upgrades details for a specific contract address",
+        "parameters": [
+          {
+            "name": "address",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "from",
+            "required": false,
+            "in": "query",
+            "description": "Number of items to skip for the result set",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "size",
+            "required": false,
+            "in": "query",
+            "description": "Number of items to retrieve",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ContractUpgrades"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "accounts"
+        ]
+      }
+    },
+    "/accounts/{address}/results": {
+      "get": {
+        "operationId": "AccountController_getAccountScResults",
+        "summary": "Account smart contract results",
+        "description": "Returns smart contract results where the account is sender or receiver",
+        "parameters": [
+          {
+            "name": "address",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "from",
+            "required": false,
+            "in": "query",
+            "description": "Number of items to skip for the result set",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "size",
+            "required": false,
+            "in": "query",
+            "description": "Number of items to retrieve",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/SmartContractResult"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "accounts"
+        ]
+      }
+    },
+    "/accounts/{address}/results/count": {
+      "get": {
+        "operationId": "AccountController_getAccountScResultsCount",
+        "summary": "Account smart contracts results count",
+        "description": "Returns number of smart contract results where the account is sender or receiver",
+        "parameters": [
+          {
+            "name": "address",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "number"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "accounts"
+        ]
+      }
+    },
+    "/accounts/{address}/results/{scHash}": {
+      "get": {
+        "operationId": "AccountController_getAccountScResult",
+        "summary": "Account smart contract result",
+        "description": "Returns details of a smart contract result where the account is sender or receiver",
+        "parameters": [
+          {
+            "name": "address",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "scHash",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SmartContractResult"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "accounts"
+        ]
+      }
+    },
+    "/accounts/{address}/history": {
+      "get": {
+        "operationId": "AccountController_getAccountHistory",
+        "summary": "Account history",
+        "description": "Return account EGLD balance history",
+        "parameters": [
+          {
+            "name": "address",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "from",
+            "required": false,
+            "in": "query",
+            "description": "Number of items to skip for the result set",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "size",
+            "required": false,
+            "in": "query",
+            "description": "Number of items to retrieve",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "before",
+            "required": false,
+            "in": "query",
+            "description": "Before timestamp",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "after",
+            "required": false,
+            "in": "query",
+            "description": "After timestamp",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/AccountHistory"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "accounts"
+        ]
+      }
+    },
+    "/accounts/{address}/history/count": {
+      "get": {
+        "operationId": "AccountController_getAccountHistoryCount",
+        "summary": "Account history count",
+        "description": "Return account EGLD balance history count",
+        "parameters": [
+          {
+            "name": "address",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "before",
+            "required": false,
+            "in": "query",
+            "description": "Before timestamp",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "after",
+            "required": false,
+            "in": "query",
+            "description": "After timestamp",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "number"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "accounts"
+        ]
+      }
+    },
+    "/accounts/{address}/history/{tokenIdentifier}/count": {
+      "get": {
+        "operationId": "AccountController_getAccountTokenHistoryCount",
+        "summary": "Account token history count",
+        "description": "Return account token balance history count",
+        "parameters": [
+          {
+            "name": "address",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "tokenIdentifier",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "before",
+            "required": false,
+            "in": "query",
+            "description": "Before timestamp",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "after",
+            "required": false,
+            "in": "query",
+            "description": "After timestamp",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "number"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "accounts"
+        ]
+      }
+    },
+    "/accounts/{address}/esdthistory": {
+      "get": {
+        "operationId": "AccountController_getAccountEsdtHistory",
+        "summary": "Account esdts history",
+        "description": "Returns account esdts balance history",
+        "parameters": [
+          {
+            "name": "address",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "from",
+            "required": false,
+            "in": "query",
+            "description": "Number of items to skip for the result set",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "size",
+            "required": false,
+            "in": "query",
+            "description": "Number of items to retrieve",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "before",
+            "required": false,
+            "in": "query",
+            "description": "Before timestamp",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "after",
+            "required": false,
+            "in": "query",
+            "description": "After timestamp",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "identifier",
+            "required": false,
+            "in": "query",
+            "description": "Filter by multiple esdt identifiers, comma-separated",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "name": "token",
+            "required": false,
+            "in": "query",
+            "description": "Token identifier",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/AccountEsdtHistory"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "accounts"
+        ]
+      }
+    },
+    "/accounts/{address}/esdthistory/count": {
+      "get": {
+        "operationId": "AccountController_getAccountEsdtHistoryCount",
+        "summary": "Account esdts history count",
+        "description": "Returns account esdts balance history count",
+        "parameters": [
+          {
+            "name": "address",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "before",
+            "required": false,
+            "in": "query",
+            "description": "Before timestamp",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "after",
+            "required": false,
+            "in": "query",
+            "description": "After timestamp",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "identifier",
+            "required": false,
+            "in": "query",
+            "description": "Filter by multiple esdt identifiers, comma-separated",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "name": "token",
+            "required": false,
+            "in": "query",
+            "description": "Token identifier",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "accounts"
+        ]
+      }
+    },
+    "/accounts/{address}/history/{tokenIdentifier}": {
+      "get": {
+        "operationId": "AccountController_getAccountTokenHistory",
+        "summary": "Account token history",
+        "description": "Returns account token balance history",
+        "parameters": [
+          {
+            "name": "address",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "tokenIdentifier",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "from",
+            "required": false,
+            "in": "query",
+            "description": "Number of items to skip for the result set",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "size",
+            "required": false,
+            "in": "query",
+            "description": "Number of items to retrieve",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "before",
+            "required": false,
+            "in": "query",
+            "description": "Before timestamp",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "after",
+            "required": false,
+            "in": "query",
+            "description": "After timestamp",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/AccountEsdtHistory"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "accounts"
+        ]
+      }
+    },
+    "/accounts/{address}/auction/stats": {
+      "get": {
+        "operationId": "NftMarketplaceController_getAccountStats",
+        "summary": "Account stats",
+        "description": "Returns account status details from nft marketplace for a given address",
+        "parameters": [
+          {
+            "name": "address",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccountAuctionStats"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "marketplace"
+        ]
+      }
+    },
+    "/accounts/{address}/auctions": {
+      "get": {
+        "operationId": "NftMarketplaceController_getAccountAuctions",
+        "summary": "Account auctions",
+        "description": "Returns account auctions for a given address",
+        "parameters": [
+          {
+            "name": "address",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "from",
+            "required": false,
+            "in": "query",
+            "description": "Number of items to skip for the result set",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "size",
+            "required": false,
+            "in": "query",
+            "description": "Number of items to retrieve",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "status",
+            "required": false,
+            "in": "query",
+            "description": "Returns auctions with specified status",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Auction"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "marketplace"
+        ]
+      }
+    },
+    "/accounts/{address}/auctions/count": {
+      "get": {
+        "operationId": "NftMarketplaceController_getAccountAuctionsCount",
+        "summary": "Address auctions count",
+        "description": "Returns total running auctions count for a specific address ",
+        "parameters": [
+          {
+            "name": "address",
+            "required": true,
+            "in": "query",
+            "description": "Account address",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "number"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "marketplace"
+        ]
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "NftCollectionAccount": {
+        "type": "object",
+        "properties": {
+          "collection": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "NonFungibleESDT",
+              "SemiFungibleESDT",
+              "MetaESDT"
+            ]
+          },
+          "subType": {
+            "type": "string",
+            "enum": [
+              "NonFungibleESDT",
+              "SemiFungibleESDT",
+              "MetaESDT",
+              "NonFungibleESDTv2",
+              "DynamicNonFungibleESDT",
+              "DynamicSemiFungibleESDT",
+              "DynamicMetaESDT",
+              ""
+            ],
+            "nullable": true
+          },
+          "name": {
+            "type": "string"
+          },
+          "ticker": {
+            "type": "string"
+          },
+          "owner": {
+            "type": "string",
+            "nullable": true
+          },
+          "timestamp": {
+            "type": "number"
+          },
+          "canFreeze": {
+            "type": "boolean",
+            "default": false
+          },
+          "canWipe": {
+            "type": "boolean",
+            "default": false
+          },
+          "canPause": {
+            "type": "boolean",
+            "default": false
+          },
+          "canTransferNftCreateRole": {
+            "type": "boolean",
+            "default": false
+          },
+          "canChangeOwner": {
+            "type": "boolean",
+            "default": false
+          },
+          "canUpgrade": {
+            "type": "boolean",
+            "default": false
+          },
+          "canAddSpecialRoles": {
+            "type": "boolean",
+            "default": false
+          },
+          "decimals": {
+            "type": "number",
+            "nullable": true
+          },
+          "assets": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/TokenAssets"
+              }
+            ]
+          },
+          "scamInfo": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ScamInfo"
+              }
+            ]
+          },
+          "traits": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CollectionTrait"
+            }
+          },
+          "auctionStats": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/CollectionAuctionStats"
+              }
+            ]
+          },
+          "isVerified": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "holderCount": {
+            "type": "number",
+            "nullable": true
+          },
+          "nftCount": {
+            "type": "number",
+            "nullable": true
+          },
+          "count": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "collection",
+          "type",
+          "subType",
+          "name",
+          "ticker",
+          "owner",
+          "timestamp",
+          "canFreeze",
+          "canWipe",
+          "canPause",
+          "canTransferNftCreateRole",
+          "canChangeOwner",
+          "canUpgrade",
+          "canAddSpecialRoles",
+          "decimals",
+          "count"
+        ]
+      },
+      "AccountDelegationLegacy": {
+        "type": "object",
+        "properties": {
+          "claimableRewards": {
+            "type": "string",
+            "default": 0
+          },
+          "userActiveStake": {
+            "type": "string",
+            "default": 0
+          },
+          "userDeferredPaymentStake": {
+            "type": "string",
+            "default": 0
+          },
+          "userUnstakedStake": {
+            "type": "string",
+            "default": 0
+          },
+          "userWaitingStake": {
+            "type": "string",
+            "default": 0
+          },
+          "userWithdrawOnlyStake": {
+            "type": "string",
+            "default": 0
+          }
+        },
+        "required": [
+          "claimableRewards",
+          "userActiveStake",
+          "userDeferredPaymentStake",
+          "userUnstakedStake",
+          "userWaitingStake",
+          "userWithdrawOnlyStake"
+        ]
+      },
+      "NftMetadata": {
+        "type": "object",
+        "properties": {
+          "description": {
+            "type": "string"
+          },
+          "fileType": {
+            "type": "string"
+          },
+          "fileUri": {
+            "type": "string"
+          },
+          "fileName": {
+            "type": "string"
+          },
+          "error": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/NftMetadataError"
+              }
+            ]
+          }
+        },
+        "required": [
+          "description",
+          "fileType",
+          "fileUri",
+          "fileName",
+          "error"
+        ]
+      },
+      "Bids": {
+        "type": "object",
+        "properties": {
+          "amount": {
+            "type": "string"
+          },
+          "token": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "amount",
+          "token"
+        ]
+      },
+      "AccountAuctionStats": {
+        "type": "object",
+        "properties": {
+          "auctions": {
+            "type": "number"
+          },
+          "claimable": {
+            "type": "number"
+          },
+          "collected": {
+            "type": "number"
+          },
+          "collections": {
+            "type": "number"
+          },
+          "creations": {
+            "type": "number"
+          },
+          "likes": {
+            "type": "number"
+          },
+          "orders": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "auctions",
+          "claimable",
+          "collected",
+          "collections",
+          "creations",
+          "likes",
+          "orders"
+        ]
+      },
+      "AccountKey": {
+        "type": "object",
+        "properties": {
+          "blsKey": {
+            "type": "string",
+            "example": "2ef384d4d38bf3aad5cef34ce6eab047fba6d52b9735dbfdf7591289ed9c26ac7e816c9bb56ebf4f09129f045860f401275a91009befb4dc8ddc24ea4bc597290bd916b9f984c2a415ec9b2cfbc4a09de42c032314e6a21e69daf76302fcaa99"
+          },
+          "stake": {
+            "example": "\"4870000000000000000\"",
+            "title": "Amount",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Amount"
+              }
+            ]
+          },
+          "topUp": {
+            "example": "\"4210000000000000000\"",
+            "title": "Amount",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Amount"
+              }
+            ]
+          },
+          "status": {
+            "type": "string",
+            "example": "online"
+          },
+          "rewardAddress": {
+            "type": "string",
+            "example": "erd1qga7ze0l03chfgru0a32wxqf2226nzrxnyhzer9lmudqhjgy7ycqjjyknz"
+          },
+          "queueIndex": {
+            "type": "string",
+            "nullable": true,
+            "example": "2"
+          },
+          "queueSize": {
+            "type": "string",
+            "nullable": true,
+            "example": "100"
+          },
+          "remainingUnBondPeriod": {
+            "type": "number",
+            "example": 10
+          }
+        },
+        "required": [
+          "blsKey",
+          "stake",
+          "topUp",
+          "status",
+          "rewardAddress",
+          "queueIndex",
+          "queueSize",
+          "remainingUnBondPeriod"
+        ]
+      },
+      "TokenWithRoles": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": [
+              "FungibleESDT",
+              "NonFungibleESDT",
+              "SemiFungibleESDT",
+              "MetaESDT"
+            ]
+          },
+          "subType": {
+            "type": "string",
+            "enum": [
+              "NonFungibleESDT",
+              "SemiFungibleESDT",
+              "MetaESDT",
+              "NonFungibleESDTv2",
+              "DynamicNonFungibleESDT",
+              "DynamicSemiFungibleESDT",
+              "DynamicMetaESDT",
+              ""
+            ]
+          },
+          "identifier": {
+            "type": "string"
+          },
+          "collection": {
+            "type": "string",
+            "nullable": true
+          },
+          "nonce": {
+            "type": "number",
+            "nullable": true
+          },
+          "name": {
+            "type": "string"
+          },
+          "ticker": {
+            "type": "string"
+          },
+          "owner": {
+            "type": "string"
+          },
+          "minted": {
+            "example": "\"9180000000000000000\"",
+            "title": "Amount",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Amount"
+              }
+            ]
+          },
+          "burnt": {
+            "example": "\"2690000000000000000\"",
+            "title": "Amount",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Amount"
+              }
+            ]
+          },
+          "initialMinted": {
+            "example": "\"280000000000000000\"",
+            "title": "Amount",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Amount"
+              }
+            ]
+          },
+          "decimals": {
+            "type": "number"
+          },
+          "isPaused": {
+            "type": "boolean",
+            "default": false
+          },
+          "assets": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/TokenAssets"
+              }
+            ]
+          },
+          "transactions": {
+            "type": "number",
+            "nullable": true
+          },
+          "transactionsLastUpdatedAt": {
+            "type": "number",
+            "nullable": true
+          },
+          "transfers": {
+            "type": "number",
+            "nullable": true
+          },
+          "transfersLastUpdatedAt": {
+            "type": "number",
+            "nullable": true
+          },
+          "accounts": {
+            "type": "number",
+            "nullable": true
+          },
+          "accountsLastUpdatedAt": {
+            "type": "number",
+            "nullable": true
+          },
+          "canUpgrade": {
+            "type": "boolean",
+            "default": false
+          },
+          "canMint": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "canBurn": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "canChangeOwner": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "canAddSpecialRoles": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "canPause": {
+            "type": "boolean",
+            "default": false
+          },
+          "canFreeze": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "canWipe": {
+            "type": "boolean",
+            "default": false
+          },
+          "canTransferNftCreateRole": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "price": {
+            "type": "number",
+            "nullable": true
+          },
+          "marketCap": {
+            "type": "number",
+            "nullable": true
+          },
+          "supply": {
+            "example": "\"1050000000000000000\"",
+            "title": "Amount",
+            "description": "Supply amount",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Amount"
+              }
+            ]
+          },
+          "circulatingSupply": {
+            "example": "\"7390000000000000000\"",
+            "title": "Amount",
+            "description": "Circulating supply amount",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Amount"
+              }
+            ]
+          },
+          "timestamp": {
+            "type": "number",
+            "description": "Creation timestamp"
+          },
+          "mexPairType": {
+            "type": "string",
+            "enum": [
+              "core",
+              "community",
+              "ecosystem",
+              "experimental",
+              "unlisted"
+            ]
+          },
+          "totalLiquidity": {
+            "type": "number",
+            "nullable": true
+          },
+          "totalVolume24h": {
+            "type": "number",
+            "nullable": true
+          },
+          "isLowLiquidity": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "lowLiquidityThresholdPercent": {
+            "type": "number",
+            "nullable": true
+          },
+          "tradesCount": {
+            "type": "number",
+            "nullable": true
+          },
+          "ownersHistory": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/TokenOwnersHistory"
+              }
+            ]
+          },
+          "role": {
+            "$ref": "#/components/schemas/TokenRoles"
+          },
+          "address": {
+            "type": "string",
+            "nullable": true
+          },
+          "canLocalMint": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "canLocalBurn": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "canCreate": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "canAddQuantity": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "canUpdateAttributes": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "canAddUri": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "canTransfer": {
+            "type": "boolean",
+            "nullable": true
+          }
+        },
+        "required": [
+          "type",
+          "subType",
+          "identifier",
+          "name",
+          "ticker",
+          "owner",
+          "minted",
+          "burnt",
+          "initialMinted",
+          "decimals",
+          "isPaused",
+          "transactions",
+          "transactionsLastUpdatedAt",
+          "transfers",
+          "transfersLastUpdatedAt",
+          "accounts",
+          "accountsLastUpdatedAt",
+          "canUpgrade",
+          "canMint",
+          "canBurn",
+          "canChangeOwner",
+          "canAddSpecialRoles",
+          "canPause",
+          "canFreeze",
+          "canWipe",
+          "canTransferNftCreateRole",
+          "supply",
+          "circulatingSupply",
+          "timestamp",
+          "mexPairType",
+          "ownersHistory",
+          "role",
+          "address",
+          "canLocalMint",
+          "canLocalBurn",
+          "canCreate",
+          "canAddQuantity",
+          "canUpdateAttributes",
+          "canAddUri",
+          "canTransfer"
+        ]
+      },
+      "TokenWithBalance": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": [
+              "FungibleESDT",
+              "NonFungibleESDT",
+              "SemiFungibleESDT",
+              "MetaESDT"
+            ]
+          },
+          "subType": {
+            "type": "string",
+            "enum": [
+              "NonFungibleESDT",
+              "SemiFungibleESDT",
+              "MetaESDT",
+              "NonFungibleESDTv2",
+              "DynamicNonFungibleESDT",
+              "DynamicSemiFungibleESDT",
+              "DynamicMetaESDT",
+              ""
+            ]
+          },
+          "identifier": {
+            "type": "string"
+          },
+          "collection": {
+            "type": "string",
+            "nullable": true
+          },
+          "nonce": {
+            "type": "number",
+            "nullable": true
+          },
+          "name": {
+            "type": "string"
+          },
+          "ticker": {
+            "type": "string"
+          },
+          "owner": {
+            "type": "string"
+          },
+          "minted": {
+            "example": "\"9180000000000000000\"",
+            "title": "Amount",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Amount"
+              }
+            ]
+          },
+          "burnt": {
+            "example": "\"2690000000000000000\"",
+            "title": "Amount",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Amount"
+              }
+            ]
+          },
+          "initialMinted": {
+            "example": "\"280000000000000000\"",
+            "title": "Amount",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Amount"
+              }
+            ]
+          },
+          "decimals": {
+            "type": "number"
+          },
+          "isPaused": {
+            "type": "boolean",
+            "default": false
+          },
+          "assets": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/TokenAssets"
+              }
+            ]
+          },
+          "transactions": {
+            "type": "number",
+            "nullable": true
+          },
+          "transactionsLastUpdatedAt": {
+            "type": "number",
+            "nullable": true
+          },
+          "transfers": {
+            "type": "number",
+            "nullable": true
+          },
+          "transfersLastUpdatedAt": {
+            "type": "number",
+            "nullable": true
+          },
+          "accounts": {
+            "type": "number",
+            "nullable": true
+          },
+          "accountsLastUpdatedAt": {
+            "type": "number",
+            "nullable": true
+          },
+          "canUpgrade": {
+            "type": "boolean",
+            "default": false
+          },
+          "canMint": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "canBurn": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "canChangeOwner": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "canAddSpecialRoles": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "canPause": {
+            "type": "boolean",
+            "default": false
+          },
+          "canFreeze": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "canWipe": {
+            "type": "boolean",
+            "default": false
+          },
+          "canTransferNftCreateRole": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "price": {
+            "type": "number",
+            "nullable": true
+          },
+          "marketCap": {
+            "type": "number",
+            "nullable": true
+          },
+          "supply": {
+            "example": "\"1050000000000000000\"",
+            "title": "Amount",
+            "description": "Supply amount",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Amount"
+              }
+            ]
+          },
+          "circulatingSupply": {
+            "example": "\"7390000000000000000\"",
+            "title": "Amount",
+            "description": "Circulating supply amount",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Amount"
+              }
+            ]
+          },
+          "timestamp": {
+            "type": "number",
+            "description": "Creation timestamp"
+          },
+          "mexPairType": {
+            "type": "string",
+            "enum": [
+              "core",
+              "community",
+              "ecosystem",
+              "experimental",
+              "unlisted"
+            ]
+          },
+          "totalLiquidity": {
+            "type": "number",
+            "nullable": true
+          },
+          "totalVolume24h": {
+            "type": "number",
+            "nullable": true
+          },
+          "isLowLiquidity": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "lowLiquidityThresholdPercent": {
+            "type": "number",
+            "nullable": true
+          },
+          "tradesCount": {
+            "type": "number",
+            "nullable": true
+          },
+          "ownersHistory": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/TokenOwnersHistory"
+              }
+            ]
+          },
+          "balance": {
+            "example": "\"5860000000000000000\"",
+            "title": "Amount",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Amount"
+              }
+            ]
+          },
+          "valueUsd": {
+            "type": "number",
+            "nullable": true
+          },
+          "attributes": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "required": [
+          "type",
+          "subType",
+          "identifier",
+          "name",
+          "ticker",
+          "owner",
+          "minted",
+          "burnt",
+          "initialMinted",
+          "decimals",
+          "isPaused",
+          "transactions",
+          "transactionsLastUpdatedAt",
+          "transfers",
+          "transfersLastUpdatedAt",
+          "accounts",
+          "accountsLastUpdatedAt",
+          "canUpgrade",
+          "canMint",
+          "canBurn",
+          "canChangeOwner",
+          "canAddSpecialRoles",
+          "canPause",
+          "canFreeze",
+          "canWipe",
+          "canTransferNftCreateRole",
+          "supply",
+          "circulatingSupply",
+          "timestamp",
+          "mexPairType",
+          "ownersHistory",
+          "balance"
+        ]
+      },
+      "NftMetadataError": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "enum": [
+              "ipfs_error",
+              "not_found",
+              "timeout",
+              "unknown_error",
+              "invalid_content_type",
+              "json_parse_error",
+              "empty_metadata"
+            ]
+          },
+          "message": {
+            "type": "string"
+          },
+          "timestamp": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "code",
+          "message",
+          "timestamp"
+        ]
+      },
+      "NftAccount": {
+        "type": "object",
+        "properties": {
+          "identifier": {
+            "type": "string"
+          },
+          "collection": {
+            "type": "string"
+          },
+          "hash": {
+            "type": "string"
+          },
+          "timestamp": {
+            "type": "number",
+            "nullable": true
+          },
+          "attributes": {
+            "type": "string"
+          },
+          "nonce": {
+            "type": "number"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "NonFungibleESDT",
+              "SemiFungibleESDT",
+              "MetaESDT"
+            ]
+          },
+          "subType": {
+            "type": "string",
+            "enum": [
+              "NonFungibleESDT",
+              "SemiFungibleESDT",
+              "MetaESDT",
+              "NonFungibleESDTv2",
+              "DynamicNonFungibleESDT",
+              "DynamicSemiFungibleESDT",
+              "DynamicMetaESDT",
+              ""
+            ]
+          },
+          "name": {
+            "type": "string"
+          },
+          "creator": {
+            "type": "string"
+          },
+          "royalties": {
+            "type": "number",
+            "nullable": true
+          },
+          "uris": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "url": {
+            "type": "string"
+          },
+          "media": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/NftMedia"
+              }
+            ]
+          },
+          "isWhitelistedStorage": {
+            "type": "boolean",
+            "default": false
+          },
+          "thumbnailUrl": {
+            "type": "string"
+          },
+          "tags": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "metadata": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/NftMetadata"
+              }
+            ]
+          },
+          "owner": {
+            "type": "string",
+            "nullable": true
+          },
+          "balance": {
+            "type": "string",
+            "nullable": true,
+            "example": 10
+          },
+          "supply": {
+            "example": "\"5140000000000000000\"",
+            "title": "Amount",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Amount"
+              }
+            ]
+          },
+          "decimals": {
+            "type": "number",
+            "nullable": true
+          },
+          "assets": {
+            "$ref": "#/components/schemas/TokenAssets"
+          },
+          "ticker": {
+            "type": "string"
+          },
+          "scamInfo": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ScamInfo"
+              }
+            ]
+          },
+          "score": {
+            "type": "number",
+            "nullable": true
+          },
+          "rank": {
+            "type": "number",
+            "nullable": true
+          },
+          "rarities": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/NftRarities"
+              }
+            ]
+          },
+          "isNsfw": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "unlockSchedule": {
+            "nullable": true,
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/UnlockMileStoneModel"
+            }
+          },
+          "unlockEpoch": {
+            "type": "number",
+            "nullable": true
+          },
+          "price": {
+            "type": "number",
+            "nullable": true
+          },
+          "valueUsd": {
+            "type": "number",
+            "nullable": true
+          }
+        },
+        "required": [
+          "identifier",
+          "collection",
+          "hash",
+          "timestamp",
+          "attributes",
+          "nonce",
+          "type",
+          "subType",
+          "name",
+          "creator",
+          "royalties",
+          "uris",
+          "url",
+          "metadata",
+          "owner",
+          "balance",
+          "supply",
+          "decimals",
+          "ticker",
+          "isNsfw"
+        ]
+      },
+      "TokenRoles": {
+        "type": "object",
+        "properties": {
+          "address": {
+            "type": "string",
+            "nullable": true
+          },
+          "canLocalMint": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "canLocalBurn": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "canCreate": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "canBurn": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "canAddQuantity": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "canUpdateAttributes": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "canAddUri": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "canTransfer": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "roles": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "address",
+          "canLocalMint",
+          "canLocalBurn",
+          "canCreate",
+          "canBurn",
+          "canAddQuantity",
+          "canUpdateAttributes",
+          "canAddUri",
+          "canTransfer",
+          "roles"
+        ]
+      },
+      "AccountUndelegation": {
+        "type": "object",
+        "properties": {
+          "amount": {
+            "example": "\"3510000000000000000\"",
+            "title": "Amount",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Amount"
+              }
+            ]
+          },
+          "seconds": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "amount",
+          "seconds"
+        ]
+      },
+      "AccountAssets": {
+        "type": "object",
+        "properties": {}
+      },
+      "AccountDeferred": {
+        "type": "object",
+        "properties": {
+          "deferredPayment": {
+            "example": "\"9040000000000000000\"",
+            "title": "Amount",
+            "description": "Deferred payment amount",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Amount"
+              }
+            ]
+          },
+          "secondsLeft": {
+            "type": "number",
+            "description": "Seconds left until unbonding time"
+          }
+        },
+        "required": [
+          "deferredPayment",
+          "secondsLeft"
+        ]
+      },
+      "CollectionTrait": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "occurrenceCount": {
+            "type": "number"
+          },
+          "occurrencePercentage": {
+            "type": "number"
+          },
+          "attributes": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CollectionTraitAttribute"
+            }
+          }
+        },
+        "required": [
+          "name",
+          "occurrenceCount",
+          "occurrencePercentage",
+          "attributes"
+        ]
+      },
+      "WaitingList": {
+        "type": "object",
+        "properties": {
+          "address": {
+            "type": "string",
+            "example": "erd1qga7ze0l03chfgru0a32wxqf2226nzrxnyhzer9lmudqhjgy7ycqjjyknz"
+          },
+          "nonce": {
+            "type": "number",
+            "example": 46
+          },
+          "rank": {
+            "type": "number",
+            "example": 2
+          },
+          "value": {
+            "example": "\"180000000000000000\"",
+            "title": "Amount",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Amount"
+              }
+            ]
+          }
+        },
+        "required": [
+          "address",
+          "nonce",
+          "rank",
+          "value"
+        ]
+      },
+      "AccountHistory": {
+        "type": "object",
+        "properties": {
+          "address": {
+            "type": "string",
+            "example": "erd1qga7ze0l03chfgru0a32wxqf2226nzrxnyhzer9lmudqhjgy7ycqjjyknz"
+          },
+          "balance": {
+            "example": "\"6680000000000000000\"",
+            "title": "Amount",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Amount"
+              }
+            ]
+          },
+          "timestamp": {
+            "type": "number",
+            "example": 10000
+          },
+          "isSender": {
+            "type": "boolean",
+            "nullable": true,
+            "example": true
+          }
+        },
+        "required": [
+          "address",
+          "balance",
+          "timestamp"
+        ]
+      },
+      "NftMedia": {
+        "type": "object",
+        "properties": {
+          "url": {
+            "type": "string"
+          },
+          "originalUrl": {
+            "type": "string"
+          },
+          "thumbnailUrl": {
+            "type": "string"
+          },
+          "fileType": {
+            "type": "string"
+          },
+          "fileSize": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "url",
+          "originalUrl",
+          "thumbnailUrl",
+          "fileType",
+          "fileSize"
+        ]
+      },
+      "CollectionAuctionStats": {
+        "type": "object",
+        "properties": {
+          "activeAuctions": {
+            "type": "number"
+          },
+          "endedAuctions": {
+            "type": "number"
+          },
+          "maxPrice": {
+            "type": "string"
+          },
+          "minPrice": {
+            "type": "string"
+          },
+          "saleAverage": {
+            "type": "string"
+          },
+          "volumeTraded": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "activeAuctions",
+          "endedAuctions",
+          "maxPrice",
+          "minPrice",
+          "saleAverage",
+          "volumeTraded"
+        ]
+      },
+      "TokenAssets": {
+        "type": "object",
+        "properties": {
+          "website": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "active",
+              "inactive"
+            ],
+            "default": "inactive"
+          },
+          "pngUrl": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "svgUrl": {
+            "type": "string"
+          },
+          "ledgerSignature": {
+            "type": "string"
+          },
+          "lockedAccounts": {
+            "type": "string"
+          },
+          "extraTokens": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "preferredRankAlgorithm": {
+            "type": "string",
+            "enum": [
+              "trait",
+              "statistical",
+              "openRarity",
+              "jaccardDistances",
+              "custom"
+            ],
+            "nullable": true
+          },
+          "priceSource": {
+            "type": "number",
+            "enum": [],
+            "nullable": true
+          }
+        },
+        "required": [
+          "website",
+          "description",
+          "status",
+          "pngUrl",
+          "name",
+          "svgUrl",
+          "ledgerSignature",
+          "lockedAccounts",
+          "extraTokens",
+          "preferredRankAlgorithm",
+          "priceSource"
+        ]
+      },
+      "NftRarities": {
+        "type": "object",
+        "properties": {
+          "statistical": {
+            "$ref": "#/components/schemas/NftRarity"
+          },
+          "trait": {
+            "$ref": "#/components/schemas/NftRarity"
+          },
+          "jaccardDistances": {
+            "$ref": "#/components/schemas/NftRarity"
+          },
+          "openRarity": {
+            "$ref": "#/components/schemas/NftRarity"
+          },
+          "custom": {
+            "$ref": "#/components/schemas/NftRarity"
+          }
+        },
+        "required": [
+          "statistical",
+          "trait",
+          "jaccardDistances",
+          "openRarity",
+          "custom"
+        ]
+      },
+      "AccountVerification": {
+        "type": "object",
+        "properties": {
+          "codeHash": {
+            "type": "string",
+            "description": "Source code hash"
+          },
+          "source": {
+            "description": "Source code of contract",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/AccountVerificationSource"
+              }
+            ]
+          },
+          "status": {
+            "type": "string",
+            "description": "Verifier process status",
+            "enum": [
+              "success",
+              "byteCodeChangedSinceLastVerification"
+            ]
+          },
+          "ipfsFileHash": {
+            "type": "string",
+            "description": "File hash for IPFS"
+          }
+        },
+        "required": [
+          "codeHash",
+          "status"
+        ]
+      },
+      "NftRarity": {
+        "type": "object",
+        "properties": {
+          "rank": {
+            "type": "number"
+          },
+          "score": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "rank",
+          "score"
+        ]
+      },
+      "DeployedContract": {
+        "type": "object",
+        "properties": {
+          "address": {
+            "type": "string"
+          },
+          "deployTxHash": {
+            "type": "string"
+          },
+          "timestamp": {
+            "type": "number"
+          },
+          "assets": {
+            "nullable": true,
+            "description": "Contract assets",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/AccountAssets"
+              }
+            ]
+          }
+        },
+        "required": [
+          "address",
+          "deployTxHash",
+          "timestamp"
+        ]
+      },
+      "CollectionRoles": {
+        "type": "object",
+        "properties": {
+          "address": {
+            "type": "string",
+            "nullable": true
+          },
+          "canCreate": {
+            "type": "boolean",
+            "default": false
+          },
+          "canBurn": {
+            "type": "boolean",
+            "default": false
+          },
+          "canAddQuantity": {
+            "type": "boolean",
+            "default": false
+          },
+          "canUpdateAttributes": {
+            "type": "boolean",
+            "default": false
+          },
+          "canAddUri": {
+            "type": "boolean",
+            "default": false
+          },
+          "canTransfer": {
+            "type": "boolean",
+            "default": false
+          },
+          "roles": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "address",
+          "canCreate",
+          "canBurn",
+          "canAddQuantity",
+          "canUpdateAttributes",
+          "canAddUri",
+          "canTransfer",
+          "roles"
+        ]
+      },
+      "UnlockMileStoneModel": {
+        "type": "object",
+        "properties": {
+          "remainingEpochs": {
+            "type": "number",
+            "description": "Remaining epochs until unlock can be performed",
+            "example": 42
+          },
+          "percent": {
+            "type": "number",
+            "description": "Percent of token unlockable after the epochs pass",
+            "example": 42
+          }
+        },
+        "required": [
+          "remainingEpochs",
+          "percent"
+        ]
+      },
+      "SmartContractResult": {
+        "type": "object",
+        "properties": {
+          "hash": {
+            "type": "string"
+          },
+          "timestamp": {
+            "type": "number"
+          },
+          "nonce": {
+            "type": "number"
+          },
+          "gasLimit": {
+            "type": "number"
+          },
+          "gasPrice": {
+            "type": "number"
+          },
+          "value": {
+            "example": "\"3350000000000000000\"",
+            "title": "Amount",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Amount"
+              }
+            ]
+          },
+          "sender": {
+            "type": "string"
+          },
+          "receiver": {
+            "type": "string"
+          },
+          "senderAssets": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/AccountAssets"
+              }
+            ]
+          },
+          "receiverAssets": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/AccountAssets"
+              }
+            ]
+          },
+          "relayedValue": {
+            "type": "string"
+          },
+          "data": {
+            "type": "string"
+          },
+          "prevTxHash": {
+            "type": "string"
+          },
+          "originalTxHash": {
+            "type": "string"
+          },
+          "callType": {
+            "type": "string"
+          },
+          "miniBlockHash": {
+            "type": "string",
+            "nullable": true
+          },
+          "logs": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/TransactionLog"
+              }
+            ]
+          },
+          "returnMessage": {
+            "type": "string",
+            "nullable": true
+          },
+          "action": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/TransactionAction"
+              }
+            ]
+          },
+          "function": {
+            "type": "string",
+            "nullable": true
+          },
+          "status": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "required": [
+          "hash",
+          "timestamp",
+          "nonce",
+          "gasLimit",
+          "gasPrice",
+          "value",
+          "sender",
+          "receiver",
+          "data",
+          "prevTxHash",
+          "originalTxHash",
+          "callType",
+          "status"
+        ]
+      },
+      "CollectionTraitAttribute": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "occurrenceCount": {
+            "type": "number"
+          },
+          "occurrencePercentage": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "name",
+          "occurrenceCount",
+          "occurrencePercentage"
+        ]
+      },
+      "TransactionAction": {
+        "type": "object",
+        "properties": {
+          "category": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "arguments": {
+            "type": "object"
+          }
+        },
+        "required": [
+          "category",
+          "name",
+          "description",
+          "arguments"
+        ]
+      },
+      "AccountDelegation": {
+        "type": "object",
+        "properties": {
+          "address": {
+            "type": "string",
+            "description": "Delegation account details"
+          },
+          "contract": {
+            "type": "string",
+            "description": "Account delegation contract"
+          },
+          "userUnBondable": {
+            "example": "\"1440000000000000000\"",
+            "title": "Amount",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Amount"
+              }
+            ]
+          },
+          "userActiveStake": {
+            "example": "\"3800000000000000000\"",
+            "title": "Amount",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Amount"
+              }
+            ]
+          },
+          "claimableRewards": {
+            "example": "\"7240000000000000000\"",
+            "title": "Amount",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Amount"
+              }
+            ]
+          },
+          "userUndelegatedList": {
+            "description": "User undelegated list details",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AccountUndelegation"
+            }
+          }
+        },
+        "required": [
+          "address",
+          "contract"
+        ]
+      },
+      "Transaction": {
+        "type": "object",
+        "properties": {
+          "txHash": {
+            "type": "string"
+          },
+          "gasLimit": {
+            "type": "number"
+          },
+          "gasPrice": {
+            "type": "number"
+          },
+          "gasUsed": {
+            "type": "number"
+          },
+          "miniBlockHash": {
+            "type": "string"
+          },
+          "nonce": {
+            "type": "number"
+          },
+          "receiver": {
+            "type": "string"
+          },
+          "receiverUsername": {
+            "type": "string",
+            "nullable": true
+          },
+          "receiverAssets": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/AccountAssets"
+              }
+            ]
+          },
+          "receiverShard": {
+            "type": "number"
+          },
+          "round": {
+            "type": "number"
+          },
+          "sender": {
+            "type": "string"
+          },
+          "senderUsername": {
+            "type": "string",
+            "nullable": true
+          },
+          "senderAssets": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/AccountAssets"
+              }
+            ]
+          },
+          "senderShard": {
+            "type": "number"
+          },
+          "signature": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          },
+          "fee": {
+            "type": "string"
+          },
+          "timestamp": {
+            "type": "number"
+          },
+          "data": {
+            "type": "string",
+            "nullable": true
+          },
+          "function": {
+            "type": "string",
+            "nullable": true
+          },
+          "action": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/TransactionAction"
+              }
+            ]
+          },
+          "scamInfo": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ScamInfo"
+              }
+            ]
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "Transaction",
+              "SmartContractResult",
+              "Reward"
+            ],
+            "nullable": true
+          },
+          "originalTxHash": {
+            "type": "string",
+            "nullable": true
+          },
+          "pendingResults": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "guardianAddress": {
+            "type": "string",
+            "nullable": true
+          },
+          "guardianSignature": {
+            "type": "string",
+            "nullable": true
+          },
+          "isRelayed": {
+            "type": "string",
+            "nullable": true
+          },
+          "relayer": {
+            "type": "string",
+            "nullable": true
+          },
+          "relayerSignature": {
+            "type": "string",
+            "nullable": true
+          },
+          "isScCall": {
+            "type": "boolean",
+            "nullable": true
+          }
+        },
+        "required": [
+          "txHash",
+          "gasLimit",
+          "gasPrice",
+          "gasUsed",
+          "miniBlockHash",
+          "nonce",
+          "receiver",
+          "receiverShard",
+          "round",
+          "sender",
+          "senderShard",
+          "signature",
+          "status",
+          "value",
+          "fee",
+          "timestamp"
+        ]
+      },
+      "TokenOwnersHistory": {
+        "type": "object",
+        "properties": {}
+      },
+      "Amount": {
+        "type": "object",
+        "properties": {}
+      },
+      "TransactionLog": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Transaction log ID"
+          },
+          "address": {
+            "type": "string",
+            "description": "Transaction log address"
+          },
+          "addressAssets": {
+            "description": "Transaction address assets",
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/AccountAssets"
+              }
+            ]
+          },
+          "events": {
+            "description": "Transaction log events",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TransactionLogEvent"
+            }
+          }
+        },
+        "required": [
+          "id",
+          "address",
+          "events"
+        ]
+      },
+      "Auction": {
+        "type": "object",
+        "properties": {
+          "owner": {
+            "type": "string"
+          },
+          "auctionId": {
+            "type": "number"
+          },
+          "identifier": {
+            "type": "string"
+          },
+          "collection": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "running",
+              "claimable",
+              "ended",
+              "closed",
+              "unknown"
+            ]
+          },
+          "auctionType": {
+            "type": "string"
+          },
+          "createdAt": {
+            "type": "number"
+          },
+          "endsAt": {
+            "type": "number"
+          },
+          "marketplaceAuctionId": {
+            "type": "string"
+          },
+          "marketplace": {
+            "type": "string"
+          },
+          "minBid": {
+            "$ref": "#/components/schemas/Bids"
+          },
+          "maxBid": {
+            "$ref": "#/components/schemas/Bids"
+          }
+        },
+        "required": [
+          "owner",
+          "auctionId",
+          "identifier",
+          "collection",
+          "status",
+          "auctionType",
+          "createdAt",
+          "endsAt",
+          "marketplaceAuctionId",
+          "marketplace",
+          "minBid",
+          "maxBid"
+        ]
+      },
+      "ScamInfo": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "nullable": true
+          },
+          "info": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "required": [
+          "type",
+          "info"
+        ]
+      },
+      "TransactionLogEvent": {
+        "type": "object",
+        "properties": {
+          "address": {
+            "type": "string"
+          },
+          "addressAssets": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/AccountAssets"
+              }
+            ]
+          },
+          "identifier": {
+            "type": "string"
+          },
+          "topics": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "data": {
+            "type": "string"
+          },
+          "additionalData": {
+            "type": "object"
+          }
+        },
+        "required": [
+          "address",
+          "addressAssets",
+          "identifier",
+          "topics",
+          "data",
+          "additionalData"
+        ]
+      },
+      "ContractUpgrades": {
+        "type": "object",
+        "properties": {
+          "address": {
+            "type": "string",
+            "nullable": true,
+            "example": "erd1qga7ze0l03chfgru0a32wxqf2226nzrxnyhzer9lmudqhjgy7ycqjjyknz"
+          },
+          "txHash": {
+            "type": "string",
+            "nullable": true,
+            "example": "1c8c6b2148f25621fa2c798a2c9a184df61fdd1991aa0af7ea01eb7b89025d2a"
+          },
+          "codeHash": {
+            "type": "string",
+            "nullable": true,
+            "example": "1c8c6b2148f25621fa2c798a2c9a184df61fdd1991aa0af7ea01eb7b89025d2a"
+          },
+          "timestamp": {
+            "type": "number",
+            "nullable": true,
+            "example": "1638577452"
+          }
+        },
+        "required": [
+          "address",
+          "txHash",
+          "codeHash",
+          "timestamp"
+        ]
+      },
+      "AccountVerificationSource": {
+        "type": "object",
+        "properties": {
+          "abi": {
+            "type": "object",
+            "description": "Abi file source"
+          },
+          "contract": {
+            "type": "object",
+            "description": "Contract source code"
+          }
+        },
+        "required": [
+          "abi",
+          "contract"
+        ]
+      },
+      "ProviderStake": {
+        "type": "object",
+        "properties": {
+          "totalStaked": {
+            "example": "\"3440000000000000000\"",
+            "title": "Amount",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Amount"
+              }
+            ]
+          },
+          "unstakedTokens": {
+            "nullable": true,
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ProviderUnstakedTokens"
+            }
+          }
+        },
+        "required": [
+          "totalStaked"
+        ]
+      },
+      "AccountDetailed": {
+        "type": "object",
+        "properties": {
+          "address": {
+            "type": "string",
+            "description": "Account bech32 address",
+            "example": "erd1qga7ze0l03chfgru0a32wxqf2226nzrxnyhzer9lmudqhjgy7ycqjjyknz"
+          },
+          "balance": {
+            "example": "\"5650000000000000000\"",
+            "title": "Amount",
+            "description": "Account current balance",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Amount"
+              }
+            ]
+          },
+          "nonce": {
+            "type": "number",
+            "description": "Account current nonce",
+            "example": 42
+          },
+          "timestamp": {
+            "type": "number",
+            "description": "Timestamp of the block where the account was first indexed",
+            "example": 1676979360
+          },
+          "shard": {
+            "type": "number",
+            "description": "The shard ID allocated to the account",
+            "example": 0
+          },
+          "ownerAddress": {
+            "type": "string",
+            "description": "The address in bech 32 format of owner account"
+          },
+          "assets": {
+            "nullable": true,
+            "description": "Account assets",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/AccountAssets"
+              }
+            ]
+          },
+          "deployedAt": {
+            "type": "number",
+            "description": "Specific property flag for smart contract"
+          },
+          "deployTxHash": {
+            "type": "object",
+            "description": "The contract deploy transaction hash"
+          },
+          "ownerAssets": {
+            "nullable": true,
+            "description": "Account assets",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/AccountAssets"
+              }
+            ]
+          },
+          "isVerified": {
+            "type": "boolean",
+            "description": "Specific property flag for smart contract"
+          },
+          "txCount": {
+            "type": "number",
+            "description": "The number of transactions performed on this account"
+          },
+          "scrCount": {
+            "type": "number",
+            "description": "The number of smart contract results of this account"
+          },
+          "transfersLast24h": {
+            "type": "number",
+            "description": "Transfers in the last 24 hours"
+          },
+          "code": {
+            "type": "string",
+            "description": "The source code in hex format"
+          },
+          "codeHash": {
+            "type": "string",
+            "description": "The hash of the source code"
+          },
+          "rootHash": {
+            "type": "string",
+            "description": "The hash of the root node"
+          },
+          "username": {
+            "type": "object",
+            "description": "The username specific for this account",
+            "nullable": true
+          },
+          "developerReward": {
+            "type": "string",
+            "description": "The developer reward"
+          },
+          "isUpgradeable": {
+            "type": "boolean",
+            "description": "Specific property flag for smart contract"
+          },
+          "isReadable": {
+            "type": "boolean",
+            "description": "Specific property flag for smart contract"
+          },
+          "isPayable": {
+            "type": "boolean",
+            "description": "Specific property flag for smart contract"
+          },
+          "isPayableBySmartContract": {
+            "type": "boolean",
+            "description": "Specific property flag for smart contract",
+            "nullable": true
+          },
+          "scamInfo": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ScamInfo"
+              }
+            ]
+          },
+          "nftCollections": {
+            "type": "boolean",
+            "description": "Account nft collections",
+            "nullable": true
+          },
+          "nfts": {
+            "type": "boolean",
+            "description": "Account nfts",
+            "nullable": true
+          },
+          "activeGuardianActivationEpoch": {
+            "type": "number",
+            "nullable": true
+          },
+          "activeGuardianAddress": {
+            "type": "string",
+            "nullable": true
+          },
+          "activeGuardianServiceUid": {
+            "type": "string",
+            "nullable": true
+          },
+          "pendingGuardianActivationEpoch": {
+            "type": "number",
+            "nullable": true
+          },
+          "pendingGuardianAddress": {
+            "type": "string",
+            "nullable": true
+          },
+          "pendingGuardianServiceUid": {
+            "type": "string",
+            "nullable": true
+          },
+          "isGuarded": {
+            "type": "boolean",
+            "nullable": true
+          }
+        },
+        "required": [
+          "address",
+          "balance",
+          "nonce",
+          "timestamp",
+          "shard",
+          "txCount",
+          "scrCount",
+          "rootHash",
+          "developerReward"
+        ]
+      },
+      "Account": {
+        "type": "object",
+        "properties": {
+          "address": {
+            "type": "string",
+            "description": "Account bech32 address",
+            "example": "erd1qga7ze0l03chfgru0a32wxqf2226nzrxnyhzer9lmudqhjgy7ycqjjyknz"
+          },
+          "balance": {
+            "example": "\"5650000000000000000\"",
+            "title": "Amount",
+            "description": "Account current balance",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Amount"
+              }
+            ]
+          },
+          "nonce": {
+            "type": "number",
+            "description": "Account current nonce",
+            "example": 42
+          },
+          "timestamp": {
+            "type": "number",
+            "description": "Timestamp of the block where the account was first indexed",
+            "example": 1676979360
+          },
+          "shard": {
+            "type": "number",
+            "description": "The shard ID allocated to the account",
+            "example": 0
+          },
+          "ownerAddress": {
+            "type": "string",
+            "description": "Current owner address"
+          },
+          "assets": {
+            "nullable": true,
+            "description": "Account assets",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/AccountAssets"
+              }
+            ]
+          },
+          "deployedAt": {
+            "type": "number",
+            "description": "Specific property flag for smart contract"
+          },
+          "deployTxHash": {
+            "type": "object",
+            "description": "The contract deploy transaction hash"
+          },
+          "ownerAssets": {
+            "nullable": true,
+            "description": "Account assets",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/AccountAssets"
+              }
+            ]
+          },
+          "isVerified": {
+            "type": "boolean",
+            "description": "Specific property flag for smart contract"
+          },
+          "txCount": {
+            "type": "number",
+            "description": "The number of transactions performed on this account"
+          },
+          "scrCount": {
+            "type": "number",
+            "description": "The number of smart contract results of this account"
+          },
+          "transfersLast24h": {
+            "type": "number",
+            "description": "Transfers in the last 24 hours"
+          }
+        },
+        "required": [
+          "address",
+          "balance",
+          "nonce",
+          "timestamp",
+          "shard",
+          "txCount",
+          "scrCount"
+        ]
+      },
+      "ProviderUnstakedTokens": {
+        "type": "object",
+        "properties": {
+          "amount": {
+            "example": "\"4400000000000000000\"",
+            "title": "Amount",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Amount"
+              }
+            ]
+          },
+          "expires": {
+            "type": "number",
+            "nullable": true
+          },
+          "epochs": {
+            "type": "number",
+            "nullable": true
+          }
+        },
+        "required": [
+          "amount",
+          "expires",
+          "epochs"
+        ]
+      },
+      "NftCollectionWithRoles": {
+        "type": "object",
+        "properties": {
+          "collection": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "NonFungibleESDT",
+              "SemiFungibleESDT",
+              "MetaESDT"
+            ]
+          },
+          "subType": {
+            "type": "string",
+            "enum": [
+              "NonFungibleESDT",
+              "SemiFungibleESDT",
+              "MetaESDT",
+              "NonFungibleESDTv2",
+              "DynamicNonFungibleESDT",
+              "DynamicSemiFungibleESDT",
+              "DynamicMetaESDT",
+              ""
+            ],
+            "nullable": true
+          },
+          "name": {
+            "type": "string"
+          },
+          "ticker": {
+            "type": "string"
+          },
+          "owner": {
+            "type": "string",
+            "nullable": true
+          },
+          "timestamp": {
+            "type": "number"
+          },
+          "canFreeze": {
+            "type": "boolean",
+            "default": false
+          },
+          "canWipe": {
+            "type": "boolean",
+            "default": false
+          },
+          "canPause": {
+            "type": "boolean",
+            "default": false
+          },
+          "canTransferNftCreateRole": {
+            "type": "boolean",
+            "default": false
+          },
+          "canChangeOwner": {
+            "type": "boolean",
+            "default": false
+          },
+          "canUpgrade": {
+            "type": "boolean",
+            "default": false
+          },
+          "canAddSpecialRoles": {
+            "type": "boolean",
+            "default": false
+          },
+          "decimals": {
+            "type": "number",
+            "nullable": true
+          },
+          "assets": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/TokenAssets"
+              }
+            ]
+          },
+          "scamInfo": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ScamInfo"
+              }
+            ]
+          },
+          "traits": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CollectionTrait"
+            }
+          },
+          "auctionStats": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/CollectionAuctionStats"
+              }
+            ]
+          },
+          "isVerified": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "holderCount": {
+            "type": "number",
+            "nullable": true
+          },
+          "nftCount": {
+            "type": "number",
+            "nullable": true
+          },
+          "role": {
+            "$ref": "#/components/schemas/CollectionRoles"
+          },
+          "canTransfer": {
+            "type": "boolean"
+          },
+          "canCreate": {
+            "type": "boolean",
+            "default": false
+          },
+          "canBurn": {
+            "type": "boolean",
+            "default": false
+          },
+          "canAddQuantity": {
+            "type": "boolean",
+            "default": false
+          },
+          "canUpdateAttributes": {
+            "type": "boolean",
+            "default": false
+          },
+          "canAddUri": {
+            "type": "boolean",
+            "default": false
+          }
+        },
+        "required": [
+          "collection",
+          "type",
+          "subType",
+          "name",
+          "ticker",
+          "owner",
+          "timestamp",
+          "canFreeze",
+          "canWipe",
+          "canPause",
+          "canTransferNftCreateRole",
+          "canChangeOwner",
+          "canUpgrade",
+          "canAddSpecialRoles",
+          "decimals",
+          "role",
+          "canTransfer",
+          "canCreate",
+          "canBurn",
+          "canAddQuantity",
+          "canUpdateAttributes",
+          "canAddUri"
+        ]
+      },
+      "AccountEsdtHistory": {
+        "type": "object",
+        "properties": {
+          "address": {
+            "type": "string",
+            "example": "erd1qga7ze0l03chfgru0a32wxqf2226nzrxnyhzer9lmudqhjgy7ycqjjyknz"
+          },
+          "balance": {
+            "example": "\"6680000000000000000\"",
+            "title": "Amount",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Amount"
+              }
+            ]
+          },
+          "timestamp": {
+            "type": "number",
+            "example": 10000
+          },
+          "isSender": {
+            "type": "boolean",
+            "nullable": true,
+            "example": true
+          },
+          "token": {
+            "type": "string",
+            "example": "WEGLD-bd4d79"
+          },
+          "identifier": {
+            "type": "string",
+            "example": "XPACHIEVE-5a0519-01"
+          }
+        },
+        "required": [
+          "address",
+          "balance",
+          "timestamp",
+          "token",
+          "identifier"
+        ]
+      }
+    }
+  }
+}

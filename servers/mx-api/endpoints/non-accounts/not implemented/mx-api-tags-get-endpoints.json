@@ -1,0 +1,146 @@
+{
+  "openapi": "3.0.0",
+  "paths": {
+    "/tags": {
+      "get": {
+        "operationId": "TagController_getTags",
+        "summary": "NFT Tags",
+        "description": "Returns all distinct NFT tags",
+        "parameters": [
+          {
+            "name": "from",
+            "required": false,
+            "in": "query",
+            "description": "Number of items to skip for the result set",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "size",
+            "required": false,
+            "in": "query",
+            "description": "Number of items to retrieve",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "search",
+            "required": false,
+            "in": "query",
+            "description": "Search by tag name",
+            "schema": {}
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Tag"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "tags"
+        ]
+      }
+    },
+    "/tags/count": {
+      "get": {
+        "operationId": "TagController_getTagCount",
+        "summary": "Total number of NFT Tags",
+        "description": "Returns total number of distinct NFT Tags available on blockchain",
+        "parameters": [
+          {
+            "name": "search",
+            "required": false,
+            "in": "query",
+            "description": "Search by tag name",
+            "schema": {}
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "number"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "tags"
+        ]
+      }
+    },
+    "/tags/{tag}": {
+      "get": {
+        "operationId": "TagController_getTagDetails",
+        "summary": "Tag details",
+        "description": "Return NFT tag details",
+        "parameters": [
+          {
+            "name": "tag",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Tag"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Nft tag not found"
+          }
+        },
+        "tags": [
+          "tags"
+        ]
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Tag": {
+        "type": "object",
+        "properties": {
+          "tag": {
+            "type": "string",
+            "nullable": true,
+            "example": "sunny"
+          },
+          "count": {
+            "type": "number",
+            "nullable": true,
+            "example": 46135
+          }
+        },
+        "required": [
+          "tag",
+          "count"
+        ]
+      }
+    }
+  }
+}

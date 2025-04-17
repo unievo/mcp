@@ -1,0 +1,105 @@
+{
+  "openapi": "3.0.0",
+  "paths": {
+    "/accounts/{address}/stake": {
+      "get": {
+        "operationId": "AccountController_getAccountStake",
+        "summary": "Account stake details",
+        "description": "Summarizes total staked amount for the given provider, as well as when and how much unbond will be performed",
+        "parameters": [
+          {
+            "name": "address",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "timestamp",
+            "required": false,
+            "in": "query",
+            "description": "Retrieve entry from timestamp",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProviderStake"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "accounts"
+        ]
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Amount": {
+        "type": "object",
+        "properties": {}
+      },
+      "ProviderUnstakedTokens": {
+        "type": "object",
+        "properties": {
+          "amount": {
+            "example": "\"4400000000000000000\"",
+            "title": "Amount",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Amount"
+              }
+            ]
+          },
+          "expires": {
+            "type": "number",
+            "nullable": true
+          },
+          "epochs": {
+            "type": "number",
+            "nullable": true
+          }
+        },
+        "required": [
+          "amount",
+          "expires",
+          "epochs"
+        ]
+      },
+      "ProviderStake": {
+        "type": "object",
+        "properties": {
+          "totalStaked": {
+            "example": "\"3440000000000000000\"",
+            "title": "Amount",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Amount"
+              }
+            ]
+          },
+          "unstakedTokens": {
+            "nullable": true,
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ProviderUnstakedTokens"
+            }
+          }
+        },
+        "required": [
+          "totalStaked"
+        ]
+      }
+    }
+  }
+}

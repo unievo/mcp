@@ -1,0 +1,117 @@
+{
+  "openapi": "3.0.0",
+  "paths": {
+    "/usernames/{username}": {
+      "get": {
+        "operationId": "UsernameController_getUsernameDetails",
+        "summary": "Account details by username",
+        "description": "Returns account details for a given username. Performs a redirect on the proper account address",
+        "parameters": [
+          {
+            "name": "username",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "withGuardianInfo",
+            "required": true,
+            "in": "query",
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccountUsername"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Username not found"
+          }
+        },
+        "tags": [
+          "usernames"
+        ]
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Amount": {
+        "type": "object",
+        "properties": {}
+      },
+      "AccountUsername": {
+        "type": "object",
+        "properties": {
+          "address": {
+            "type": "string",
+            "example": "erd1qga7ze0l03chfgru0a32wxqf2226nzrxnyhzer9lmudqhjgy7ycqjjyknz"
+          },
+          "nonce": {
+            "type": "number",
+            "example": 12,
+            "nullable": true
+          },
+          "balance": {
+            "example": "\"4840000000000000000\"",
+            "title": "Amount",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Amount"
+              }
+            ]
+          },
+          "rootHash": {
+            "type": "string",
+            "example": "829LsRk/pB5HCJZTvZzkBJ8g4ca1RiBpYjLzzK61pwM="
+          },
+          "txCount": {
+            "type": "number",
+            "example": 47,
+            "nullable": true
+          },
+          "scrCount": {
+            "type": "number",
+            "example": 49,
+            "nullable": true
+          },
+          "username": {
+            "type": "string",
+            "example": "alice.elrond"
+          },
+          "shard": {
+            "type": "number",
+            "example": 0,
+            "nullable": true
+          },
+          "developerReward": {
+            "type": "string",
+            "default": 0
+          }
+        },
+        "required": [
+          "address",
+          "nonce",
+          "balance",
+          "rootHash",
+          "txCount",
+          "scrCount",
+          "username",
+          "shard",
+          "developerReward"
+        ]
+      }
+    }
+  }
+}

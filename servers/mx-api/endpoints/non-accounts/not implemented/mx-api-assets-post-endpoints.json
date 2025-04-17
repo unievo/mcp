@@ -1,0 +1,74 @@
+{
+  "openapi": "3.0.0",
+  "paths": {
+    "/assets": {
+      "post": {
+        "operationId": "AssetsController_addAssets",
+        "parameters": [
+          {
+            "name": "Access-Token",
+            "required": true,
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TokenAssetsRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "assets"
+        ]
+      }
+    },
+    "/assets/convert": {
+      "post": {
+        "operationId": "AssetsController_convertFile",
+        "parameters": [],
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "assets"
+        ]
+      }
+    },
+    "/assets/auth": {
+      "post": {
+        "operationId": "AssetsController_auth",
+        "parameters": [],
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "assets"
+        ]
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "TokenAssetsRequest": {
+        "type": "object",
+        "properties": {}
+      }
+    }
+  }
+}

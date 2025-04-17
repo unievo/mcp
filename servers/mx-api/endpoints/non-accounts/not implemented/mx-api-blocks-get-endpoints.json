@@ -1,0 +1,635 @@
+{
+  "openapi": "3.0.0",
+  "paths": {
+    "/blocks": {
+      "get": {
+        "operationId": "BlockController_getBlocks",
+        "summary": "Blocks",
+        "description": "Returns a list of all blocks from all shards",
+        "parameters": [
+          {
+            "name": "from",
+            "required": false,
+            "in": "query",
+            "description": "Number of items to skip for the result set",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "size",
+            "required": false,
+            "in": "query",
+            "description": "Number of items to retrieve",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "shard",
+            "required": false,
+            "in": "query",
+            "description": "Id of the shard the block belongs to",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "proposer",
+            "required": false,
+            "in": "query",
+            "description": "Filter by proposer",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "validator",
+            "required": false,
+            "in": "query",
+            "description": "Filter by validator",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "epoch",
+            "required": false,
+            "in": "query",
+            "description": "Filter by epoch",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "nonce",
+            "required": false,
+            "in": "query",
+            "description": "Filter by nonce",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "hashes",
+            "required": false,
+            "in": "query",
+            "description": "Search by blocks hashes, comma-separated",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "name": "order",
+            "required": false,
+            "in": "query",
+            "description": "Order blocks (asc/desc) by timestamp",
+            "schema": {
+              "enum": [
+                "asc",
+                "desc"
+              ],
+              "type": "string"
+            }
+          },
+          {
+            "name": "withProposerIdentity",
+            "required": false,
+            "in": "query",
+            "description": "Provide identity information for proposer node",
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Block"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "blocks"
+        ]
+      }
+    },
+    "/blocks/count": {
+      "get": {
+        "operationId": "BlockController_getBlocksCount",
+        "summary": "Blocks count",
+        "description": "Returns count of all blocks from all shards",
+        "parameters": [
+          {
+            "name": "shard",
+            "required": false,
+            "in": "query",
+            "description": "Id of the shard the block belongs to",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "proposer",
+            "required": false,
+            "in": "query",
+            "description": "Filter by proposer",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "validator",
+            "required": false,
+            "in": "query",
+            "description": "Filter by validator",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "epoch",
+            "required": false,
+            "in": "query",
+            "description": "Filter by epoch",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "nonce",
+            "required": false,
+            "in": "query",
+            "description": "Filter by nonce",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "number"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "blocks"
+        ]
+      }
+    },
+    "/blocks/latest": {
+      "get": {
+        "operationId": "BlockController_getLatestBlock",
+        "summary": "Block details",
+        "description": "Returns latest block information details",
+        "parameters": [
+          {
+            "name": "ttl",
+            "required": false,
+            "in": "query",
+            "description": "Compute the nonce frequency based on ttl value. If not specified the latest block may be 1h old",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BlockDetailed"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Block not found"
+          }
+        },
+        "tags": [
+          "blocks"
+        ]
+      }
+    },
+    "/blocks/{hash}": {
+      "get": {
+        "operationId": "BlockController_getBlock",
+        "summary": "Block details",
+        "description": "Returns block information details for a given hash",
+        "parameters": [
+          {
+            "name": "hash",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BlockDetailed"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Block not found"
+          }
+        },
+        "tags": [
+          "blocks"
+        ]
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Block": {
+        "type": "object",
+        "properties": {
+          "hash": {
+            "type": "string"
+          },
+          "epoch": {
+            "type": "number"
+          },
+          "nonce": {
+            "type": "number"
+          },
+          "prevHash": {
+            "type": "string"
+          },
+          "proposer": {
+            "type": "string"
+          },
+          "proposerIdentity": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Identity"
+              }
+            ]
+          },
+          "pubKeyBitmap": {
+            "type": "string"
+          },
+          "round": {
+            "type": "number"
+          },
+          "shard": {
+            "type": "number"
+          },
+          "size": {
+            "type": "number"
+          },
+          "sizeTxs": {
+            "type": "number"
+          },
+          "stateRootHash": {
+            "type": "string"
+          },
+          "timestamp": {
+            "type": "number"
+          },
+          "txCount": {
+            "type": "number"
+          },
+          "gasConsumed": {
+            "type": "number"
+          },
+          "gasRefunded": {
+            "type": "number"
+          },
+          "gasPenalized": {
+            "type": "number"
+          },
+          "maxGasLimit": {
+            "type": "number"
+          },
+          "scheduledRootHash": {
+            "type": "string",
+            "nullable": true
+          },
+          "previousHeaderProof": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/BlockProofDto"
+              }
+            ]
+          },
+          "proof": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/BlockProofDto"
+              }
+            ]
+          }
+        },
+        "required": [
+          "hash",
+          "epoch",
+          "nonce",
+          "prevHash",
+          "proposer",
+          "pubKeyBitmap",
+          "round",
+          "shard",
+          "size",
+          "sizeTxs",
+          "stateRootHash",
+          "timestamp",
+          "txCount",
+          "gasConsumed",
+          "gasRefunded",
+          "gasPenalized",
+          "maxGasLimit"
+        ]
+      },
+      "BlockProofDto": {
+        "type": "object",
+        "properties": {
+          "pubKeysBitmap": {
+            "type": "string",
+            "description": "Bitmap representing public keys involved in the proof",
+            "example": "7702"
+          },
+          "aggregatedSignature": {
+            "type": "string",
+            "description": "Aggregated BLS signature for the proof",
+            "example": "50224d66a42a019991d16f25dba375b581f279d4394d4c254876c1484f61bed90fb20456f8af107c54e4eed1763e2a92"
+          },
+          "headerHash": {
+            "type": "string",
+            "description": "Hash of the block header being proven",
+            "example": "414d526161587ae9f53453aa0392971272c48dbb3cc54a33448972d388e0deeb"
+          },
+          "headerEpoch": {
+            "type": "number",
+            "description": "Epoch number of the block header",
+            "example": 130
+          },
+          "headerNonce": {
+            "type": "number",
+            "description": "Nonce value of the block header",
+            "example": 13137
+          },
+          "headerRound": {
+            "type": "number",
+            "description": "Round number of the block header",
+            "example": 13163
+          }
+        },
+        "required": [
+          "pubKeysBitmap",
+          "aggregatedSignature",
+          "headerHash",
+          "headerEpoch",
+          "headerNonce",
+          "headerRound"
+        ]
+      },
+      "Identity": {
+        "type": "object",
+        "properties": {
+          "identity": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "avatar": {
+            "type": "string"
+          },
+          "website": {
+            "type": "string"
+          },
+          "twitter": {
+            "type": "string"
+          },
+          "location": {
+            "type": "string"
+          },
+          "score": {
+            "type": "number"
+          },
+          "validators": {
+            "type": "number"
+          },
+          "stake": {
+            "example": "\"1500000000000000000\"",
+            "title": "Amount",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Amount"
+              }
+            ]
+          },
+          "topUp": {
+            "example": "\"4600000000000000000\"",
+            "title": "Amount",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Amount"
+              }
+            ]
+          },
+          "locked": {
+            "example": "\"6470000000000000000\"",
+            "title": "Amount",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Amount"
+              }
+            ]
+          },
+          "distribution": {
+            "type": "object"
+          },
+          "providers": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "stakePercent": {
+            "type": "number"
+          },
+          "rank": {
+            "type": "number"
+          },
+          "apr": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "identity",
+          "name",
+          "description",
+          "location",
+          "validators",
+          "stake",
+          "topUp",
+          "locked",
+          "distribution"
+        ]
+      },
+      "Amount": {
+        "type": "object",
+        "properties": {}
+      },
+      "BlockDetailed": {
+        "type": "object",
+        "properties": {
+          "hash": {
+            "type": "string"
+          },
+          "epoch": {
+            "type": "number"
+          },
+          "nonce": {
+            "type": "number"
+          },
+          "prevHash": {
+            "type": "string"
+          },
+          "proposer": {
+            "type": "string"
+          },
+          "proposerIdentity": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Identity"
+              }
+            ]
+          },
+          "pubKeyBitmap": {
+            "type": "string"
+          },
+          "round": {
+            "type": "number"
+          },
+          "shard": {
+            "type": "number"
+          },
+          "size": {
+            "type": "number"
+          },
+          "sizeTxs": {
+            "type": "number"
+          },
+          "stateRootHash": {
+            "type": "string"
+          },
+          "timestamp": {
+            "type": "number"
+          },
+          "txCount": {
+            "type": "number"
+          },
+          "gasConsumed": {
+            "type": "number"
+          },
+          "gasRefunded": {
+            "type": "number"
+          },
+          "gasPenalized": {
+            "type": "number"
+          },
+          "maxGasLimit": {
+            "type": "number"
+          },
+          "scheduledRootHash": {
+            "type": "string",
+            "nullable": true
+          },
+          "previousHeaderProof": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/BlockProofDto"
+              }
+            ]
+          },
+          "proof": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/BlockProofDto"
+              }
+            ]
+          },
+          "miniBlocksHashes": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "notarizedBlocksHashes": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "validators": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "hash",
+          "epoch",
+          "nonce",
+          "prevHash",
+          "proposer",
+          "pubKeyBitmap",
+          "round",
+          "shard",
+          "size",
+          "sizeTxs",
+          "stateRootHash",
+          "timestamp",
+          "txCount",
+          "gasConsumed",
+          "gasRefunded",
+          "gasPenalized",
+          "maxGasLimit",
+          "miniBlocksHashes",
+          "notarizedBlocksHashes",
+          "validators"
+        ]
+      }
+    }
+  }
+}

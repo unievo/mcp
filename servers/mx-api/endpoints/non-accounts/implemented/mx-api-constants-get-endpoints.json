@@ -1,0 +1,64 @@
+{
+  "openapi": "3.0.0",
+  "paths": {
+    "/constants": {
+      "get": {
+        "operationId": "NetworkController_getConstants",
+        "summary": "Network constants",
+        "description": "Returns network-specific constants that can be used to automatically configure dapps",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NetworkConstants"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "network"
+        ]
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "NetworkConstants": {
+        "type": "object",
+        "properties": {
+          "chainId": {
+            "type": "string",
+            "description": "The chain identifier"
+          },
+          "gasPerDataByte": {
+            "type": "number",
+            "description": "Gas per data byte"
+          },
+          "minGasLimit": {
+            "type": "number",
+            "description": "Minimum gas limit"
+          },
+          "minGasPrice": {
+            "type": "number",
+            "description": "Minimum gas price"
+          },
+          "minTransactionVersion": {
+            "type": "number",
+            "description": "Minimum transaction version"
+          }
+        },
+        "required": [
+          "chainId",
+          "gasPerDataByte",
+          "minGasLimit",
+          "minGasPrice",
+          "minTransactionVersion"
+        ]
+      }
+    }
+  }
+}

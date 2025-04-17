@@ -1,0 +1,682 @@
+[
+  {
+    "path": "/about",
+    "method": "GET"
+  },
+  {
+    "path": "/accounts",
+    "method": "GET"
+  },
+  {
+    "path": "/accounts/count",
+    "method": "GET"
+  },
+  {
+    "path": "/accounts/{address}",
+    "method": "GET"
+  },
+  {
+    "path": "/accounts/{address}/auction/stats",
+    "method": "GET"
+  },
+  {
+    "path": "/accounts/{address}/auctions",
+    "method": "GET"
+  },
+  {
+    "path": "/accounts/{address}/auctions/count",
+    "method": "GET"
+  },
+  {
+    "path": "/accounts/{address}/collections",
+    "method": "GET"
+  },
+  {
+    "path": "/accounts/{address}/collections/count",
+    "method": "GET"
+  },
+  {
+    "path": "/accounts/{address}/collections/{collection}",
+    "method": "GET"
+  },
+  {
+    "path": "/accounts/{address}/contracts",
+    "method": "GET"
+  },
+  {
+    "path": "/accounts/{address}/contracts/count",
+    "method": "GET"
+  },
+  {
+    "path": "/accounts/{address}/deferred",
+    "method": "GET"
+  },
+  {
+    "path": "/accounts/{address}/delegation",
+    "method": "GET"
+  },
+  {
+    "path": "/accounts/{address}/delegation-legacy",
+    "method": "GET"
+  },
+  {
+    "path": "/accounts/{address}/deploys",
+    "method": "GET"
+  },
+  {
+    "path": "/accounts/{address}/deploys/count",
+    "method": "GET"
+  },
+  {
+    "path": "/accounts/{address}/esdthistory",
+    "method": "GET"
+  },
+  {
+    "path": "/accounts/{address}/esdthistory/count",
+    "method": "GET"
+  },
+  {
+    "path": "/accounts/{address}/history",
+    "method": "GET"
+  },
+  {
+    "path": "/accounts/{address}/history/count",
+    "method": "GET"
+  },
+  {
+    "path": "/accounts/{address}/history/{tokenIdentifier}",
+    "method": "GET"
+  },
+  {
+    "path": "/accounts/{address}/history/{tokenIdentifier}/count",
+    "method": "GET"
+  },
+  {
+    "path": "/accounts/{address}/keys",
+    "method": "GET"
+  },
+  {
+    "path": "/accounts/{address}/nfts",
+    "method": "GET"
+  },
+  {
+    "path": "/accounts/{address}/nfts/count",
+    "method": "GET"
+  },
+  {
+    "path": "/accounts/{address}/nfts/{nft}",
+    "method": "GET"
+  },
+  {
+    "path": "/accounts/{address}/results",
+    "method": "GET"
+  },
+  {
+    "path": "/accounts/{address}/results/count",
+    "method": "GET"
+  },
+  {
+    "path": "/accounts/{address}/results/{scHash}",
+    "method": "GET"
+  },
+  {
+    "path": "/accounts/{address}/roles/collections",
+    "method": "GET"
+  },
+  {
+    "path": "/accounts/{address}/roles/collections/count",
+    "method": "GET"
+  },
+  {
+    "path": "/accounts/{address}/roles/collections/{collection}",
+    "method": "GET"
+  },
+  {
+    "path": "/accounts/{address}/roles/tokens",
+    "method": "GET"
+  },
+  {
+    "path": "/accounts/{address}/roles/tokens/count",
+    "method": "GET"
+  },
+  {
+    "path": "/accounts/{address}/roles/tokens/{identifier}",
+    "method": "GET"
+  },
+  {
+    "path": "/accounts/{address}/stake",
+    "method": "GET"
+  },
+  {
+    "path": "/accounts/{address}/tokens",
+    "method": "GET"
+  },
+  {
+    "path": "/accounts/{address}/tokens/count",
+    "method": "GET"
+  },
+  {
+    "path": "/accounts/{address}/tokens/{token}",
+    "method": "GET"
+  },
+  {
+    "path": "/accounts/{address}/transactions",
+    "method": "GET"
+  },
+  {
+    "path": "/accounts/{address}/transactions/count",
+    "method": "GET"
+  },
+  {
+    "path": "/accounts/{address}/transfers",
+    "method": "GET"
+  },
+  {
+    "path": "/accounts/{address}/transfers/count",
+    "method": "GET"
+  },
+  {
+    "path": "/accounts/{address}/upgrades",
+    "method": "GET"
+  },
+  {
+    "path": "/accounts/{address}/verification",
+    "method": "GET"
+  },
+  {
+    "path": "/accounts/{address}/waiting-list",
+    "method": "GET"
+  },
+  {
+    "path": "/applications",
+    "method": "GET"
+  },
+  {
+    "path": "/applications/count",
+    "method": "GET"
+  },
+  {
+    "path": "/applications/{address}",
+    "method": "GET"
+  },
+  {
+    "path": "/assets",
+    "method": "POST"
+  },
+  {
+    "path": "/assets/auth",
+    "method": "POST"
+  },
+  {
+    "path": "/assets/convert",
+    "method": "POST"
+  },
+  {
+    "path": "/auctions",
+    "method": "GET"
+  },
+  {
+    "path": "/auctions/count",
+    "method": "GET"
+  },
+  {
+    "path": "/auctions/{id}",
+    "method": "GET"
+  },
+  {
+    "path": "/batch",
+    "method": "POST"
+  },
+  {
+    "path": "/batch/{address}",
+    "method": "GET"
+  },
+  {
+    "path": "/batch/{address}/{id}",
+    "method": "GET"
+  },
+  {
+    "path": "/blocks",
+    "method": "GET"
+  },
+  {
+    "path": "/blocks/count",
+    "method": "GET"
+  },
+  {
+    "path": "/blocks/latest",
+    "method": "GET"
+  },
+  {
+    "path": "/blocks/{hash}",
+    "method": "GET"
+  },
+  {
+    "path": "/collections",
+    "method": "GET"
+  },
+  {
+    "path": "/collections/count",
+    "method": "GET"
+  },
+  {
+    "path": "/collections/{collection}",
+    "method": "GET"
+  },
+  {
+    "path": "/collections/{collection}/auction/stats",
+    "method": "GET"
+  },
+  {
+    "path": "/collections/{collection}/auctions",
+    "method": "GET"
+  },
+  {
+    "path": "/collections/{collection}/auctions/count",
+    "method": "GET"
+  },
+  {
+    "path": "/collections/{collection}/nfts",
+    "method": "GET"
+  },
+  {
+    "path": "/collections/{collection}/nfts/count",
+    "method": "GET"
+  },
+  {
+    "path": "/collections/{collection}/ranks",
+    "method": "GET"
+  },
+  {
+    "path": "/collections/{collection}/transactions",
+    "method": "GET"
+  },
+  {
+    "path": "/collections/{collection}/transactions/count",
+    "method": "GET"
+  },
+  {
+    "path": "/collections/{collection}/transfers",
+    "method": "GET"
+  },
+  {
+    "path": "/collections/{collection}/transfers/count",
+    "method": "GET"
+  },
+  {
+    "path": "/collections/{identifier}/accounts",
+    "method": "GET"
+  },
+  {
+    "path": "/collections/{identifier}/logo/png",
+    "method": "GET"
+  },
+  {
+    "path": "/collections/{identifier}/logo/svg",
+    "method": "GET"
+  },
+  {
+    "path": "/constants",
+    "method": "GET"
+  },
+  {
+    "path": "/contract-assets",
+    "method": "POST"
+  },
+  {
+    "path": "/dapp/config",
+    "method": "GET"
+  },
+  {
+    "path": "/delegation",
+    "method": "GET"
+  },
+  {
+    "path": "/delegation-legacy",
+    "method": "GET"
+  },
+  {
+    "path": "/economics",
+    "method": "GET"
+  },
+  {
+    "path": "/events",
+    "method": "GET"
+  },
+  {
+    "path": "/events/count",
+    "method": "GET"
+  },
+  {
+    "path": "/events/{txHash}",
+    "method": "GET"
+  },
+  {
+    "path": "/hello",
+    "method": "GET"
+  },
+  {
+    "path": "/identities",
+    "method": "GET"
+  },
+  {
+    "path": "/identities/{identifier}",
+    "method": "GET"
+  },
+  {
+    "path": "/identities/{identifier}/avatar",
+    "method": "GET"
+  },
+  {
+    "path": "/keys/{key}/unbond-period",
+    "method": "GET"
+  },
+  {
+    "path": "/mex-pairs",
+    "method": "GET"
+  },
+  {
+    "path": "/mex/economics",
+    "method": "GET"
+  },
+  {
+    "path": "/mex/farms",
+    "method": "GET"
+  },
+  {
+    "path": "/mex/farms/count",
+    "method": "GET"
+  },
+  {
+    "path": "/mex/pairs",
+    "method": "GET"
+  },
+  {
+    "path": "/mex/pairs/count",
+    "method": "GET"
+  },
+  {
+    "path": "/mex/pairs/{baseId}/{quoteId}",
+    "method": "GET"
+  },
+  {
+    "path": "/mex/tokens",
+    "method": "GET"
+  },
+  {
+    "path": "/mex/tokens/count",
+    "method": "GET"
+  },
+  {
+    "path": "/mex/tokens/prices/daily/{identifier}",
+    "method": "GET"
+  },
+  {
+    "path": "/mex/tokens/prices/hourly/{identifier}",
+    "method": "GET"
+  },
+  {
+    "path": "/mex/tokens/{identifier}",
+    "method": "GET"
+  },
+  {
+    "path": "/miniblocks",
+    "method": "GET"
+  },
+  {
+    "path": "/miniblocks/{miniBlockHash}",
+    "method": "GET"
+  },
+  {
+    "path": "/nfts",
+    "method": "GET"
+  },
+  {
+    "path": "/nfts/count",
+    "method": "GET"
+  },
+  {
+    "path": "/nfts/process",
+    "method": "POST"
+  },
+  {
+    "path": "/nfts/{identifier}",
+    "method": "GET"
+  },
+  {
+    "path": "/nfts/{identifier}/accounts",
+    "method": "GET"
+  },
+  {
+    "path": "/nfts/{identifier}/accounts/count",
+    "method": "GET"
+  },
+  {
+    "path": "/nfts/{identifier}/supply",
+    "method": "GET"
+  },
+  {
+    "path": "/nfts/{identifier}/thumbnail",
+    "method": "GET"
+  },
+  {
+    "path": "/nfts/{identifier}/transactions",
+    "method": "GET"
+  },
+  {
+    "path": "/nfts/{identifier}/transactions/count",
+    "method": "GET"
+  },
+  {
+    "path": "/nfts/{identifier}/transfers",
+    "method": "GET"
+  },
+  {
+    "path": "/nfts/{identifier}/transfers/count",
+    "method": "GET"
+  },
+  {
+    "path": "/nodes",
+    "method": "GET"
+  },
+  {
+    "path": "/nodes/auctions",
+    "method": "GET"
+  },
+  {
+    "path": "/nodes/count",
+    "method": "GET"
+  },
+  {
+    "path": "/nodes/versions",
+    "method": "GET"
+  },
+  {
+    "path": "/nodes/{bls}",
+    "method": "GET"
+  },
+  {
+    "path": "/pool",
+    "method": "GET"
+  },
+  {
+    "path": "/pool/count",
+    "method": "GET"
+  },
+  {
+    "path": "/pool/{txhash}",
+    "method": "GET"
+  },
+  {
+    "path": "/providers",
+    "method": "GET"
+  },
+  {
+    "path": "/providers/{address}",
+    "method": "GET"
+  },
+  {
+    "path": "/providers/{address}/accounts",
+    "method": "GET"
+  },
+  {
+    "path": "/providers/{address}/accounts/count",
+    "method": "GET"
+  },
+  {
+    "path": "/providers/{address}/avatar",
+    "method": "GET"
+  },
+  {
+    "path": "/query",
+    "method": "POST"
+  },
+  {
+    "path": "/results",
+    "method": "GET"
+  },
+  {
+    "path": "/results/count",
+    "method": "GET"
+  },
+  {
+    "path": "/results/{scHash}",
+    "method": "GET"
+  },
+  {
+    "path": "/rounds",
+    "method": "GET"
+  },
+  {
+    "path": "/rounds/count",
+    "method": "GET"
+  },
+  {
+    "path": "/rounds/{shard}/{round}",
+    "method": "GET"
+  },
+  {
+    "path": "/shards",
+    "method": "GET"
+  },
+  {
+    "path": "/stake",
+    "method": "GET"
+  },
+  {
+    "path": "/stats",
+    "method": "GET"
+  },
+  {
+    "path": "/tags",
+    "method": "GET"
+  },
+  {
+    "path": "/tags/count",
+    "method": "GET"
+  },
+  {
+    "path": "/tags/{tag}",
+    "method": "GET"
+  },
+  {
+    "path": "/tokens",
+    "method": "GET"
+  },
+  {
+    "path": "/tokens/count",
+    "method": "GET"
+  },
+  {
+    "path": "/tokens/{identifier}",
+    "method": "GET"
+  },
+  {
+    "path": "/tokens/{identifier}/accounts",
+    "method": "GET"
+  },
+  {
+    "path": "/tokens/{identifier}/accounts/count",
+    "method": "GET"
+  },
+  {
+    "path": "/tokens/{identifier}/logo/png",
+    "method": "GET"
+  },
+  {
+    "path": "/tokens/{identifier}/logo/svg",
+    "method": "GET"
+  },
+  {
+    "path": "/tokens/{identifier}/roles",
+    "method": "GET"
+  },
+  {
+    "path": "/tokens/{identifier}/roles/{address}",
+    "method": "GET"
+  },
+  {
+    "path": "/tokens/{identifier}/supply",
+    "method": "GET"
+  },
+  {
+    "path": "/tokens/{identifier}/transactions",
+    "method": "GET"
+  },
+  {
+    "path": "/tokens/{identifier}/transactions/count",
+    "method": "GET"
+  },
+  {
+    "path": "/tokens/{identifier}/transfers",
+    "method": "GET"
+  },
+  {
+    "path": "/tokens/{identifier}/transfers/count",
+    "method": "GET"
+  },
+  {
+    "path": "/transactions",
+    "method": "GET"
+  },
+  {
+    "path": "/transactions",
+    "method": "POST"
+  },
+  {
+    "path": "/transactions/count",
+    "method": "GET"
+  },
+  {
+    "path": "/transactions/decode",
+    "method": "POST"
+  },
+  {
+    "path": "/transactions/{txHash}",
+    "method": "GET"
+  },
+  {
+    "path": "/transfers",
+    "method": "GET"
+  },
+  {
+    "path": "/transfers/count",
+    "method": "GET"
+  },
+  {
+    "path": "/usernames/{username}",
+    "method": "GET"
+  },
+  {
+    "path": "/waiting-list",
+    "method": "GET"
+  },
+  {
+    "path": "/waiting-list/count",
+    "method": "GET"
+  },
+  {
+    "path": "/websocket/config",
+    "method": "GET"
+  }
+]

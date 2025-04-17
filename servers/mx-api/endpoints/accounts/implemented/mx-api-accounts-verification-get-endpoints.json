@@ -1,0 +1,91 @@
+{
+  "openapi": "3.0.0",
+  "paths": {
+    "/accounts/{address}/verification": {
+      "get": {
+        "operationId": "AccountController_getAccountVerification",
+        "summary": "Account verification details",
+        "description": "Returns contract verification details",
+        "parameters": [
+          {
+            "name": "address",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccountVerification"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "accounts"
+        ]
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "AccountVerification": {
+        "type": "object",
+        "properties": {
+          "codeHash": {
+            "type": "string",
+            "description": "Source code hash"
+          },
+          "source": {
+            "description": "Source code of contract",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/AccountVerificationSource"
+              }
+            ]
+          },
+          "status": {
+            "type": "string",
+            "description": "Verifier process status",
+            "enum": [
+              "success",
+              "byteCodeChangedSinceLastVerification"
+            ]
+          },
+          "ipfsFileHash": {
+            "type": "string",
+            "description": "File hash for IPFS"
+          }
+        },
+        "required": [
+          "codeHash",
+          "status"
+        ]
+      },
+      "AccountVerificationSource": {
+        "type": "object",
+        "properties": {
+          "abi": {
+            "type": "object",
+            "description": "Abi file source"
+          },
+          "contract": {
+            "type": "object",
+            "description": "Contract source code"
+          }
+        },
+        "required": [
+          "abi",
+          "contract"
+        ]
+      }
+    }
+  }
+}

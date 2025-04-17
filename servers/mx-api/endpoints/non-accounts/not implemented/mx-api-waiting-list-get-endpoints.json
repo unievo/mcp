@@ -1,0 +1,113 @@
+{
+  "openapi": "3.0.0",
+  "paths": {
+    "/waiting-list": {
+      "get": {
+        "operationId": "WaitingListController_getWaitingList",
+        "summary": "Waiting list",
+        "description": "Returns node waiting list",
+        "parameters": [
+          {
+            "name": "from",
+            "required": false,
+            "in": "query",
+            "description": "Number of items to skip for the result set",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "size",
+            "required": false,
+            "in": "query",
+            "description": "Number of items to retrieve",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/WaitingList"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "waiting-list"
+        ]
+      }
+    },
+    "/waiting-list/count": {
+      "get": {
+        "operationId": "WaitingListController_getWaitingListCount",
+        "summary": "Waiting list count",
+        "description": "Returns count of node waiting list",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "number"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "waiting-list"
+        ]
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "WaitingList": {
+        "type": "object",
+        "properties": {
+          "address": {
+            "type": "string",
+            "example": "erd1qga7ze0l03chfgru0a32wxqf2226nzrxnyhzer9lmudqhjgy7ycqjjyknz"
+          },
+          "nonce": {
+            "type": "number",
+            "example": 46
+          },
+          "rank": {
+            "type": "number",
+            "example": 2
+          },
+          "value": {
+            "example": "\"180000000000000000\"",
+            "title": "Amount",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Amount"
+              }
+            ]
+          }
+        },
+        "required": [
+          "address",
+          "nonce",
+          "rank",
+          "value"
+        ]
+      },
+      "Amount": {
+        "type": "object",
+        "properties": {}
+      }
+    }
+  }
+}

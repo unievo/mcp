@@ -3,7 +3,7 @@ import { mxApiClient } from '../../api-client.js';
 
 // Default fields configuration
 const DEFAULT_ACCOUNT_FIELDS = ['address', 'balance', 'nonce','shard'];
-const DEFAULT_ACCOUNT_DETAILS_FIELDS = ['address', 'balance', 'nonce', 'shard', 'timestamp', 'txCount', 'scrCount'];
+const DEFAULT_ACCOUNT_DETAILS_FIELDS = ['address', 'balance', 'nonce', 'shard', 'timestamp', 'txCount', 'scrCount', 'ownerAddress'];
 
 interface ScamInfo {
     type: string;

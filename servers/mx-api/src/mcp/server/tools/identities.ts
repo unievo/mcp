@@ -2,7 +2,7 @@ import { McpError, ErrorCode } from '@modelcontextprotocol/sdk/types.js';
 import { mxApiClient } from '../../api-client.js';
 
 // Default fields configuration
-const DEFAULT_IDENTITY_FIELDS = ['identity', 'name', 'description', 'rank', 'score', 'apr', 'validators', 'stake', 'stakePercent', 'website', 'location'];
+const DEFAULT_IDENTITY_FIELDS = ['all'];
 
 interface Identity {
     identity: string;

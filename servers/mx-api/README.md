@@ -1,6 +1,6 @@
 # MultiversX API MCP Servers
 
-These are Model Context Protocol (MCP) servers that provide tools for AI agents to read from and interact with the MultiversX blockchain API.
+Model Context Protocol (MCP) servers that provide tools for AI agents to read from and interact with the MultiversX blockchain API.
 
 ## Overview
 

@@ -1,6 +1,6 @@
 # Model Context Protocol (MCP) Library
 
-Model Context Protocol (MCP) library that provide resources and tools for AI agents to understand and interact with domains specific tools and knowledge.
+Model Context Protocol (MCP) library that provides resources and tools for AI agents (Chatbots, Coding agents, etc.) to understand and interact with domains specific tools and knowledge.
 
 ## [MultiversX](https://multiversx.com/) - the EGLD Network
 
@@ -18,7 +18,7 @@ There are multiple MultiversX API MCP servers, each focused on a specific domain
 - [Transactions](servers/mx-api/README-transactions.md) : Focus on blockchain transactions and transfers
 - [Roles](servers/mx-api/README-roles.md) : Focus on account roles for collections and tokens
 
-An Index MCP server contains all tools from the specialized servers
+An Index MCP server contains all tools from the specialized servers:
 
 - [Index](servers/mx-api/README-index.md) : Includes all tools
 

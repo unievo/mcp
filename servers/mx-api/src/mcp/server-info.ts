@@ -3,13 +3,15 @@ import { Server } from '@modelcontextprotocol/sdk/server/index.js';
 
 export const SERVER_INFO_DESCRIPTION = 'MultiversX API MCP servers info.';
 
-export const SERVER_INFO_CONTENT = `## For all the mx-api mcp servers use the following rules:
-- VERY IMPORTANT: Each mx-api-* server has its own set_network tool. Call the tool to set the correct network the first time you use a new mcp server. Only set again if you need to change the network.
+export const SERVER_INFO_CONTENT = `## For all the *mx-api-* mcp servers use the following rules:
+- Each *mx-api-* server has its own get_network and set_network tool. If the current network is not specified and not known, ALWAYS ask the user to confirm the correct network before continuing, using an array of options "use/switch". When the network is known, if a different network is required, use the set_network tool for first time use on each new *mx-api-* mcp server, to set the correct network. Only set again on the same server if network change is needed.
+- Always use set_network for each new *mx-api-* mcp server you call.
+- Always call the set_network tool again to set it to the previous one you used before a task was interrupted.
 - If no network is specified display options to choose from.
 - By default, tools return a sub-set of most relevant fields.
 - The "fields" parameter in tools can be used to explicitly specify which fields to retrieve, if required.
 - Using "fields": ["all"] will return all fields, only use if explicitly required to get all field details, otherwise use the default set of fields.
-- Some tools also have parameter names starting with "with{FieldName}" for getting additional field data. Specify them only if explicitly requested to get that filed data.
+- Some tools also have parameter names starting with "with{FieldName}" for getting additional field data. Specify them only if explicitly requested to get a specific "with" parameter or specify all for all parameters data.
 - When specifying "with{FieldName}" parameters always use "fields": ["all"] in the request.
 - For tool calls that return an array of items, if no count or size is explicitly specified, call the "{toolName}_count" version of the tool first (if available) to get the total number of items, and then proceed with a batch not greater than 5 items.
 
@@ -33,7 +35,7 @@ export const SERVER_INFO_CONTENT = `## For all the mx-api mcp servers use the fo
     - http://explorer.multiversx.com for mainnet, native token is EGLD (18 decimals)
     - http://testnet-explorer.multiversx.com for testnet, native token is xEGLD (18 decimals)
     - http://devnet-explorer.multiversx.com for devnet, native token is xEGLD (18 decimals)
-- All mx-api servers share the same server_info content, once you read it is enough for all servers.
+- All *mx-api-* servers share the same server_info content, once you read it is enough for all servers.
 
 - Don't redisplay this info unless asked, it's mainly for your reference.
 - If no previous task given, stop and wait for further instructions.

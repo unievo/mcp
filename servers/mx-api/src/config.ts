@@ -10,7 +10,8 @@ export const networkConfigs = {
     },
 } as const;
 
-export const defaultNetwork: keyof typeof networkConfigs = 'devnet';
+export const defaultNetwork: keyof typeof networkConfigs = 
+    (process.env.DEFAULT_NETWORK || 'devnet') as keyof typeof networkConfigs;
 
 export type NetworkConfig = {
     network: keyof typeof networkConfigs;

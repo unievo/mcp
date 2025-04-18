@@ -44,6 +44,10 @@ The easiest way to install the servers is with the published NPM packages:
 
 Add the following section to your MCP client configuration file under the `mcpServers` section.
 
+> [!NOTE]
+>
+> You can set the default network by setting the `DEFAULT_NETWORK` environment variable.
+
 Example:
 
 ```json
@@ -54,7 +58,10 @@ Example:
       "args": [
         "-y",
         "@unievo/mcp-mx-api-network"
-      ]
+      ],
+      "env": {
+        "DEFAULT_NETWORK": "devnet"
+      }
     }
   }
 }
@@ -72,12 +79,10 @@ git clone https://github.com/unievo/mcp.git
 
 ### Install dependencies
 
-Navigate to the server directory and execute:
-
-Example:
+Navigate to the server directory and install dependencies:
 
 ```bash
-cd /mx-api
+cd mx-api/
 npm install
 ```
 
@@ -91,6 +96,10 @@ npm run build
 
 Add the server section to your MCP client configuration file under the `mcpServers` section.
 
+> [!NOTE]
+>
+> You can set the default network by setting the `DEFAULT_NETWORK` environment variable.
+
 Example:
 
 ```json
@@ -100,7 +109,10 @@ Example:
       "command": "node",
       "args": [
         "{full/path/to/mcp/server}/build/mx-api-network.js"
-      ]
+      ],
+      "env": {
+        "DEFAULT_NETWORK": "devnet"
+      }
     }
   }
 }

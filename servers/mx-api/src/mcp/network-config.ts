@@ -1,10 +1,24 @@
 import { McpError, ErrorCode } from '@modelcontextprotocol/sdk/types.js';
 import { setConfig, networkConfigs } from '../config.js';
+import { handleGetAbout } from './server/tools/network.js';
+
+/**
+ * Tool definition for get_network
+ */
+export const getNetworkTool = {
+    name: 'get_network',
+    description: 'Get the current MultiversX network configuration',
+    inputSchema: {
+        type: 'object',
+        properties: {},
+        required: [],
+    },
+};
 
 /**
  * Tool definition for set_network
  */
-export const setMxNetworkTool = {
+export const setNetworkTool = {
     name: 'set_network',
     description: `Set the MultiversX network (${Object.keys(networkConfigs).join('/')})`,
     inputSchema: {
@@ -47,12 +61,25 @@ export async function handleSetNetwork(args: any): Promise<{ content: { type: st
 }
 
 /**
+ * Handle the get_network tool call
+ * @returns Response with current network information
+ */
+export async function handleGetNetwork(): Promise<{ content: { type: string; text: string }[] }> {
+    // Call handleGetAbout with only the 'network' field
+    return handleGetAbout({ fields: ['network'] });
+}
+
+/**
  * Handle network-related tool calls
  * @param toolName Name of the tool being called
  * @param args Tool arguments
  * @returns Response if tool is handled, undefined otherwise
  */
-export async function handleSetNetworkToolCall(toolName: string, args: any): Promise<{ content: { type: string; text: string }[] } | undefined> {
+export async function handleNetworkConfigToolCall(toolName: string, args: any): Promise<{ content: { type: string; text: string }[] } | undefined> {
+    if (toolName === 'get_network') {
+        return handleGetNetwork();
+    }
+    
     if (toolName === 'set_network') {
         return handleSetNetwork(args);
     }

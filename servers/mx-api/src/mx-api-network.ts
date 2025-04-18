@@ -1,4 +1,9 @@
 #!/usr/bin/env node
+import dotenv from 'dotenv';
+
+// Load environment variables from .env file
+dotenv.config();
+
 import { Server } from '@modelcontextprotocol/sdk/server/index.js';
 import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js';
 import {
@@ -6,7 +11,7 @@ import {
     ListResourcesRequestSchema,
     CallToolRequestSchema,
 } from '@modelcontextprotocol/sdk/types.js';
-import { setMxNetworkTool, handleSetNetworkToolCall } from './mcp/set-network.js';
+import { setNetworkTool, handleNetworkConfigToolCall, getNetworkTool } from './mcp/network-config.js';
 import { serverInfoTool, handleServerInfoToolCall } from './mcp/server-info.js';
 import { registerResourceHandlers } from './mcp/server/resources/index.js';
 import { accountKeysTools, accountStakeTools, accountWaitingListTools, handleToolCalls, networkTools } from './mcp/server/tools/index.js';
@@ -38,7 +43,8 @@ class MxMcpServer {
         this.server.setRequestHandler(ListToolsRequestSchema, async () => ({
             tools: [
                 serverInfoTool,
-                setMxNetworkTool,
+                getNetworkTool,
+                setNetworkTool,
                 ...identityTools,
                 ...networkTools,
                 ...accountKeysTools,
@@ -54,9 +60,9 @@ class MxMcpServer {
                 return serverInfoResponse;
             }
 
-            const setNetworkResponse = await handleSetNetworkToolCall(request.params.name, request.params.arguments);
-            if (setNetworkResponse) {
-                return setNetworkResponse;
+            const networkConfigResponse = await handleNetworkConfigToolCall(request.params.name, request.params.arguments);
+            if (networkConfigResponse) {
+                return networkConfigResponse;
             }
             
             return handleToolCalls(request.params.name, request.params.arguments);

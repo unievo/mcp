@@ -13,6 +13,10 @@ For MCP clients that support MCP file configuration, add the following section u
 The easiest way to use the server is with the published NPM package and NPX.
 The package will automatically be up to date with the latest version.
 
+> [!NOTE]
+>
+> You can set the default network by setting the `DEFAULT_NETWORK` environment variable.
+
 ```json
 {
   "mcpServers": {
@@ -21,7 +25,10 @@ The package will automatically be up to date with the latest version.
       "args": [
         "-y",
         "@unievo/mcp-mx-api-tokens"
-      ]
+      ],
+      "env": {
+        "DEFAULT_NETWORK": "devnet"
+      }
     }
   }
 }
@@ -37,7 +44,10 @@ git clone https://github.com/unievo/mcp.git
 
 ### Install dependencies
 
+Navigate to the server directory and install dependencies:
+
 ```bash
+cd mx-api/
 npm install
 ```
 
@@ -49,14 +59,21 @@ npm run build
 
 ### Add the section to your MCP client configuration file
 
+> [!NOTE]
+>
+> You can set the default network by setting the `DEFAULT_NETWORK` environment variable.
+
 ```json
 {
   "mcpServers": {
     "mx-api-tokens": {
       "command": "node",
       "args": [
-        "full/path/to/mcp/server/build/mx-api-tokens.js"
-      ]
+        "{full/path/to/mcp/server}/build/mx-api-tokens.js"
+      ],
+      "env": {
+        "DEFAULT_NETWORK": "devnet"
+      }
     }
   }
 }

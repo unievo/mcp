@@ -1,13 +1,13 @@
 # MultiversX API Index MCP Server
 
-This is a Model Context Protocol (MCP) server that provides all the tools for interacting with the MultiversX blockchain API.
+This Model Context Protocol (MCP) server provides all the tools for interacting with the MultiversX blockchain API.
 
 >[!NOTE]
 >Using the Index server has the advantage of having all the tools always active in the current context, but the disadvantage of having the most token usage when communicating with AI models, as each request includes all tools definitions. Use it for cases when you don't know what specific tools will be needed, or when access to all available tools is always required. Otherwise, use the specialized servers that can be enabled or disabled as needed in the MCP client, to have only the necessary tools active in the context.
 
 ## Overview
 
-The MultiversX API Index server includes access to all the tools and domains. There are also specialized servers for each domain:
+The MultiversX API Index server provides access to all the tools and domains. There are also specialized servers for each domain:
 
 - [Network](README-network.md): Focus on network-related information
 - [Accounts](README-accounts.md): Focus on account-related operations
@@ -22,7 +22,7 @@ There is also an Essentials server that provides a reduced version of the full i
 
 ## Installation
 
-The server can be used in any MCP client (AI agents, Chatbots, Coding agents, etc.)
+The server can be used with any MCP client (AI agents, Chatbots, Coding agents, etc.)
 
 For MCP clients that support MCP file configuration, add the following section under the `mcpServers` section:
 

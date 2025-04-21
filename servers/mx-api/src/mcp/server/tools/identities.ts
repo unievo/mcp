@@ -39,7 +39,7 @@ interface Identity {
 export const identityTools = [
     {
         name: 'get_identities',
-        description: 'List of all node identities, used to group nodes by the same entity. "Free-floating" nodes that do not belong to any identity will also be returned',
+        description: 'List of all node identities, used to group nodes by the same entity (validator). "Free-floating" nodes that do not belong to any identity will also be returned',
         inputSchema: {
             type: 'object',
             properties: {
@@ -73,7 +73,7 @@ export const identityTools = [
     },
     {
         name: 'get_identity',
-        description: 'Returns the details of a single identity',
+        description: 'Returns the details of a single identity (validator)',
         inputSchema: {
             type: 'object',
             properties: {

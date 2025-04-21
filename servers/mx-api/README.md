@@ -1,6 +1,6 @@
 # MultiversX API MCP Servers
 
-Model Context Protocol (MCP) servers that provide tools for AI agents to read from and interact with the MultiversX blockchain API.
+Model Context Protocol (MCP) servers providing tools for AI agents to interact with the MultiversX blockchain API.
 
 ## Overview
 
@@ -10,9 +10,9 @@ There are multiple MultiversX API MCP servers, each focused on a specific domain
 - [Collections](README-collections.md): Focus on NFT/SFT collections
 - [Contracts](README-contracts.md): Focus on smart contracts
 - [Network](README-network.md): Focus on network-related information
+- [Roles](README-roles.md): Focus on account roles for collections and tokens
 - [Tokens](README-tokens.md): Focus on fungible tokens
 - [Transactions](README-transactions.md): Focus on blockchain transactions and transfers
-- [Roles](README-roles.md): Focus on account roles for collections and tokens
 
 There is an Index MCP server that contains all tools from the specialized servers.
 
@@ -20,11 +20,11 @@ There is an Index MCP server that contains all tools from the specialized server
 
 There is also an Essentials MCP server that provides a reduced version of the full index server for essential tools across multiple domains:
 
-- [Essentials](README-essentials.md): Includes essential tools across multiple domains
+- [Essentials](README-essentials.md): Includes selected essential tools across multiple domains (Accounts, Collections, Tokens, Transactions)
 
 ## Installation
 
-The servers can be used in any MCP client (AI agents, Chatbots, Coding agents, etc.)
+The servers can be used with any MCP client (AI agents, Chatbots, Coding agents, etc.)
 
 For MCP clients that support MCP file configuration, server configuration is added under the `mcpServers` section.
 
@@ -124,7 +124,7 @@ Example:
 >
 > All mx-api servers include the following tool:
 >
->- `server_info`: Returns information about recommended usage of mx-api servers for AI agents. The response of this tool is the same for all servers. instruct the agent to call this tool on any mx-api server to obtain the context information.
+>- `server_info`: Returns information about recommended usage of mx-api servers for AI agents. The response of this tool is the same for all servers, instruct the agent to call this tool on any mx-api server to obtain the context information.
 
 ### Fields Parameter
 

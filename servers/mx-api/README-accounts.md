@@ -1,10 +1,10 @@
 # MultiversX API Accounts MCP Server
 
-This is a Model Context Protocol (MCP) server that provides tools for interacting with the MultiversX blockchain API, specifically focused on account-related operations.
+This Model Context Protocol (MCP) server provides tools for interacting with the MultiversX blockchain API, specifically focused on account-related operations.
 
 ## Installation
 
-The server can be used in any MCP client (AI agents, Chatbots, Coding agents, etc.)
+The server can be used with any MCP client (AI agents, Chatbots, Coding agents, etc.)
 
 For MCP clients that support MCP file configuration, add the following section under the `mcpServers` section:
 

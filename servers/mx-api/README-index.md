@@ -3,22 +3,22 @@
 This Model Context Protocol (MCP) server provides all the tools for interacting with the MultiversX blockchain API.
 
 >[!NOTE]
->Using the Index server has the advantage of having all the tools always active in the current context, but the disadvantage of having the most token usage when communicating with AI models, as each request includes all tools definitions. Use it for cases when you don't know what specific tools will be needed, or when access to all available tools is always required. Otherwise, use the specialized servers that can be enabled or disabled as needed in the MCP client, to have only the necessary tools active in the context.
+>Using the Index server has the advantage of having all the tools always active in the current context, but the disadvantage of having the most token usage when communicating with AI models, as each request includes all tool definitions. Use it for cases when you don't know what specific tools will be needed, or when access to all available tools is always required. Otherwise, use the specialized servers that can be enabled or disabled as needed in the MCP client, to have only the necessary tools active in the context.
 
 ## Overview
 
 The MultiversX API Index server provides access to all the tools and domains. There are also specialized servers for each domain:
 
-- [Network](README-network.md): Focus on network-related information
-- [Accounts](README-accounts.md): Focus on account-related operations
-- [Collections](README-collections.md): Focus on NFT/SFT collections
-- [Tokens](README-tokens.md): Focus on fungible tokens
-- [Transactions](README-transactions.md): Focus on blockchain transactions and transfers
-- [Roles](README-roles.md): Focus on account roles for collections and tokens
+- [Network](README-network.md): Network-related information
+- [Accounts](README-accounts.md): Account-related operations
+- [Collections](README-collections.md): NFT/SFT collections
+- [Tokens](README-tokens.md): Fungible tokens
+- [Transactions](README-transactions.md): Blockchain transactions and transfers
+- [Roles](README-roles.md): Account roles for collections and tokens
 
 There is also an Essentials server that provides a reduced version of the full index server for multiple essential tools across multiple domains:
 
-- [Essentials](README-essentials.md): Focus on essential tools across multiple domains
+- [Essentials](README-essentials.md): Essential tools across multiple domains
 
 ## Installation
 

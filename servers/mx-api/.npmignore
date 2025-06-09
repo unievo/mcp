@@ -2,6 +2,8 @@
 endpoints/
 src/
 temp/
+Dockerfile
+*.yaml
 *.sh
 *.tgz
 *.json

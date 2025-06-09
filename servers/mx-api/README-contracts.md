@@ -128,14 +128,14 @@ The server can be used with any MCP-compatible client. Example usage:
 
 ### Network Tool
 
-1. `set_network`
+1. `set-network`
    - Description: Set the MultiversX network to use (mainnet/testnet/devnet)
    - Parameters:
      - `network`: String enum ("mainnet" | "testnet" | "devnet")
 
 ### Application Tools
 
-1. `get_applications`
+1. `get-applications`
    - Description: Returns all smart contracts available on blockchain. By default it returns 25 smart contracts
    - Parameters:
      - `from`: Number of items to skip for the result set
@@ -145,13 +145,13 @@ The server can be used with any MCP-compatible client. Example usage:
      - `withTxCount`: Include transaction count
      - `fields`: Array of strings, fields to retrieve. Use "all" for all fields
 
-2. `get_applications_count`
+2. `get-applications-count`
    - Description: Returns total number of smart contracts
    - Parameters:
      - `before`: Before timestamp
      - `after`: After timestamp
 
-3. `get_application`
+3. `get-application`
    - Description: Returns details of a smart contract
    - Parameters:
      - `address`: The address of the smart contract (required)
@@ -160,7 +160,7 @@ The server can be used with any MCP-compatible client. Example usage:
 
 ### Account Contract Tools
 
-1. `get_account_deploys`
+1. `get-account-deploys`
    - Description: Returns deploys details for a given account
    - Parameters:
      - `address`: Account address (required)
@@ -169,13 +169,13 @@ The server can be used with any MCP-compatible client. Example usage:
      - `fields`: Array of strings, fields to retrieve. Use "all" for all fields
    - Returns: Deploy details including address, deployTxHash, timestamp, etc.
 
-2. `get_account_deploys_count`
+2. `get-account-deploys-count`
    - Description: Returns total number of deploys for a given address
    - Parameters:
      - `address`: Account address (required)
    - Returns: Count of deploys for the specified account
 
-3. `get_account_sc_results`
+3. `get-account-sc-results`
    - Description: Returns smart contract results where the account is sender or receiver
    - Parameters:
      - `address`: Account address (required)
@@ -184,13 +184,13 @@ The server can be used with any MCP-compatible client. Example usage:
      - `fields`: Array of strings, fields to retrieve. Use "all" for all fields
    - Returns: Smart contract results including hash, receiver, function, status, etc.
 
-4. `get_account_sc_results_count`
+4. `get-account-sc-results-count`
    - Description: Returns number of smart contract results where the account is sender or receiver
    - Parameters:
      - `address`: Account address (required)
    - Returns: Count of smart contract results for the specified account
 
-5. `get_account_sc_result`
+5. `get-account-sc-result`
    - Description: Returns details of a smart contract result where the account is sender or receiver
    - Parameters:
      - `address`: Account address (required)
@@ -200,7 +200,7 @@ The server can be used with any MCP-compatible client. Example usage:
 
 ### Account Upgrades Tools
 
-1. `get_account_upgrades`
+1. `get-account-upgrades`
    - Description: Returns all upgrades details for a specific contract address
    - Parameters:
      - `address`: Contract address (required)
@@ -211,7 +211,7 @@ The server can be used with any MCP-compatible client. Example usage:
 
 ### Account Verification Tools
 
-1. `get_account_verification`
+1. `get-account-verification`
    - Description: Returns contract verification details
    - Parameters:
      - `address`: Contract address (required)

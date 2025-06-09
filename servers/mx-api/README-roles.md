@@ -164,14 +164,14 @@ These roles are essential for managing tokens and collections on the MultiversX 
 
 ### Network Tools
 
-1. `set_network`
+1. `set-network`
    - Description: Set the MultiversX network to use (mainnet/testnet/devnet)
    - Parameters:
      - `network`: String enum ("mainnet" | "testnet" | "devnet")
 
 ### Account Roles Tools
 
-1. `get_account_collections_with_roles`
+1. `get-account-collections-with-roles`
    - Description: Returns NFT/SFT/MetaESDT collections where the account is owner or has some special roles assigned to it
    - Parameters:
      - `address`: Account address (required)
@@ -191,7 +191,7 @@ These roles are essential for managing tokens and collections on the MultiversX 
      - `fields`: Array of strings, fields to retrieve. Use "all" for all fields
    - Returns: List of collections with roles including details such as collection identifier, name, type, ticker, owner, and role flags
 
-2. `get_collections_with_roles_count`
+2. `get-collections-with-roles-count`
    - Description: Returns the total number of NFT/SFT/MetaESDT collections where the account is owner or has some special roles assigned to it
    - Parameters:
      - `address`: Account address (required)
@@ -208,7 +208,7 @@ These roles are essential for managing tokens and collections on the MultiversX 
      - `excludeMetaESDT`: Exclude MetaESDT collections
    - Returns: Count of collections with roles
 
-3. `get_account_collection_with_roles`
+3. `get-account-collection-with-roles`
    - Description: Returns details about a specific NFT/SFT/MetaESDT collection from a given address
    - Parameters:
      - `address`: Account address (required)
@@ -216,7 +216,7 @@ These roles are essential for managing tokens and collections on the MultiversX 
      - `fields`: Array of strings, fields to retrieve. Use "all" for all fields
    - Returns: Detailed information about a specific collection with roles
 
-4. `get_account_tokens_with_roles`
+4. `get-account-tokens-with-roles`
    - Description: Returns fungible token roles where the account is owner or has some special roles assigned to it
    - Parameters:
      - `address`: Account address (required)
@@ -230,7 +230,7 @@ These roles are essential for managing tokens and collections on the MultiversX 
      - `fields`: Array of strings, fields to retrieve. Use "all" for all fields
    - Returns: List of tokens with roles including details such as identifier, name, type, ticker, owner, and role flags
 
-5. `get_tokens_with_roles_count`
+5. `get-tokens-with-roles-count`
    - Description: Returns the total number of fungible token roles where the account is owner or has some special roles assigned to it
    - Parameters:
      - `address`: Account address (required)
@@ -241,7 +241,7 @@ These roles are essential for managing tokens and collections on the MultiversX 
      - `includeMetaESDT`: Include MetaESDT tokens
    - Returns: Count of tokens with roles
 
-6. `get_token_with_roles`
+6. `get-token-with-roles`
    - Description: Returns details about fungible token roles where the account is owner or has some special roles assigned to it
    - Parameters:
      - `address`: Account address (required)

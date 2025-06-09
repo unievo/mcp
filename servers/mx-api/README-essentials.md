@@ -153,14 +153,14 @@ The server can be used with any MCP-compatible client. Example usage:
 
 ### Network Tools
 
-1. `set_network`
+1. `set-network`
    - Description: Set the MultiversX network to use (mainnet/testnet/devnet)
    - Parameters:
      - `network`: String enum ("mainnet" | "testnet" | "devnet")
 
 ### Account Tools
 
-1. `get_accounts`
+1. `get-accounts`
    - Description: Returns all accounts available on blockchain. By default it returns 25 accounts
    - Parameters:
      - `from`: Number of items to skip for the result set

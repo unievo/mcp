@@ -97,35 +97,35 @@ A selection of most relevant fields are implemented by default for each tool if 
 The server can be used with any MCP-compatible client. Example usage:
 
 ```typescript
-// Using set_network tool
+// Using set-network tool
 {
-  "name": "set_network",
+  "name": "set-network",
   "arguments": {
     "network": "mainnet"
   }
 }
 
-// Using get_collections tool
+// Using get-collections tool
 {
-  "name": "get_collections",
+  "name": "get-collections",
   "arguments": {
     "size": 10,
     "fields": ["collection", "name", "type", "ticker"]
   }
 }
 
-// Using get_collection tool
+// Using get-collection tool
 {
-  "name": "get_collection",
+  "name": "get-collection",
   "arguments": {
     "collection": "MEDAL-ae074f",
     "fields": ["all"]
   }
 }
 
-// Using get_nft tool
+// Using get-nft tool
 {
-  "name": "get_nft",
+  "name": "get-nft",
   "arguments": {
     "identifier": "MEDAL-ae074f-01",
     "withOwner": true,
@@ -138,14 +138,14 @@ The server can be used with any MCP-compatible client. Example usage:
 
 ### Network Tools
 
-1. `set_network`
+1. `set-network`
    - Description: Set the MultiversX network to use (mainnet/testnet/devnet)
    - Parameters:
      - `network`: String enum ("mainnet" | "testnet" | "devnet")
 
 ### Collection Tools
 
-1. `get_collections`
+1. `get-collections`
    - Description: Returns non-fungible/semi-fungible/meta-esdt collections
    - Parameters:
      - `from`: Number of items to skip for the result set
@@ -167,7 +167,7 @@ The server can be used with any MCP-compatible client. Example usage:
      - `order`: Sorting order ("asc" | "desc")
      - `fields`: Array of strings, fields to retrieve. Use "all" for all fields
 
-2. `get_collections_count`
+2. `get-collections-count`
    - Description: Returns non-fungible/semi-fungible/meta-esdt collection count
    - Parameters:
      - `search`: Search by collection identifier
@@ -183,13 +183,13 @@ The server can be used with any MCP-compatible client. Example usage:
      - `canTransferRole`: Filter by address with canTransferRole role
      - `excludeMetaESDT`: Do not include collections of type "MetaESDT" in the response
 
-3. `get_collection`
+3. `get-collection`
    - Description: Returns non-fungible/semi-fungible/meta-esdt collection details
    - Parameters:
      - `collection`: Collection identifier (required)
      - `fields`: Array of strings, fields to retrieve. Use "all" for all fields
 
-4. `get_collection_nfts`
+4. `get-collection-nfts`
    - Description: Returns non-fungible/semi-fungible/meta-esdt tokens that belong to a collection
    - Parameters:
      - `collection`: Collection identifier (required)
@@ -207,17 +207,17 @@ The server can be used with any MCP-compatible client. Example usage:
      - `traits`: Filter NFTs by traits. Key-value format (key1:value1;key2:value2)
      - `fields`: Array of strings, fields to retrieve. Use "all" for all fields
 
-5. `get_collection_nfts_count`
+5. `get-collection-nfts-count`
    - Description: Returns non-fungible/semi-fungible/meta-esdt token count that belong to a collection
    - Parameters:
      - `collection`: Collection identifier (required)
 
-6. `get_collection_ranks`
+6. `get-collection-ranks`
    - Description: Returns NFT ranks in case the custom ranking preferred algorithm was set
    - Parameters:
      - `collection`: Collection identifier (required)
 
-7. `get_collection_transactions`
+7. `get-collection-transactions`
    - Description: Returns a list of transactions for a specific collection
    - Parameters:
      - `collection`: Collection identifier (required)
@@ -243,7 +243,7 @@ The server can be used with any MCP-compatible client. Example usage:
      - `withRelayedScresults`: If set to true, will include smart contract results that resemble relayed transactions
      - `fields`: Array of strings, fields to retrieve. Use "all" for all fields
 
-8. `get_collection_transfers`
+8. `get-collection-transfers`
    - Description: Returns a list of transfers for a specific collection
    - Parameters:
      - `collection`: Collection identifier (required)
@@ -265,17 +265,17 @@ The server can be used with any MCP-compatible client. Example usage:
      - `withUsername`: Integrates username in assets for all addresses present in the transfers
      - `fields`: Array of strings, fields to retrieve. Use "all" for all fields
 
-9. `get_collection_transactions_count`
+9. `get-collection-transactions-count`
    - Description: Returns the total number of transactions for a specific collection
    - Parameters:
      - `collection`: Collection identifier (required)
 
-10. `get_collection_transfers_count`
+10. `get-collection-transfers-count`
     - Description: Returns the total number of transfers for a specific collection
     - Parameters:
       - `collection`: Collection identifier (required)
 
-11. `get_collection_accounts`
+11. `get-collection-accounts`
     - Description: Returns a list of addresses and balances for a specific collection
     - Parameters:
       - `identifier`: Collection identifier (required)
@@ -284,7 +284,7 @@ The server can be used with any MCP-compatible client. Example usage:
 
 ### Account Collection Tools
 
-1. `get_account_collections`
+1. `get-account-collections`
    - Description: Returns NFT/SFT/MetaESDT collections where the account owns one or more NFTs
    - Parameters:
      - `address`: Account address (required)
@@ -296,7 +296,7 @@ The server can be used with any MCP-compatible client. Example usage:
      - `excludeMetaESDT`: Exclude collections of type "MetaESDT" in the response
      - `fields`: Array of strings, fields to retrieve. Use "all" for all fields
 
-2. `get_account_collections_count`
+2. `get-account-collections-count`
    - Description: Returns the total number of NFT/SFT/MetaESDT collections where the account owns one or more NFTs
    - Parameters:
      - `address`: Account address (required)
@@ -305,7 +305,7 @@ The server can be used with any MCP-compatible client. Example usage:
      - `subType`: Filter by type (NonFungibleESDTv2/DynamicNonFungibleESDT/DynamicSemiFungibleESDT)
      - `excludeMetaESDT`: Exclude collections of type "MetaESDT" in the response
 
-3. `get_account_collection`
+3. `get-account-collection`
    - Description: Returns details about a specific NFT/SFT/MetaESDT collection from a given address
    - Parameters:
      - `address`: Account address (required)
@@ -314,7 +314,7 @@ The server can be used with any MCP-compatible client. Example usage:
 
 ### Account NFT Tools
 
-1. `get_account_nfts`
+1. `get-account-nfts`
    - Description: Returns a list of all available NFTs/SFTs/MetaESDTs owned by the provided address
    - Parameters:
      - `address`: Account address (required)
@@ -339,13 +339,13 @@ The server can be used with any MCP-compatible client. Example usage:
      - `timestamp`: Filter by timestamp
      - `fields`: Array of strings, fields to retrieve. Use "all" for all fields
 
-2. `get_account_nfts_count`
+2. `get-account-nfts-count`
    - Description: Returns the total number of NFTs/SFTs/MetaESDTs owned by the provided address
    - Parameters:
      - `address`: Account address (required)
-     - Similar filtering options as `get_account_nfts`
+     - Similar filtering options as `get-account-nfts`
 
-3. `get_account_nft`
+3. `get-account-nft`
    - Description: Returns details about a specific NFT/SFT/MetaESDT owned by the provided address
    - Parameters:
      - `address`: Account address (required)
@@ -354,7 +354,7 @@ The server can be used with any MCP-compatible client. Example usage:
 
 ### NFT Tools
 
-1. `get_nfts`
+1. `get-nfts`
    - Description: Returns a list of Non-Fungible / Semi-Fungible / MetaESDT tokens available on blockchain
    - Parameters:
      - `from`: Number of items to skip for the result set
@@ -387,12 +387,12 @@ The server can be used with any MCP-compatible client. Example usage:
      - `rarityAlgorithm`: Rarity algorithm to use
      - `includeRarities`: Include specific rarities
 
-2. `get_nfts_count`
+2. `get-nfts-count`
    - Description: Returns the total number of Non-Fungible / Semi-Fungible / MetaESDT tokens
    - Parameters:
-     - Similar filtering options as `get_nfts`
+     - Similar filtering options as `get-nfts`
 
-3. `get_nft`
+3. `get-nft`
    - Description: Returns the details of a Non-Fungible / Semi-Fungible / MetaESDT token
    - Parameters:
      - `identifier`: Token identifier (required)
@@ -401,7 +401,7 @@ The server can be used with any MCP-compatible client. Example usage:
      - `withScamInfo`: Return scam info for the NFT
      - `fields`: Array of strings, fields to retrieve. Use "all" for all fields
 
-4. `get_nft_accounts`
+4. `get-nft-accounts`
    - Description: Returns a list of addresses that hold a specific Non-Fungible / Semi-Fungible / MetaESDT token
    - Parameters:
      - `identifier`: Token identifier (required)
@@ -409,18 +409,18 @@ The server can be used with any MCP-compatible client. Example usage:
      - `size`: Number of items to retrieve
      - `fields`: Array of strings, fields to retrieve. Use "all" for all fields
 
-5. `get_nft_accounts_count`
+5. `get-nft-accounts-count`
    - Description: Returns the total number of addresses that hold a specific Non-Fungible / Semi-Fungible / MetaESDT token
    - Parameters:
      - `identifier`: Token identifier (required)
 
-6. `get_nft_supply`
+6. `get-nft-supply`
    - Description: Returns the supply of a specific Non-Fungible / Semi-Fungible / MetaESDT token
    - Parameters:
      - `identifier`: Token identifier (required)
      - `fields`: Array of strings, fields to retrieve. Use "all" for all fields
 
-7. `get_nft_transactions`
+7. `get-nft-transactions`
    - Description: Returns a list of transactions for a NonFungibleESDT or SemiFungibleESDT
    - Parameters:
      - `identifier`: Token identifier (required)
@@ -444,13 +444,13 @@ The server can be used with any MCP-compatible client. Example usage:
      - `withUsername`: Integrates username in assets for all addresses present in the transactions
      - `fields`: Array of strings, fields to retrieve. Use "all" for all fields
 
-8. `get_nft_transactions_count`
+8. `get-nft-transactions-count`
    - Description: Returns the total number of transactions for a specific NonFungibleESDT or SemiFungibleESDT
    - Parameters:
      - `identifier`: Token identifier (required)
-     - Similar filtering options as `get_nft_transactions`
+     - Similar filtering options as `get-nft-transactions`
 
-9. `get_nft_transfers`
+9. `get-nft-transfers`
    - Description: Returns a list of transfers for a NonFungibleESDT or SemiFungibleESDT
    - Parameters:
      - `identifier`: Token identifier (required)
@@ -469,19 +469,8 @@ The server can be used with any MCP-compatible client. Example usage:
      - `withUsername`: Integrates username in assets for all addresses present in the transfers
      - `fields`: Array of strings, fields to retrieve. Use "all" for all fields
 
-10. `get_nft_transfers_count`
+10. `get-nft-transfers-count`
     - Description: Returns the total number of transfers for a specific NonFungibleESDT or SemiFungibleESDT
     - Parameters:
       - `identifier`: Token identifier (required)
-      - Similar filtering options as `get_nft_transfers`
-
-11. `process_nfts`
-    - Description: Trigger NFT media/metadata reprocessing for collection owners
-    - Parameters:
-      - `collection`: Collection identifier for which to trigger reprocessing (required)
-      - `identifier`: NFT identifier to process (required)
-      - `forceRefreshMedia`: Force refresh media files (required)
-      - `forceRefreshMetadata`: Force refresh metadata (required)
-      - `forceRefreshThumbnail`: Force refresh thumbnail (required)
-      - `skipRefreshThumbnail`: Skip refreshing thumbnail (required)
-      - `uploadAsset`: Upload asset (required)
+      - Similar filtering options as `get-nft-transfers`

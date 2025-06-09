@@ -97,17 +97,17 @@ A selection of most relevant fields are implemented by default for each tool if 
 The server can be used with any MCP-compatible client. Example usage:
 
 ```typescript
-// Using set_network tool
+// Using set-network tool
 {
-  "name": "set_network",
+  "name": "set-network",
   "arguments": {
     "network": "mainnet"
   }
 }
 
-// Using get_transactions tool
+// Using get-transactions tool
 {
-  "name": "get_transactions",
+  "name": "get-transactions",
   "arguments": {
     "from": 0,
     "size": 10,
@@ -115,9 +115,9 @@ The server can be used with any MCP-compatible client. Example usage:
   }
 }
 
-// Using get_account_transactions tool
+// Using get-account-transactions tool
 {
-  "name": "get_account_transactions",
+  "name": "get-account-transactions",
   "arguments": {
     "address": "erd1qqqqqqqqqqqqqpgqd77fnev2sthnczp2lnfx0y5jdycynjfhzzgq6p3rax",
     "from": 0,
@@ -126,9 +126,9 @@ The server can be used with any MCP-compatible client. Example usage:
   }
 }
 
-// Using send_transaction tool
+// Using send-transaction tool
 {
-  "name": "send_transaction",
+  "name": "send-transaction",
   "arguments": {
     "chainId": "1",
     "data": "dGVzdA==",
@@ -160,14 +160,14 @@ The API provides tools to query both types separately or together, allowing for 
 
 ### Network Tools
 
-1. `set_network`
+1. `set-network`
    - Description: Set the MultiversX network to use (mainnet/testnet/devnet)
    - Parameters:
      - `network`: String enum ("mainnet" | "testnet" | "devnet")
 
 ### Transaction Tools
 
-1. `get_transactions`
+1. `get-transactions`
    - Description: Returns a list of transactions available on the blockchain
    - Parameters:
      - `from`: Number of items to skip for the result set
@@ -199,7 +199,7 @@ The API provides tools to query both types separately or together, allowing for 
      - `withRelayedScresults`: If set to true, will include smart contract results that resemble relayed transactions
    - Returns: List of transactions matching the specified criteria
 
-2. `get_transactions_count`
+2. `get-transactions-count`
    - Description: Returns the total number of transactions
    - Parameters:
      - `sender`: Address of the transaction sender
@@ -220,7 +220,7 @@ The API provides tools to query both types separately or together, allowing for 
      - `withRelayedScresults`: If set to true, will include smart contract results that resemble relayed transactions
    - Returns: Count of transactions matching the specified criteria
 
-3. `get_transaction`
+3. `get-transaction`
    - Description: Returns the details of a transaction
    - Parameters:
      - `txHash`: Transaction hash (required)
@@ -233,7 +233,7 @@ The API provides tools to query both types separately or together, allowing for 
      - `withActionTransferValue`: Returns value in USD and network token for transferred tokens within the action attribute
    - Returns: Detailed information about a specific transaction
 
-4. `send_transaction`
+4. `send-transaction`
    - Description: Posts a signed transaction on the blockchain
    - Parameters:
      - `chainId`: Chain identifier (required)
@@ -251,7 +251,7 @@ The API provides tools to query both types separately or together, allowing for 
      - `guardianSignature`: Guardian signature
    - Returns: Transaction hash and status information
 
-5. `decode_transaction`
+5. `decode-transaction`
    - Description: Decodes transaction action, given a minimum set of transaction details
    - Parameters:
      - `data`: Transaction data (base64 encoded) (required)
@@ -262,7 +262,7 @@ The API provides tools to query both types separately or together, allowing for 
 
 ### Account Transaction Tools
 
-1. `get_account_transactions`
+1. `get-account-transactions`
    - Description: Returns details of all transactions where the account is sender or receiver
    - Parameters:
      - `address`: Account address (required)
@@ -296,7 +296,7 @@ The API provides tools to query both types separately or together, allowing for 
      - `computeScamInfo`: Compute scam information for transactions
    - Returns: List of transactions for the specified account
 
-2. `get_account_transactions_count`
+2. `get-account-transactions-count`
    - Description: Returns total number of transactions for a given address where the account is sender or receiver
    - Parameters:
      - `address`: Account address (required)
@@ -320,7 +320,7 @@ The API provides tools to query both types separately or together, allowing for 
 
 ### Transfer Tools
 
-1. `get_transfers`
+1. `get-transfers`
    - Description: Returns both transfers triggered by a user account (type = Transaction), as well as transfers triggered by smart contracts (type = SmartContractResult)
    - Parameters:
      - `from`: Number of items to skip for the result set
@@ -347,7 +347,7 @@ The API provides tools to query both types separately or together, allowing for 
      - `withBlockInfo`: Returns sender / receiver block details
    - Returns: List of transfers matching the specified criteria
 
-2. `get_transfers_count`
+2. `get-transfers-count`
    - Description: Return total count of transfers triggered by a user account (type = Transaction), as well as transfers triggered by smart contracts (type = SmartContractResult)
    - Parameters:
      - `receiver`: Array of strings, search by multiple receiver addresses
@@ -365,7 +365,7 @@ The API provides tools to query both types separately or together, allowing for 
 
 ### Account Transfer Tools
 
-1. `get_account_transfers`
+1. `get-account-transfers`
    - Description: Returns both transfers triggered by a user account (type = Transaction), as well as transfers triggered by smart contracts (type = SmartContractResult)
    - Parameters:
      - `address`: Account address (required)
@@ -392,7 +392,7 @@ The API provides tools to query both types separately or together, allowing for 
      - `senderOrReceiver`: One address that current address interacted with
    - Returns: List of transfers for the specified account
 
-2. `get_account_transfers_count`
+2. `get-account-transfers-count`
    - Description: Returns total number of transfers for a given address
    - Parameters:
      - `address`: Account address (required)

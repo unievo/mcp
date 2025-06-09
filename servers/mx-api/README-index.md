@@ -149,7 +149,7 @@ The Index server includes all available tools.
 
 ## Network Tools
 
-- `set_network`: Set the MultiversX network to use (mainnet/testnet/devnet)
+- `set-network`: Set the MultiversX network to use (mainnet/testnet/devnet)
 - `get_network_stats`: Get network statistics
 - `get_network_economics`: Get network economics data
 - `get_network_constants`: Get network constants
@@ -160,7 +160,7 @@ The Index server includes all available tools.
 
 ## Account Tools
 
-- `get_accounts`: Get all accounts available on blockchain. By default it returns 25 accounts
+- `get-accounts`: Get all accounts available on blockchain. By default it returns 25 accounts
 - `get_accounts_count`: Get the total number of accounts
 - `get_account_details`: Get account details for a given address
 

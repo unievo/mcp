@@ -97,26 +97,26 @@ A selection of most relevant fields are implemented by default for each tool if 
 The server can be used with any MCP-compatible client. Example usage:
 
 ```typescript
-// Using set_network tool
+// Using set-network tool
 {
-  "name": "set_network",
+  "name": "set-network",
   "arguments": {
     "network": "mainnet"
   }
 }
 
-// Using get_accounts tool
+// Using get-accounts tool
 {
-  "name": "get_accounts",
+  "name": "get-accounts",
   "arguments": {
     "size": 10,
     "fields": ["address", "balance", "nonce"]
   }
 }
 
-// Using get_account_details tool
+// Using get-account-details tool
 {
-  "name": "get_account_details",
+  "name": "get-account-details",
   "arguments": {
     "address": "erd1qqqqqqqqqqqqqpgqd77fnev2sthnczp2lnfx0y5jdycynjfhzzgq6p3rax",
     "fields": ["all"]
@@ -128,12 +128,12 @@ The server can be used with any MCP-compatible client. Example usage:
 
 ### Account Tools
 
-1. `set_network`
+1. `set-network`
    - Description: Set the MultiversX network to use (mainnet/testnet/devnet)
    - Parameters:
      - `network`: String enum ("mainnet" | "testnet" | "devnet")
 
-2. `get_accounts`
+2. `get-accounts`
    - Description: Returns all accounts available on blockchain. By default it returns 25 accounts
    - Parameters:
      - `from`: Number of items to skip for the result set
@@ -154,7 +154,7 @@ The server can be used with any MCP-compatible client. Example usage:
      - `addresses`: A comma-separated list of addresses to filter by
      - `fields`: Array of strings, fields to retrieve. Use "all" for all fields
 
-3. `get_accounts_count`
+3. `get-accounts-count`
    - Description: Returns total number of accounts available on blockchain
    - Parameters:
      - `ownerAddress`: Search by owner address
@@ -164,7 +164,7 @@ The server can be used with any MCP-compatible client. Example usage:
      - `excludeTags`: Exclude specific tags from result
      - `hasAssets`: Returns a list of accounts that have assets
 
-4. `get_account_details`
+4. `get-account-details`
    - Description: Returns account details for a given address
    - Parameters:
      - `address`: Account address (required)
@@ -174,7 +174,7 @@ The server can be used with any MCP-compatible client. Example usage:
 
 ### Account Deferred Tools
 
-1. `get_account_deferred`
+1. `get-account-deferred`
    - Description: Returns deferred payments for a given account
    - Parameters:
      - `address`: Account address (required)
@@ -185,14 +185,14 @@ The server can be used with any MCP-compatible client. Example usage:
 
 ### Account Delegation Tools
 
-1. `get_account_delegation`
+1. `get-account-delegation`
    - Description: Summarizes all delegation positions with staking providers, together with unDelegation positions
    - Parameters:
      - `address`: Account address (required)
      - `fields`: Array of strings, fields to retrieve. Use "all" for all fields
    - Returns: Delegation information including address, contract, userActiveStake, claimableRewards, etc.
 
-2. `get_account_delegation_legacy`
+2. `get-account-delegation-legacy`
    - Description: Returns staking information related to the legacy delegation pool
    - Parameters:
      - `address`: Account address (required)
@@ -202,7 +202,7 @@ The server can be used with any MCP-compatible client. Example usage:
 
 ### Account ESDT History Tools
 
-1. `get_account_esdt_history`
+1. `get-account-esdt-history`
    - Description: Returns account esdts balance history
    - Parameters:
      - `address`: Account address (required)
@@ -215,7 +215,7 @@ The server can be used with any MCP-compatible client. Example usage:
      - `fields`: Array of strings, fields to retrieve. Use "all" for all fields
    - Returns: ESDT history entries including token, balance, timestamp, etc.
 
-2. `get_account_esdt_history_count`
+2. `get-account-esdt-history-count`
    - Description: Returns total number of ESDT history entries for a given address
    - Parameters:
      - `address`: Account address (required)
@@ -227,7 +227,7 @@ The server can be used with any MCP-compatible client. Example usage:
 
 ### Account History Tools
 
-1. `get_account_history`
+1. `get-account-history`
    - Description: Return account network token balance history
    - Parameters:
      - `address`: Account address (required)
@@ -238,7 +238,7 @@ The server can be used with any MCP-compatible client. Example usage:
      - `fields`: Array of strings, fields to retrieve. Use "all" for all fields
    - Returns: Account history entries including balance, timestamp, etc.
 
-2. `get_account_history_count`
+2. `get-account-history-count`
    - Description: Return account network token balance history count
    - Parameters:
      - `address`: Account address (required)
@@ -248,7 +248,7 @@ The server can be used with any MCP-compatible client. Example usage:
      - `after`: After timestamp
    - Returns: Count of account history entries
 
-3. `get_account_token_history`
+3. `get-account-token-history`
    - Description: Returns account network token balance history
    - Parameters:
      - `address`: Account address (required)
@@ -260,7 +260,7 @@ The server can be used with any MCP-compatible client. Example usage:
      - `fields`: Array of strings, fields to retrieve. Use "all" for all fields
    - Returns: Token history entries including token, balance, timestamp, etc.
 
-4. `get_account_token_history_count`
+4. `get-account-token-history-count`
    - Description: Return account token balance history count
    - Parameters:
      - `address`: Account address (required)

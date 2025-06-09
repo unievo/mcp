@@ -116,12 +116,12 @@ The server can be used with any MCP-compatible client. Example usage:
 
 ### Network Tools
 
-1. `set_network`
+1. `set-network`
    - Description: Set the MultiversX network to use (mainnet/testnet/devnet)
    - Parameters:
      - `network`: String enum ("mainnet" | "testnet" | "devnet")
 
-2. `get_network_stats`
+2. `get-network-stats`
    - Description: Get current network statistics
    - Parameters:
      - `fields`: Array of strings, fields to retrieve. Use "all" for all fields.

@@ -12,7 +12,7 @@ import {
     CallToolRequestSchema,
 } from '@modelcontextprotocol/sdk/types.js';
 import { setNetworkTool, handleNetworkConfigToolCall, getNetworkTool } from './mcp/network-config.js';
-import { registerResourceHandlers } from './mcp/server/resources/index.js';
+import { allResources, registerResourceHandlers } from './mcp/server/resources/index.js';
 import { 
     handleToolCalls,
     collectionTools,
@@ -75,7 +75,7 @@ class MxMcpServer {
     private setupResources() {
         this.server.setRequestHandler(ListResourcesRequestSchema, async () => ({
             resources: [
-                // set resources
+                ...allResources,
             ],
         }));
 

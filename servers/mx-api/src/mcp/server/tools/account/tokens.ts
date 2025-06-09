@@ -90,7 +90,7 @@ interface TokenDetails {
 
 export const accountTokensTools = [
     {
-        name: 'get_account_tokens',
+        name: 'get-account-tokens',
         description: 'Returns a list of all available fungible tokens for a given address, together with their balance',
         inputSchema: {
             type: 'object',
@@ -165,7 +165,7 @@ export const accountTokensTools = [
         }
     },
     {
-        name: 'get_account_tokens_count',
+        name: 'get-account-tokens-count',
         description: 'Returns the total number of tokens for a given address',
         inputSchema: {
             type: 'object',
@@ -204,7 +204,7 @@ export const accountTokensTools = [
         }
     },
     {
-        name: 'get_account_token',
+        name: 'get-account-token',
         description: 'Returns details about a specific fungible token from a given address',
         inputSchema: {
             type: 'object',

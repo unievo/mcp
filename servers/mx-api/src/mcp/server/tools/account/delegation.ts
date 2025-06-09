@@ -33,7 +33,7 @@ interface AccountDelegationLegacy {
 
 export const accountDelegationTools = [
     {
-        name: 'get_account_delegation',
+        name: 'get-account-delegation',
         description: 'Summarizes all delegation positions with staking providers, together with unDelegation positions',
         inputSchema: {
             type: 'object',
@@ -52,7 +52,7 @@ export const accountDelegationTools = [
         }
     },
     {
-        name: 'get_account_delegation_legacy',
+        name: 'get-account-delegation-legacy',
         description: 'Returns staking information related to the legacy delegation pool',
         inputSchema: {
             type: 'object',

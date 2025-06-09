@@ -154,7 +154,7 @@ interface TransactionDecodeDto {
 // Define the transaction tools
 export const transactionTools = [
     {
-        name: 'get_transactions',
+        name: 'get-transactions',
         description: 'Returns a list of transactions available on the blockchain',
         inputSchema: {
             type: 'object',
@@ -280,7 +280,7 @@ export const transactionTools = [
         }
     },
     {
-        name: 'get_transactions_count',
+        name: 'get-transactions-count',
         description: 'Returns the total number of transactions',
         inputSchema: {
             type: 'object',
@@ -363,7 +363,7 @@ export const transactionTools = [
         }
     },
     {
-        name: 'get_transaction',
+        name: 'get-transaction',
         description: 'Returns the details of a transaction',
         inputSchema: {
             type: 'object',
@@ -406,7 +406,7 @@ export const transactionTools = [
         }
     },
     {
-        name: 'send_transaction',
+        name: 'send-transaction',
         description: 'Posts a signed transaction on the blockchain',
         inputSchema: {
             type: 'object',
@@ -468,7 +468,7 @@ export const transactionTools = [
         }
     },
     {
-        name: 'decode_transaction',
+        name: 'decode-transaction',
         description: 'Decodes transaction action, given a minimum set of transaction details',
         inputSchema: {
             type: 'object',

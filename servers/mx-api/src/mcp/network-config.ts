@@ -6,7 +6,7 @@ import { handleGetAbout } from './server/tools/network.js';
  * Tool definition for get_network
  */
 export const getNetworkTool = {
-    name: 'get_network',
+    name: 'get-network',
     description: 'Get the current MultiversX network configuration',
     inputSchema: {
         type: 'object',
@@ -19,7 +19,7 @@ export const getNetworkTool = {
  * Tool definition for set_network
  */
 export const setNetworkTool = {
-    name: 'set_network',
+    name: 'set-network',
     description: `Set the MultiversX network (${Object.keys(networkConfigs).join('/')})`,
     inputSchema: {
         type: 'object',

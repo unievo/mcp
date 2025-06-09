@@ -222,7 +222,7 @@ interface Transfer {
 
 export const collectionTools = [
     {
-        name: 'get_collections',
+        name: 'get-collections',
         description: 'Returns non-fungible/semi-fungible/meta-esdt collections',
         inputSchema: {
             type: 'object',
@@ -315,7 +315,7 @@ export const collectionTools = [
         }
     },
     {
-        name: 'get_collections_count',
+        name: 'get-collections-count',
         description: 'Returns non-fungible/semi-fungible/meta-esdt collection count',
         inputSchema: {
             type: 'object',
@@ -378,7 +378,7 @@ export const collectionTools = [
         }
     },
     {
-        name: 'get_collection',
+        name: 'get-collection',
         description: 'Returns non-fungible/semi-fungible/meta-esdt collection details',
         inputSchema: {
             type: 'object',
@@ -397,7 +397,7 @@ export const collectionTools = [
         }
     },
     {
-        name: 'get_collection_nfts',
+        name: 'get-collection-nfts',
         description: 'Returns non-fungible/semi-fungible/meta-esdt tokens that belong to a collection',
         inputSchema: {
             type: 'object',
@@ -470,7 +470,7 @@ export const collectionTools = [
         }
     },
     {
-        name: 'get_collection_nfts_count',
+        name: 'get-collection-nfts-count',
         description: 'Returns non-fungible/semi-fungible/meta-esdt token count that belong to a collection',
         inputSchema: {
             type: 'object',
@@ -484,7 +484,7 @@ export const collectionTools = [
         }
     },
     {
-        name: 'get_collection_ranks',
+        name: 'get-collection-ranks',
         description: 'Returns NFT ranks in case the custom ranking preferred algorithm was set',
         inputSchema: {
             type: 'object',
@@ -498,7 +498,7 @@ export const collectionTools = [
         }
     },
     {
-        name: 'get_collection_transactions',
+        name: 'get-collection-transactions',
         description: 'Returns a list of transactions for a specific collection',
         inputSchema: {
             type: 'object',
@@ -601,7 +601,7 @@ export const collectionTools = [
         }
     },
     {
-        name: 'get_collection_transfers',
+        name: 'get-collection-transfers',
         description: 'Returns a list of transfers for a specific collection',
         inputSchema: {
             type: 'object',
@@ -688,7 +688,7 @@ export const collectionTools = [
         }
     },
     {
-        name: 'get_collection_transactions_count',
+        name: 'get-collection-transactions-count',
         description: 'Returns the total number of transactions for a specific collection',
         inputSchema: {
             type: 'object',
@@ -702,7 +702,7 @@ export const collectionTools = [
         }
     },
     {
-        name: 'get_collection_transfers_count',
+        name: 'get-collection-transfers-count',
         description: 'Returns the total number of transfers for a specific collection',
         inputSchema: {
             type: 'object',
@@ -716,7 +716,7 @@ export const collectionTools = [
         }
     },
     {
-        name: 'get_collection_accounts',
+        name: 'get-collection-accounts',
         description: 'Returns a list of addresses and balances for a specific collection',
         inputSchema: {
             type: 'object',

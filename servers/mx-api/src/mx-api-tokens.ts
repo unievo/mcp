@@ -13,9 +13,8 @@ import {
 } from '@modelcontextprotocol/sdk/types.js';
 import { setNetworkTool, handleNetworkConfigToolCall, getNetworkTool } from './mcp/network-config.js';
 import { serverInfoTool, handleServerInfoToolCall } from './mcp/server-info.js';
-import { registerResourceHandlers } from './mcp/server/resources/index.js';
-import { accountTokensTools, handleToolCalls, networkTools, tokenTools } from './mcp/server/tools/index.js';
-import { identityTools } from './mcp/server/tools/identities.js';
+import { allResources, registerResourceHandlers } from './mcp/server/resources/index.js';
+import { accountTokensTools, handleToolCalls, tokenTools } from './mcp/server/tools/index.js';
 
 class MxMcpServer {
     private server: Server;
@@ -69,7 +68,7 @@ class MxMcpServer {
     private setupResources() {
         this.server.setRequestHandler(ListResourcesRequestSchema, async () => ({
             resources: [
-                // set resources
+                ...allResources,
             ],
         }));
 

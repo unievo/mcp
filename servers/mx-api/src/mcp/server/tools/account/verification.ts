@@ -31,7 +31,7 @@ interface VerificationDetails {
 
 export const accountVerificationTools = [
     {
-        name: 'get_account_verification',
+        name: 'get-account-verification',
         description: 'Returns contract verification details',
         inputSchema: {
             type: 'object',

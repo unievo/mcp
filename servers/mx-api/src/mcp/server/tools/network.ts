@@ -98,7 +98,7 @@ interface AccountUsername {
 
 export const networkTools = [
     {
-        name: 'get_network_constants',
+        name: 'get-network-constants',
         description: 'Returns network-specific constants that can be used to automatically configure dapps',
         inputSchema: {
             type: 'object',
@@ -112,7 +112,7 @@ export const networkTools = [
         },
     },
     {
-        name: 'get_network_economics',
+        name: 'get-network-economics',
         description: 'Returns economics information',
         inputSchema: {
             type: 'object',
@@ -126,7 +126,7 @@ export const networkTools = [
         },
     },
     {
-        name: 'get_network_stats',
+        name: 'get-network-stats',
         description: 'Returns network statistics',
         inputSchema: {
             type: 'object',
@@ -140,7 +140,7 @@ export const networkTools = [
         },
     },
     {
-        name: 'get_about',
+        name: 'get-about',
         description: 'Returns information about network and API',
         inputSchema: {
             type: 'object',
@@ -154,7 +154,7 @@ export const networkTools = [
         },
     },
     {
-        name: 'get_dapp_config',
+        name: 'get-dapp-config',
         description: 'Returns configuration used in dapps',
         inputSchema: {
             type: 'object',
@@ -168,7 +168,7 @@ export const networkTools = [
         },
     },
     {
-        name: 'get_websocket_config',
+        name: 'get-websocket-config',
         description: 'Returns config used for accessing websocket on the same cluster',
         inputSchema: {
             type: 'object',
@@ -176,7 +176,7 @@ export const networkTools = [
         },
     },
     {
-        name: 'get_username_details',
+        name: 'get-username-details',
         description: 'Returns account details for a given username',
         inputSchema: {
             type: 'object',

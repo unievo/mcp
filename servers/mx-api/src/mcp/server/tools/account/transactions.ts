@@ -93,7 +93,7 @@ interface TransactionDetails {
 
 export const accountTransactionsTools = [
     {
-        name: 'get_account_transactions',
+        name: 'get-account-transactions',
         description: 'Returns details of all transactions where the account is sender or receiver',
         inputSchema: {
             type: 'object',
@@ -230,7 +230,7 @@ export const accountTransactionsTools = [
         }
     },
     {
-        name: 'get_account_transactions_count',
+        name: 'get-account-transactions-count',
         description: 'Returns total number of transactions for a given address where the account is sender or receiver',
         inputSchema: {
             type: 'object',

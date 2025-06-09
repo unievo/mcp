@@ -101,7 +101,7 @@ interface ContractDetails {
 
 export const accountContractTools = [
     {
-        name: 'get_account_deploys',
+        name: 'get-account-deploys',
         description: 'Returns deploys details for a given account',
         inputSchema: {
             type: 'object',
@@ -128,7 +128,7 @@ export const accountContractTools = [
         }
     },
     {
-        name: 'get_account_deploys_count',
+        name: 'get-account-deploys-count',
         description: 'Returns total number of deploys for a given address',
         inputSchema: {
             type: 'object',
@@ -142,7 +142,7 @@ export const accountContractTools = [
         }
     },
     {
-        name: 'get_account_sc_results',
+        name: 'get-account-sc-results',
         description: 'Returns smart contract results where the account is sender or receiver',
         inputSchema: {
             type: 'object',
@@ -169,7 +169,7 @@ export const accountContractTools = [
         }
     },
     {
-        name: 'get_account_sc_results_count',
+        name: 'get-account-sc-results-count',
         description: 'Returns number of smart contract results where the account is sender or receiver',
         inputSchema: {
             type: 'object',
@@ -183,7 +183,7 @@ export const accountContractTools = [
         }
     },
     {
-        name: 'get_account_sc_result',
+        name: 'get-account-sc-result',
         description: 'Returns details of a smart contract result where the account is sender or receiver',
         inputSchema: {
             type: 'object',
@@ -206,7 +206,7 @@ export const accountContractTools = [
         }
     },
     {
-        name: 'get_account_contracts',
+        name: 'get-account-contracts',
         description: 'Returns contracts details for a given account',
         inputSchema: {
             type: 'object',
@@ -233,7 +233,7 @@ export const accountContractTools = [
         }
     },
     {
-        name: 'get_account_contracts_count',
+        name: 'get-account-contracts-count',
         description: 'Returns total number of contracts for a given address',
         inputSchema: {
             type: 'object',

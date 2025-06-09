@@ -93,7 +93,7 @@ interface TransferDetails {
 
 export const accountTransfersTools = [
     {
-        name: 'get_account_transfers',
+        name: 'get-account-transfers',
         description: 'Returns both transfers triggerred by a user account (type = Transaction), as well as transfers triggerred by smart contracts (type = SmartContractResult)',
         inputSchema: {
             type: 'object',
@@ -229,7 +229,7 @@ export const accountTransfersTools = [
         }
     },
     {
-        name: 'get_account_transfers_count',
+        name: 'get-account-transfers-count',
         description: 'Return total count of transfers triggerred by a user account (type = Transaction), as well as transfers triggerred by smart contracts (type = SmartContractResult)',
         inputSchema: {
             type: 'object',

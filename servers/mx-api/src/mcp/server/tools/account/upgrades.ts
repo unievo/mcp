@@ -16,7 +16,7 @@ interface UpgradeDetails {
 
 export const accountUpgradesTools = [
     {
-        name: 'get_account_upgrades',
+        name: 'get-account-upgrades',
         description: 'Returns all upgrades details for a specific contract address',
         inputSchema: {
             type: 'object',

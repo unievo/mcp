@@ -8,7 +8,8 @@ export class MxApiClient {
             baseURL: config.apiUrl,
             timeout: 10000,
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'User-Agent': 'unievo-mcp-server'
             }
         });
 

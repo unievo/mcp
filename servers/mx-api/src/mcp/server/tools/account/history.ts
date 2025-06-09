@@ -24,7 +24,7 @@ interface AccountEsdtHistoryEntry {
 
 export const accountHistoryTools = [
     {
-        name: 'get_account_history',
+        name: 'get-account-history',
         description: 'Return account network token balance history',
         inputSchema: {
             type: 'object',
@@ -59,7 +59,7 @@ export const accountHistoryTools = [
         }
     },
     {
-        name: 'get_account_history_count',
+        name: 'get-account-history-count',
         description: 'Return account network token balance history count',
         inputSchema: {
             type: 'object',
@@ -89,7 +89,7 @@ export const accountHistoryTools = [
         }
     },
     {
-        name: 'get_account_token_history',
+        name: 'get-account-token-history',
         description: 'Returns account network token balance history',
         inputSchema: {
             type: 'object',
@@ -128,7 +128,7 @@ export const accountHistoryTools = [
         }
     },
     {
-        name: 'get_account_token_history_count',
+        name: 'get-account-token-history-count',
         description: 'Return account token balance history count',
         inputSchema: {
             type: 'object',

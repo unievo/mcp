@@ -61,7 +61,7 @@ interface Transfer {
 // Define the transfer tools
 export const transferTools = [
     {
-        name: 'get_transfers',
+        name: 'get-transfers',
         description: 'Returns both transfers triggered by a user account (type = Transaction), as well as transfers triggered by smart contracts (type = SmartContractResult)',
         inputSchema: {
             type: 'object',
@@ -173,7 +173,7 @@ export const transferTools = [
         }
     },
     {
-        name: 'get_transfers_count',
+        name: 'get-transfers-count',
         description: 'Return total count of transfers triggered by a user account (type = Transaction), as well as transfers triggered by smart contracts (type = SmartContractResult)',
         inputSchema: {
             type: 'object',

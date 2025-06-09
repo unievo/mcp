@@ -80,7 +80,7 @@ interface TokenRole {
 
 export const accountRolesTools = [
     {
-        name: 'get_account_collections_with_roles',
+        name: 'get-account-collections-with-roles',
         description: 'Returns NFT/SFT/MetaESDT collections where the account is owner or has some special roles assigned to it',
         inputSchema: {
             type: 'object',
@@ -107,7 +107,7 @@ export const accountRolesTools = [
         }
     },
     {
-        name: 'get_collections_with_roles_count',
+        name: 'get-collections-with-roles-count',
         description: 'Returns the total number of NFT/SFT/MetaESDT collections where the account is owner or has some special roles assigned to it',
         inputSchema: {
             type: 'object',
@@ -165,7 +165,7 @@ export const accountRolesTools = [
         }
     },
     {
-        name: 'get_account_collection_with_roles',
+        name: 'get-account-collection-with-roles',
         description: 'Returns details about a specific NFT/SFT/MetaESDT collection from a given address',
         inputSchema: {
             type: 'object',
@@ -188,7 +188,7 @@ export const accountRolesTools = [
         }
     },
     {
-        name: 'get_account_tokens_with_roles',
+        name: 'get-account-tokens-with-roles',
         description: 'Returns fungible token roles where the account is owner or has some special roles assigned to it',
         inputSchema: {
             type: 'object',
@@ -235,7 +235,7 @@ export const accountRolesTools = [
         }
     },
     {
-        name: 'get_tokens_with_roles_count',
+        name: 'get-tokens-with-roles-count',
         description: 'Returns the total number of fungible token roles where the account is owner or has some special roles assigned to it',
         inputSchema: {
             type: 'object',
@@ -269,7 +269,7 @@ export const accountRolesTools = [
         }
     },
     {
-        name: 'get_token_with_roles',
+        name: 'get-token-with-roles',
         description: 'Returns details about fungible token roles where the account is owner or has some special roles assigned to it',
         inputSchema: {
             type: 'object',

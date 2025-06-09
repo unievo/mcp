@@ -1,9 +1,10 @@
 import { Server } from '@modelcontextprotocol/sdk/server/index.js';
 import { ListResourcesRequestSchema } from '@modelcontextprotocol/sdk/types.js';
+import { serverInfoResource } from '../../server-info.js';
 
 
 export const allResources = [
-    // Add resources here
+    serverInfoResource,
 ];
 
 export function setupResources(server: Server) {

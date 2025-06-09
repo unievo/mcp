@@ -38,7 +38,7 @@ interface Identity {
 
 export const identityTools = [
     {
-        name: 'get_identities',
+        name: 'get-identities',
         description: 'List of all node identities, used to group nodes by the same entity (validator). "Free-floating" nodes that do not belong to any identity will also be returned',
         inputSchema: {
             type: 'object',
@@ -72,7 +72,7 @@ export const identityTools = [
         }
     },
     {
-        name: 'get_identity',
+        name: 'get-identity',
         description: 'Returns the details of a single identity (validator)',
         inputSchema: {
             type: 'object',
@@ -91,7 +91,7 @@ export const identityTools = [
         }
     },
     {
-        name: 'get_identity_avatar',
+        name: 'get-identity-avatar',
         description: 'Returns the avatar of a specific identity',
         inputSchema: {
             type: 'object',

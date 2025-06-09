@@ -15,7 +15,7 @@ interface StakeDetails {
 
 export const accountStakeTools = [
     {
-        name: 'get_account_stake',
+        name: 'get-account-stake',
         description: 'Summarizes total staked amount for the given provider, as well as when and how much unbond will be performed',
         inputSchema: {
             type: 'object',

@@ -87,7 +87,7 @@ interface AccountsCountResponse {
 
 export const accountsTools = [
     {
-        name: 'get_accounts',
+        name: 'get-accounts',
         description: 'Returns all accounts available on blockchain. By default it returns 25 accounts',
         inputSchema: {
             type: 'object',
@@ -169,7 +169,7 @@ export const accountsTools = [
         }
     },
     {
-        name: 'get_accounts_count',
+        name: 'get-accounts-count',
         description: 'Returns total number of accounts available on blockchain',
         inputSchema: {
             type: 'object',
@@ -208,7 +208,7 @@ export const accountsTools = [
         }
     },
     {
-        name: 'get_account_details',
+        name: 'get-account-details',
         description: 'Returns account details for a given address',
         inputSchema: {
             type: 'object',

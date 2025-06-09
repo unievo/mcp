@@ -18,7 +18,7 @@ interface WaitingListDetails {
 
 export const accountWaitingListTools = [
     {
-        name: 'get_account_waiting_list',
+        name: 'get-account-waiting-list',
         description: 'Returns all nodes in the node queue where the account is owner',
         inputSchema: {
             type: 'object',

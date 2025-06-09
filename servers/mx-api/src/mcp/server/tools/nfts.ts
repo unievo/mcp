@@ -177,7 +177,7 @@ interface ProcessNftRequest {
 
 export const nftTools = [
     {
-        name: 'get_nfts',
+        name: 'get-nfts',
         description: 'Returns a list of Non-Fungible / Semi-Fungible / MetaESDT tokens available on blockchain',
         inputSchema: {
             type: 'object',
@@ -321,7 +321,7 @@ export const nftTools = [
         }
     },
     {
-        name: 'get_nfts_count',
+        name: 'get-nfts-count',
         description: 'Returns the total number of Non-Fungible / Semi-Fungible / MetaESDT tokens',
         inputSchema: {
             type: 'object',
@@ -409,7 +409,7 @@ export const nftTools = [
         }
     },
     {
-        name: 'get_nft',
+        name: 'get-nft',
         description: 'Returns the details of a Non-Fungible / Semi-Fungible / MetaESDT token',
         inputSchema: {
             type: 'object',
@@ -440,7 +440,7 @@ export const nftTools = [
         }
     },
     {
-        name: 'get_nft_accounts',
+        name: 'get-nft-accounts',
         description: 'Returns a list of addresses that hold a specific Non-Fungible / Semi-Fungible / MetaESDT token',
         inputSchema: {
             type: 'object',
@@ -467,7 +467,7 @@ export const nftTools = [
         }
     },
     {
-        name: 'get_nfts_count',
+        name: 'get-nft-accounts-count',
         description: 'Returns the total number of addresses that hold a specific Non-Fungible / Semi-Fungible / MetaESDT token',
         inputSchema: {
             type: 'object',
@@ -481,7 +481,7 @@ export const nftTools = [
         }
     },
     {
-        name: 'get_nft_supply',
+        name: 'get-nft-supply',
         description: 'Returns the supply of a specific Non-Fungible / Semi-Fungible / MetaESDT token',
         inputSchema: {
             type: 'object',
@@ -500,7 +500,7 @@ export const nftTools = [
         }
     },
     {
-        name: 'get_nft_transactions',
+        name: 'get-nft-transactions',
         description: 'Returns a list of transactions for a NonFungibleESDT or SemiFungibleESDT',
         inputSchema: {
             type: 'object',
@@ -602,7 +602,7 @@ export const nftTools = [
         }
     },
     {
-        name: 'get_nft_transactions_count',
+        name: 'get-nft-transactions-count',
         description: 'Returns the total number of transactions for a specific NonFungibleESDT or SemiFungibleESDT',
         inputSchema: {
             type: 'object',
@@ -666,7 +666,7 @@ export const nftTools = [
         }
     },
     {
-        name: 'get_nft_transfers',
+        name: 'get-nft-transfers',
         description: 'Returns a list of transfers for a NonFungibleESDT or SemiFungibleESDT',
         inputSchema: {
             type: 'object',
@@ -741,7 +741,7 @@ export const nftTools = [
         }
     },
     {
-        name: 'get_nft_transfers_count',
+        name: 'get-nft-transfers-count',
         description: 'Returns the total number of transfers for a specific NonFungibleESDT or SemiFungibleESDT',
         inputSchema: {
             type: 'object',
@@ -794,7 +794,7 @@ export const nftTools = [
         }
     },
     /* {
-        name: 'process_nfts',
+        name: 'process-nfts',
         description: 'Trigger NFT media/metadata reprocessing for collection owners',
         inputSchema: {
             type: 'object',

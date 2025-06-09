@@ -16,7 +16,7 @@ import {
     handleToolCalls,
     accountRolesTools,
 } from './mcp/server/tools/index.js';
-import { registerResourceHandlers } from './mcp/server/resources/index.js';
+import { allResources, registerResourceHandlers } from './mcp/server/resources/index.js';
 import { handleServerInfoToolCall, serverInfoTool } from './mcp/server-info.js';
 
 class MxMcpServer {
@@ -68,7 +68,7 @@ class MxMcpServer {
     private setupResources() {
         this.server.setRequestHandler(ListResourcesRequestSchema, async () => ({
             resources: [
-                // set resources
+                ...allResources,
             ],
         }));
     

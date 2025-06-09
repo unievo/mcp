@@ -127,7 +127,7 @@ interface TokenAccount {
 // Define the token tools
 export const tokenTools = [
     {
-        name: 'get_tokens',
+        name: 'get-tokens',
         description: 'Returns all tokens available on the blockchain',
         inputSchema: {
             type: 'object',
@@ -199,7 +199,7 @@ export const tokenTools = [
         }
     },
     {
-        name: 'get_tokens_count',
+        name: 'get-tokens-count',
         description: 'Returns the total number of tokens',
         inputSchema: {
             type: 'object',
@@ -225,7 +225,7 @@ export const tokenTools = [
         }
     },
     {
-        name: 'get_token',
+        name: 'get-token',
         description: 'Returns the details of a specific token',
         inputSchema: {
             type: 'object',
@@ -244,7 +244,7 @@ export const tokenTools = [
         }
     },
     {
-        name: 'get_token_supply',
+        name: 'get-token-supply',
         description: 'Returns supply metrics for a specific token',
         inputSchema: {
             type: 'object',
@@ -263,7 +263,7 @@ export const tokenTools = [
         }
     },
     {
-        name: 'get_token_accounts',
+        name: 'get-token-accounts',
         description: 'Returns a list of accounts that hold a specific token',
         inputSchema: {
             type: 'object',
@@ -290,7 +290,7 @@ export const tokenTools = [
         }
     },
     {
-        name: 'get_token_accounts_count',
+        name: 'get-token-accounts-count',
         description: 'Returns the number of accounts that hold a specific token',
         inputSchema: {
             type: 'object',
@@ -304,7 +304,7 @@ export const tokenTools = [
         }
     },
     {
-        name: 'get_token_transactions',
+        name: 'get-token-transactions',
         description: 'Returns a list of transactions for a specific token',
         inputSchema: {
             type: 'object',
@@ -391,7 +391,7 @@ export const tokenTools = [
         }
     },
     {
-        name: 'get_token_transactions_count',
+        name: 'get-token-transactions-count',
         description: 'Returns the number of transactions for a specific token',
         inputSchema: {
             type: 'object',
@@ -445,7 +445,7 @@ export const tokenTools = [
         }
     },
     {
-        name: 'get_token_transfers',
+        name: 'get-token-transfers',
         description: 'Returns transfers for a specific token',
         inputSchema: {
             type: 'object',
@@ -548,7 +548,7 @@ export const tokenTools = [
         }
     },
     {
-        name: 'get_token_transfers_count',
+        name: 'get-token-transfers-count',
         description: 'Returns the number of transfers for a specific token',
         inputSchema: {
             type: 'object',
@@ -602,7 +602,7 @@ export const tokenTools = [
         }
     },
     {
-        name: 'get_token_logo_png',
+        name: 'get-token-logo-png',
         description: 'Returns the PNG logo for a specific token',
         inputSchema: {
             type: 'object',
@@ -616,7 +616,7 @@ export const tokenTools = [
         }
     },
     {
-        name: 'get_token_logo_svg',
+        name: 'get-token-logo-svg',
         description: 'Returns the SVG logo for a specific token',
         inputSchema: {
             type: 'object',

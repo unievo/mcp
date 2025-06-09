@@ -19,7 +19,7 @@ interface AccountKey {
 
 export const accountKeysTools = [
     {
-        name: 'get_account_keys',
+        name: 'get-account-keys',
         description: 'Returns node keys for a given account',
         inputSchema: {
             type: 'object',
@@ -46,7 +46,7 @@ export const accountKeysTools = [
         }
     },
     {
-        name: 'get_account_keys_count',
+        name: 'get-account-keys-count',
         description: 'Returns number of node keys for a given account',
         inputSchema: {
             type: 'object',

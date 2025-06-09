@@ -24,7 +24,7 @@ interface EsdtHistoryEntry {
 
 export const accountEsdtHistoryTools = [
     {
-        name: 'get_account_esdt_history',
+        name: 'get-account-esdt-history',
         description: 'Returns account esdts balance history',
         inputSchema: {
             type: 'object',
@@ -68,7 +68,7 @@ export const accountEsdtHistoryTools = [
         }
     },
     {
-        name: 'get_account_esdt_history_count',
+        name: 'get-account-esdt-history-count',
         description: 'Returns total number of ESDT history entries for a given address',
         inputSchema: {
             type: 'object',

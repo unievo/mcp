@@ -112,7 +112,7 @@ interface AccountNft {
 
 export const accountNftsTools = [
     {
-        name: 'get_account_nfts',
+        name: 'get-account-nfts',
         description: 'Returns a list of all available NFTs/SFTs/MetaESDTs owned by the provided address',
         inputSchema: {
             type: 'object',
@@ -207,7 +207,7 @@ export const accountNftsTools = [
         }
     },
     {
-        name: 'get_account_nfts_count',
+        name: 'get-account-nfts-count',
         description: 'Returns the total number of NFT/SFT tokens from a given address',
         inputSchema: {
             type: 'object',
@@ -253,7 +253,7 @@ export const accountNftsTools = [
         }
     },
     {
-        name: 'get_account_nft',
+        name: 'get-account-nft',
         description: 'Returns details about a specific NFT/SFT token for a given address',
         inputSchema: {
             type: 'object',

@@ -11,7 +11,7 @@ interface AccountDeferred {
 
 export const accountDeferredTools = [
     {
-        name: 'get_account_deferred',
+        name: 'get-account-deferred',
         description: 'Returns deferred payments for a given account',
         inputSchema: {
             type: 'object',

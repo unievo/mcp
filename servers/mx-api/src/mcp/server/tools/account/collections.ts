@@ -99,7 +99,7 @@ interface NftCollectionAccountDetailed extends NftCollectionAccount {
 
 export const accountCollectionTools = [
     {
-        name: 'get_account_collections',
+        name: 'get-account-collections',
         description: 'Returns NFT/SFT/MetaESDT collections where the account owns one or more NFTs',
         inputSchema: {
             type: 'object',
@@ -144,7 +144,7 @@ export const accountCollectionTools = [
         }
     },
     {
-        name: 'get_account_collections_count',
+        name: 'get-account-collections-count',
         description: 'Returns the total number of NFT/SFT/MetaESDT collections where the account owns one or more NFTs',
         inputSchema: {
             type: 'object',
@@ -176,7 +176,7 @@ export const accountCollectionTools = [
         }
     },
     {
-        name: 'get_account_collection',
+        name: 'get-account-collection',
         description: 'Returns details about a specific NFT/SFT/MetaESDT collection from a given address',
         inputSchema: {
             type: 'object',

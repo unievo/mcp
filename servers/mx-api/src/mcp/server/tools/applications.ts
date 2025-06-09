@@ -21,7 +21,7 @@ interface Application {
 
 export const applicationTools = [
     {
-        name: 'get_applications',
+        name: 'get-applications',
         description: 'Returns all smart contracts available on blockchain. By default it returns 25 smart contracts',
         inputSchema: {
             type: 'object',
@@ -55,7 +55,7 @@ export const applicationTools = [
         }
     },
     {
-        name: 'get_applications_count',
+        name: 'get-applications-count',
         description: 'Returns total number of smart contracts',
         inputSchema: {
             type: 'object',
@@ -72,7 +72,7 @@ export const applicationTools = [
         }
     },
     {
-        name: 'get_application',
+        name: 'get-application',
         description: 'Returns details of a smart contract',
         inputSchema: {
             type: 'object',

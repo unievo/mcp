@@ -161,9 +161,9 @@ The API provides tools to query both types separately or together, allowing for 
 ### Network Tools
 
 1. `set-network`
-   - Description: Set the MultiversX network to use (mainnet/testnet/devnet)
+   - Description: Set the MultiversX network to use
    - Parameters:
-     - `network`: String enum ("mainnet" | "testnet" | "devnet")
+     - `network`: String
 
 ### Transaction Tools
 

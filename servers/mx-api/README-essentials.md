@@ -102,35 +102,35 @@ A selection of most relevant fields are implemented by default for each tool if 
 The server can be used with any MCP-compatible client. Example usage:
 
 ```typescript
-// Using set_network tool
+// Using set-network tool
 {
-  "name": "set_network",
+  "name": "set-network",
   "arguments": {
     "network": "mainnet"
   }
 }
 
-// Using get_accounts tool
+// Using get-accounts tool
 {
-  "name": "get_accounts",
+  "name": "get-accounts",
   "arguments": {
     "size": 10,
     "fields": ["address", "balance", "nonce"]
   }
 }
 
-// Using get_account_tokens tool
+// Using get-account-tokens tool
 {
-  "name": "get_account_tokens",
+  "name": "get-account-tokens",
   "arguments": {
     "address": "erd1qqqqqqqqqqqqqpgqd77fnev2sthnczp2lnfx0y5jdycynjfhzzgq6p3rax",
     "fields": ["identifier", "name", "balance"]
   }
 }
 
-// Using get_nfts tool
+// Using get-nfts tool
 {
-  "name": "get_nfts",
+  "name": "get-nfts",
   "arguments": {
     "collection": "MEDAL-ae074f",
     "size": 10,
@@ -138,9 +138,9 @@ The server can be used with any MCP-compatible client. Example usage:
   }
 }
 
-// Using get_transactions tool
+// Using get-transactions tool
 {
-  "name": "get_transactions",
+  "name": "get-transactions",
   "arguments": {
     "sender": "erd1qqqqqqqqqqqqqpgqd77fnev2sthnczp2lnfx0y5jdycynjfhzzgq6p3rax",
     "size": 10,
@@ -154,9 +154,9 @@ The server can be used with any MCP-compatible client. Example usage:
 ### Network Tools
 
 1. `set-network`
-   - Description: Set the MultiversX network to use (mainnet/testnet/devnet)
+   - Description: Set the MultiversX network to use
    - Parameters:
-     - `network`: String enum ("mainnet" | "testnet" | "devnet")
+     - `network`: String
 
 ### Account Tools
 
@@ -181,7 +181,7 @@ The server can be used with any MCP-compatible client. Example usage:
      - `addresses`: A comma-separated list of addresses to filter by
      - `fields`: Array of strings, fields to retrieve. Use "all" for all fields
 
-2. `get_account_details`
+2. `get-account-details`
    - Description: Returns account details for a given address
    - Parameters:
      - `address`: Account address (required)
@@ -190,7 +190,7 @@ The server can be used with any MCP-compatible client. Example usage:
 
 ### Account Token Tools
 
-1. `get_account_tokens`
+1. `get-account-tokens`
    - Description: Returns a list of all available fungible tokens for a given address, together with their balance
    - Parameters:
      - `address`: Account address (required)
@@ -207,7 +207,7 @@ The server can be used with any MCP-compatible client. Example usage:
      - `mexPairType`: Token Mex Pair
      - `fields`: Array of strings, fields to retrieve. Use "all" for all fields
 
-2. `get_account_tokens_count`
+2. `get-account-tokens-count`
    - Description: Returns the total number of tokens for a given address
    - Parameters:
      - `address`: Account address (required)
@@ -218,7 +218,7 @@ The server can be used with any MCP-compatible client. Example usage:
      - `identifiers`: A comma-separated list of identifiers to filter by
      - `includeMetaESDT`: Include MetaESDTs in response
 
-3. `get_account_token`
+3. `get-account-token`
    - Description: Returns details for a specific token for a given address
    - Parameters:
      - `address`: Account address (required)
@@ -227,7 +227,7 @@ The server can be used with any MCP-compatible client. Example usage:
 
 ### Account Transaction Tools
 
-1. `get_account_transactions`
+1. `get-account-transactions`
    - Description: Returns details of all transactions where the account is sender or receiver
    - Parameters:
      - `address`: Account address (required)
@@ -254,15 +254,15 @@ The server can be used with any MCP-compatible client. Example usage:
      - `withUsername`: Integrates username in assets for all addresses present in the transactions
      - `withBlockInfo`: Include block information
 
-2. `get_account_transactions_count`
+2. `get-account-transactions-count`
    - Description: Returns the total number of transactions for a given address
    - Parameters:
      - `address`: Account address (required)
-     - Similar filtering options as `get_account_transactions`
+     - Similar filtering options as `get-account-transactions`
 
 ### Account Collection Tools
 
-1. `get_account_collections`
+1. `get-account-collections`
    - Description: Returns NFT/SFT/MetaESDT collections where the account owns one or more NFTs
    - Parameters:
      - `address`: Account address (required)
@@ -274,13 +274,13 @@ The server can be used with any MCP-compatible client. Example usage:
      - `excludeMetaESDT`: Exclude collections of type "MetaESDT" in the response
      - `fields`: Array of strings, fields to retrieve. Use "all" for all fields
 
-2. `get_account_collections_count`
+2. `get-account-collections-count`
    - Description: Returns the total number of NFT/SFT/MetaESDT collections where the account owns one or more NFTs
    - Parameters:
      - `address`: Account address (required)
-     - Similar filtering options as `get_account_collections`
+     - Similar filtering options as `get-account-collections`
 
-3. `get_account_collection`
+3. `get-account-collection`
    - Description: Returns details about a specific NFT/SFT/MetaESDT collection from a given address
    - Parameters:
      - `address`: Account address (required)
@@ -289,7 +289,7 @@ The server can be used with any MCP-compatible client. Example usage:
 
 ### Account NFT Tools
 
-1. `get_account_nfts`
+1. `get-account-nfts`
    - Description: Returns a list of all available NFTs/SFTs/MetaESDTs owned by the provided address
    - Parameters:
      - `address`: Account address (required)
@@ -314,13 +314,13 @@ The server can be used with any MCP-compatible client. Example usage:
      - `timestamp`: Filter by timestamp
      - `fields`: Array of strings, fields to retrieve. Use "all" for all fields
 
-2. `get_account_nfts_count`
+2. `get-account-nfts-count`
    - Description: Returns the total number of NFTs/SFTs/MetaESDTs owned by the provided address
    - Parameters:
      - `address`: Account address (required)
-     - Similar filtering options as `get_account_nfts`
+     - Similar filtering options as `get-account-nfts`
 
-3. `get_account_nft`
+3. `get-account-nft`
    - Description: Returns details about a specific NFT/SFT/MetaESDT owned by the provided address
    - Parameters:
      - `address`: Account address (required)
@@ -329,7 +329,7 @@ The server can be used with any MCP-compatible client. Example usage:
 
 ### Collection Tools
 
-1. `get_collections`
+1. `get-collections`
    - Description: Returns non-fungible/semi-fungible/meta-esdt collections
    - Parameters:
      - `from`: Number of items to skip for the result set
@@ -351,7 +351,7 @@ The server can be used with any MCP-compatible client. Example usage:
      - `order`: Sorting order ("asc" | "desc")
      - `fields`: Array of strings, fields to retrieve. Use "all" for all fields
 
-2. `get_collection`
+2. `get-collection`
    - Description: Returns non-fungible/semi-fungible/meta-esdt collection details
    - Parameters:
      - `collection`: Collection identifier (required)
@@ -359,7 +359,7 @@ The server can be used with any MCP-compatible client. Example usage:
 
 ### NFT Tools
 
-1. `get_nfts`
+1. `get-nfts`
    - Description: Returns a list of Non-Fungible / Semi-Fungible / MetaESDT tokens available on blockchain
    - Parameters:
      - `from`: Number of items to skip for the result set
@@ -392,7 +392,7 @@ The server can be used with any MCP-compatible client. Example usage:
      - `rarityAlgorithm`: Rarity algorithm to use
      - `includeRarities`: Include specific rarities
 
-2. `get_nft`
+2. `get-nft`
    - Description: Returns the details of a Non-Fungible / Semi-Fungible / MetaESDT token
    - Parameters:
      - `identifier`: Token identifier (required)
@@ -403,7 +403,7 @@ The server can be used with any MCP-compatible client. Example usage:
 
 ### Token Tools
 
-1. `get_tokens`
+1. `get-tokens`
    - Description: Returns all tokens available on the blockchain
    - Parameters:
      - `from`: Number of items to skip for the result set
@@ -420,7 +420,7 @@ The server can be used with any MCP-compatible client. Example usage:
      - `priceSource`: Token Price Source ("dataApi" | "customUrl")
      - `fields`: Array of strings, fields to retrieve. Use "all" for all fields
 
-2. `get_token`
+2. `get-token`
    - Description: Returns details for a specific token
    - Parameters:
      - `identifier`: Token identifier (required)
@@ -428,7 +428,7 @@ The server can be used with any MCP-compatible client. Example usage:
 
 ### Transaction Tools
 
-1. `get_transactions`
+1. `get-transactions`
    - Description: Returns a list of transactions available on the blockchain
    - Parameters:
      - `from`: Number of items to skip for the result set
@@ -453,7 +453,7 @@ The server can be used with any MCP-compatible client. Example usage:
      - `withUsername`: Integrates username in assets for all addresses present in the transactions
      - `fields`: Array of strings, fields to retrieve. Use "all" for all fields
 
-2. `get_transaction`
+2. `get-transaction`
    - Description: Returns transaction details for a given hash
    - Parameters:
      - `txHash`: Transaction hash (required)
@@ -464,12 +464,12 @@ The server can be used with any MCP-compatible client. Example usage:
      - `withUsername`: Integrates username in assets for all addresses present in the transaction
      - `fields`: Array of strings, fields to retrieve. Use "all" for all fields
 
-3. `send_transaction`
+3. `send-transaction`
    - Description: Posts a signed transaction on the blockchain
    - Parameters:
      - Transaction details including chainId, data, gasLimit, gasPrice, nonce, receiver, sender, signature, value, version, etc.
 
-4. `decode_transaction`
+4. `decode-transaction`
    - Description: Decodes the data field for a given transaction
    - Parameters:
      - `data`: Transaction data to decode (required)

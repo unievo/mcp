@@ -97,26 +97,26 @@ A selection of most relevant fields are implemented by default for each tool if 
 The server can be used with any MCP-compatible client. Example usage:
 
 ```typescript
-// Using set_network tool
+// Using set-network tool
 {
-  "name": "set_network",
+  "name": "set-network",
   "arguments": {
     "network": "mainnet"
   }
 }
 
-// Using get_application tool
+// Using get-application tool
 {
-  "name": "get_application",
+  "name": "get-application",
   "arguments": {
     "address": "erd1qqqqqqqqqqqqqpgqd77fnev2sthnczp2lnfx0y5jdycynjfhzzgq6p3rax",
     "fields": ["contract", "owner", "balance"]
   }
 }
 
-// Using get_account_deploys tool
+// Using get-account-deploys tool
 {
-  "name": "get_account_deploys",
+  "name": "get-account-deploys",
   "arguments": {
     "address": "erd1qqqqqqqqqqqqqpgqd77fnev2sthnczp2lnfx0y5jdycynjfhzzgq6p3rax",
     "fields": ["all"]
@@ -129,9 +129,9 @@ The server can be used with any MCP-compatible client. Example usage:
 ### Network Tool
 
 1. `set-network`
-   - Description: Set the MultiversX network to use (mainnet/testnet/devnet)
+   - Description: Set the MultiversX network to use
    - Parameters:
-     - `network`: String enum ("mainnet" | "testnet" | "devnet")
+     - `network`: String
 
 ### Application Tools
 

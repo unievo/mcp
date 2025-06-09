@@ -97,35 +97,35 @@ A selection of most relevant fields are implemented by default for each tool if 
 The server can be used with any MCP-compatible client. Example usage:
 
 ```typescript
-// Using set_network tool
+// Using set-network tool
 {
-  "name": "set_network",
+  "name": "set-network",
   "arguments": {
     "network": "mainnet"
   }
 }
 
-// Using get_account_collections_with_roles tool
+// Using get-account-collections-with-roles tool
 {
-  "name": "get_account_collections_with_roles",
+  "name": "get-account-collections-with-roles",
   "arguments": {
     "address": "erd1qqqqqqqqqqqqqpgqd77fnev2sthnczp2lnfx0y5jdycynjfhzzgq6p3rax",
     "fields": ["collection", "name", "type", "canCreate", "canBurn"]
   }
 }
 
-// Using get_account_tokens_with_roles tool
+// Using get-account-tokens-with-roles tool
 {
-  "name": "get_account_tokens_with_roles",
+  "name": "get-account-tokens-with-roles",
   "arguments": {
     "address": "erd1qqqqqqqqqqqqqpgqd77fnev2sthnczp2lnfx0y5jdycynjfhzzgq6p3rax",
     "fields": ["identifier", "name", "canMint", "canBurn"]
   }
 }
 
-// Using get_token_with_roles tool
+// Using get-token-with-roles tool
 {
-  "name": "get_token_with_roles",
+  "name": "get-token-with-roles",
   "arguments": {
     "address": "erd1qqqqqqqqqqqqqpgqd77fnev2sthnczp2lnfx0y5jdycynjfhzzgq6p3rax",
     "identifier": "WEGLD-bd4d79",
@@ -165,9 +165,9 @@ These roles are essential for managing tokens and collections on the MultiversX 
 ### Network Tools
 
 1. `set-network`
-   - Description: Set the MultiversX network to use (mainnet/testnet/devnet)
+   - Description: Set the MultiversX network to use
    - Parameters:
-     - `network`: String enum ("mainnet" | "testnet" | "devnet")
+     - `network`: String
 
 ### Account Roles Tools
 

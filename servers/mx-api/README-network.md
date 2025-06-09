@@ -97,17 +97,17 @@ A selection of most relevant fields are implemented by default for each tool if 
 The server can be used with any MCP-compatible client. Example usage:
 
 ```typescript
-// Using set_network tool
+// Using set-network tool
 {
-  "name": "set_network",
+  "name": "set-network",
   "arguments": {
     "network": "mainnet"
   }
 }
 
-// Using get_network_stats tool
+// Using get-network-stats tool
 {
-  "name": "get_network_stats",
+  "name": "get-network-stats",
   "arguments": {}
 }
 ```
@@ -117,9 +117,9 @@ The server can be used with any MCP-compatible client. Example usage:
 ### Network Tools
 
 1. `set-network`
-   - Description: Set the MultiversX network to use (mainnet/testnet/devnet)
+   - Description: Set the MultiversX network to use
    - Parameters:
-     - `network`: String enum ("mainnet" | "testnet" | "devnet")
+     - `network`: String
 
 2. `get-network-stats`
    - Description: Get current network statistics
@@ -127,35 +127,35 @@ The server can be used with any MCP-compatible client. Example usage:
      - `fields`: Array of strings, fields to retrieve. Use "all" for all fields.
    - Returns: Network statistics including accounts, blocks, transactions, epoch, refresh rate, rounds passed, rounds per epoch, shards, etc.
 
-3. `get_network_economics`
+3. `get-network-economics`
    - Description: Get network economics information
    - Parameters:
      - `fields`: Array of strings, fields to retrieve. Use "all" for all fields.
    - Returns: Economic metrics including total supply, circulating supply, staked amount, price, market cap, APR, etc.
 
-4. `get_network_constants`
+4. `get-network-constants`
    - Description: Get network-specific constants that can be used to automatically configure dapps
    - Parameters:
      - `fields`: Array of strings, fields to retrieve. Use "all" for all fields.
    - Returns: Network configuration constants including chain ID, gas limits, min gas price, etc.
 
-5. `get_about`
+5. `get-about`
    - Description: Returns information about network and API
    - Parameters:
      - `fields`: Array of strings, fields to retrieve. Use "all" for all fields.
    - Returns: Information about app version, network, cluster, version, indexer version, gateway version, and features.
 
-6. `get_dapp_config`
+6. `get-dapp-config`
    - Description: Returns configuration used in dapps
    - Parameters:
      - `fields`: Array of strings, fields to retrieve. Use "all" for all fields.
    - Returns: Dapp configuration including ID, name, EGLD label, decimals, denomination, gas settings, API timeout, wallet connect settings, etc.
 
-7. `get_websocket_config`
+7. `get-websocket-config`
    - Description: Returns config used for accessing websocket on the same cluster
    - Returns: Websocket configuration including URL.
 
-8. `get_username_details`
+8. `get-username-details`
    - Description: Returns account details for a given username
    - Parameters:
      - `username`: String, the username to get details for (required)

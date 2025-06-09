@@ -3,7 +3,7 @@ import { setConfig, networkConfigs } from '../config.js';
 import { handleGetAbout } from './server/tools/network.js';
 
 /**
- * Tool definition for get_network
+ * Tool definition for get-network
  */
 export const getNetworkTool = {
     name: 'get-network',
@@ -16,7 +16,7 @@ export const getNetworkTool = {
 };
 
 /**
- * Tool definition for set_network
+ * Tool definition for set-network
  */
 export const setNetworkTool = {
     name: 'set-network',
@@ -35,7 +35,7 @@ export const setNetworkTool = {
 };
 
 /**
- * Handle the set_network tool call
+ * Handle the set-network tool call
  * @param args Tool arguments
  * @returns Response with confirmation message
  */
@@ -61,7 +61,7 @@ export async function handleSetNetwork(args: any): Promise<{ content: { type: st
 }
 
 /**
- * Handle the get_network tool call
+* Handle the get-network tool call
  * @returns Response with current network information
  */
 export async function handleGetNetwork(): Promise<{ content: { type: string; text: string }[] }> {
@@ -76,11 +76,11 @@ export async function handleGetNetwork(): Promise<{ content: { type: string; tex
  * @returns Response if tool is handled, undefined otherwise
  */
 export async function handleNetworkConfigToolCall(toolName: string, args: any): Promise<{ content: { type: string; text: string }[] } | undefined> {
-    if (toolName === 'get_network') {
+    if (toolName === 'get-network') {
         return handleGetNetwork();
     }
     
-    if (toolName === 'set_network') {
+    if (toolName === 'set-network') {
         return handleSetNetwork(args);
     }
     

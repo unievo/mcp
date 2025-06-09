@@ -12,7 +12,7 @@ export const mxApiMcpUseGuide = `
 - Using "fields": ["all"] will return all fields, only use if explicitly required to get all fields, otherwise use the default set of fields, to avoid unnecessary data transfer and token usage.
 - Some tools also have parameter names starting with "with{FieldName}" for getting additional field data. Specify them only if explicitly requested to get a specific "with" parameter.
 - When specifying "with{FieldName}" parameters always use "fields": ["all"] in the request.
-- For tool calls that return an array of items, if no count or size is explicitly specified, call the "{toolName}_count" version of the tool first (if available) to get the total number of items, and then proceed with a batch not greater than 5 items.
+- For tool calls that return an array of items, if no count or size is explicitly specified, call the "{toolName}-count" version of the tool first (if available) to get the total number of items, and then proceed with a batch not greater than 5 items.
 `
 
 export const mxDataFormatGuide = `
@@ -88,7 +88,7 @@ export async function handleServerInfoTool(): Promise<{ content: { type: string;
     };
 }
 
-// Resource definition for server_info
+// Resource definition for server-info
 export const serverInfoResource = {
     uri: 'server://info',
     name: 'Server info',

@@ -9,12 +9,13 @@ This Model Context Protocol (MCP) server provides all the tools for interacting 
 
 The MultiversX API Index server provides access to all the tools and domains. There are also specialized servers for each domain:
 
-- [Network](README-network.md): Network-related information
 - [Accounts](README-accounts.md): Account-related operations
 - [Collections](README-collections.md): NFT/SFT collections
+- [Contracts](README-contracts.md) : Smart contracts
+- [Network](README-network.md): Network-related information
+- [Roles](README-roles.md): Account roles for collections and tokens
 - [Tokens](README-tokens.md): Fungible tokens
 - [Transactions](README-transactions.md): Blockchain transactions and transfers
-- [Roles](README-roles.md): Account roles for collections and tokens
 
 There is also an Essentials server that provides a reduced version of the full index server for multiple essential tools across multiple domains:
 

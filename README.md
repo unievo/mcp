@@ -2,11 +2,19 @@
 
 Model Context Protocol (MCP) library that provides resources and tools for AI agents (Chatbots, Coding agents, etc.) to understand and interact with domains specific tools and knowledge.
 
-## [MultiversX](https://multiversx.com/) - the EGLD Network
+## [MultiversX](https://multiversx.com/) (EGLD)
 
-### 1. API Service MCP Servers - [mx-api](servers/mx-api)
+### API MCP Servers - [mx-api](servers/mx-api)
 
 These servers allow AI agents to read from and interact with the MultiversX blockchain API.
+
+#### Supported networks
+
+- Mainnet
+- Testnet
+- Devnet
+- Vibechain (VibeOX)
+- Any other network is [configurable](/servers/mx-api/src/config.ts)
 
 There are multiple MultiversX API MCP servers, each focused on a specific domain:
 

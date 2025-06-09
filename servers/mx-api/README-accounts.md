@@ -83,9 +83,10 @@ npm run build
 
 > [!NOTE]
 >
-> All mx-api servers include the following tool:
+> All mx-api servers include the following:
 >
->- `server_info`: Returns information about recommended usage of mx-api servers for AI agents. The response of this tool is the same for all servers, instruct the agent to call this tool on any mx-api server to obtain the context information.
+>- `server-info` tool: Returns information about recommended usage of mx-api servers for AI agents. The response of this tool is the same for all servers, instruct the agent to call this tool on any mx-api server to obtain the context information.
+>- `server://info` resource: Returns the same information.
 
 ### Fields Parameter
 

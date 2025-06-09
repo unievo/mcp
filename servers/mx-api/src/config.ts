@@ -8,6 +8,9 @@ export const networkConfigs = {
     mainnet: {
         apiUrl: 'https://api.multiversx.com',
     },
+    vibeox: {
+        apiUrl: 'https://vibeox-api.multiversx.com',
+    },
 } as const;
 
 export const defaultNetwork: keyof typeof networkConfigs = 

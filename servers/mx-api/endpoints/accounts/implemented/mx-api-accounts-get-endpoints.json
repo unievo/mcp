@@ -1,0 +1,378 @@
+{
+    "openapi": "3.0.0",
+    "paths": {
+      "/accounts": {
+        "get": {
+          "operationId": "AccountController_getAccounts",
+          "summary": "Accounts details",
+          "description": "Returns all accounts available on blockchain. By default it returns 25 accounts",
+          "parameters": [
+            {
+              "name": "from",
+              "required": false,
+              "in": "query",
+              "description": "Number of items to skip for the result set",
+              "schema": {
+                "type": "number"
+              }
+            },
+            {
+              "name": "size",
+              "required": false,
+              "in": "query",
+              "description": "Number of items to retrieve",
+              "schema": {
+                "type": "number"
+              }
+            },
+            {
+              "name": "ownerAddress",
+              "required": false,
+              "in": "query",
+              "description": "Search by owner address",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "name",
+              "required": false,
+              "in": "query",
+              "description": "Filter accounts by assets name",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "tags",
+              "required": false,
+              "in": "query",
+              "description": "Filter accounts by assets tags",
+              "schema": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            },
+            {
+              "name": "sort",
+              "required": false,
+              "in": "query",
+              "description": "Sort criteria (balance / timestamp)",
+              "schema": {
+                "enum": [
+                  "balance",
+                  "timestamp",
+                  "transfersLast24h"
+                ],
+                "type": "string"
+              }
+            },
+            {
+              "name": "order",
+              "required": false,
+              "in": "query",
+              "description": "Sort order (asc/desc)",
+              "schema": {
+                "enum": [
+                  "asc",
+                  "desc"
+                ],
+                "type": "string"
+              }
+            },
+            {
+              "name": "isSmartContract",
+              "required": false,
+              "in": "query",
+              "description": "Filter accounts by whether they are smart contract or not",
+              "schema": {
+                "type": "boolean"
+              }
+            },
+            {
+              "name": "withOwnerAssets",
+              "required": false,
+              "in": "query",
+              "description": "Return a list accounts with owner assets",
+              "schema": {
+                "type": "boolean"
+              }
+            },
+            {
+              "name": "withDeployInfo",
+              "required": false,
+              "in": "query",
+              "description": "Include deployedAt and deployTxHash fields in the result",
+              "schema": {
+                "type": "boolean"
+              }
+            },
+            {
+              "name": "withTxCount",
+              "required": false,
+              "in": "query",
+              "description": "Include txCount field in the result",
+              "schema": {
+                "type": "boolean"
+              }
+            },
+            {
+              "name": "withScrCount",
+              "required": false,
+              "in": "query",
+              "description": "Include scrCount field in the result",
+              "schema": {
+                "type": "boolean"
+              }
+            },
+            {
+              "name": "excludeTags",
+              "required": false,
+              "in": "query",
+              "description": "Exclude specific tags from result",
+              "schema": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            },
+            {
+              "name": "hasAssets",
+              "required": false,
+              "in": "query",
+              "description": "Returns a list of accounts that have assets",
+              "schema": {
+                "type": "boolean"
+              }
+            },
+            {
+              "name": "search",
+              "required": false,
+              "in": "query",
+              "description": "Search by account address",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "addresses",
+              "required": false,
+              "in": "query",
+              "description": "A comma-separated list of addresses to filter by",
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/Account"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "tags": [
+            "accounts"
+          ]
+        }
+      },
+      "/accounts/count": {
+        "get": {
+          "operationId": "AccountController_getAccountsCount",
+          "summary": "Total number of accounts",
+          "description": "Returns total number of accounts available on blockchain",
+          "parameters": [
+            {
+              "name": "ownerAddress",
+              "required": false,
+              "in": "query",
+              "description": "Search by owner address",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "isSmartContract",
+              "required": false,
+              "in": "query",
+              "description": "Return total smart contracts count",
+              "schema": {
+                "type": "boolean"
+              }
+            },
+            {
+              "name": "name",
+              "required": false,
+              "in": "query",
+              "description": "Filter accounts by assets name",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "tags",
+              "required": false,
+              "in": "query",
+              "description": "Filter accounts by assets tags",
+              "schema": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            },
+            {
+              "name": "excludeTags",
+              "required": false,
+              "in": "query",
+              "description": "Exclude specific tags from result",
+              "schema": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            },
+            {
+              "name": "hasAssets",
+              "required": false,
+              "in": "query",
+              "description": "Returns a list of accounts that have assets",
+              "schema": {
+                "type": "boolean"
+              }
+            },
+            {
+              "name": "search",
+              "required": false,
+              "in": "query",
+              "description": "Search by account address, assets name",
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "number"
+                  }
+                }
+              }
+            }
+          },
+          "tags": [
+            "accounts"
+          ]
+        }
+      }
+    },
+    "components": {
+      "schemas": {
+        "Account": {
+        "type": "object",
+        "properties": {
+          "address": {
+            "type": "string",
+            "description": "Account bech32 address",
+            "example": "erd1qga7ze0l03chfgru0a32wxqf2226nzrxnyhzer9lmudqhjgy7ycqjjyknz"
+          },
+          "balance": {
+            "example": "\"5650000000000000000\"",
+            "title": "Amount",
+            "description": "Account current balance",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Amount"
+              }
+            ]
+          },
+          "nonce": {
+            "type": "number",
+            "description": "Account current nonce",
+            "example": 42
+          },
+          "timestamp": {
+            "type": "number",
+            "description": "Timestamp of the block where the account was first indexed",
+            "example": 1676979360
+          },
+          "shard": {
+            "type": "number",
+            "description": "The shard ID allocated to the account",
+            "example": 0
+          },
+          "ownerAddress": {
+            "type": "string",
+            "description": "Current owner address"
+          },
+          "assets": {
+            "nullable": true,
+            "description": "Account assets",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/AccountAssets"
+              }
+            ]
+          },
+          "deployedAt": {
+            "type": "number",
+            "description": "Specific property flag for smart contract"
+          },
+          "deployTxHash": {
+            "type": "object",
+            "description": "The contract deploy transaction hash"
+          },
+          "ownerAssets": {
+            "nullable": true,
+            "description": "Account assets",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/AccountAssets"
+              }
+            ]
+          },
+          "isVerified": {
+            "type": "boolean",
+            "description": "Specific property flag for smart contract"
+          },
+          "txCount": {
+            "type": "number",
+            "description": "The number of transactions performed on this account"
+          },
+          "scrCount": {
+            "type": "number",
+            "description": "The number of smart contract results of this account"
+          },
+          "transfersLast24h": {
+            "type": "number",
+            "description": "Transfers in the last 24 hours"
+          }
+        },
+        "required": [
+          "address",
+          "balance",
+          "nonce",
+          "timestamp",
+          "shard",
+          "txCount",
+          "scrCount"
+        ]
+      }
+    }
+  }
+}

@@ -12,7 +12,7 @@
   "homepage": "https://github.com/unievo/mcp/tree/main/servers/mx-api",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/unievo/mcp.git"
+    "url": "git+https://github.com/unievo/mx-mcp.git"
   },
   "type": "module",
   "main": "build/mx-api-index.js",

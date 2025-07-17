@@ -15,7 +15,7 @@ For MCP clients that support MCP file configuration, add the following section u
 ## Using remote source with NPX
 
 The easiest way to use the server is with the published NPM package and NPX.
-The package will automatically be up to date with the latest version.
+The latest package version will be used automatically.
 
 ```json
 {
@@ -39,7 +39,7 @@ The package will automatically be up to date with the latest version.
 ### Clone the MCP server repository
 
 ```bash
-git clone https://github.com/unievo/mcp.git
+git clone https://github.com/unievo/mx-mcp.git
 ```
 
 ### Install dependencies

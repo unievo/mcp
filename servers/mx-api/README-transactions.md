@@ -6,16 +6,16 @@ This Model Context Protocol (MCP) server provides tools for interacting with the
 
 The server can be used with any MCP client (AI agents, Chatbots, Coding agents, etc.)
 
+### Configuration
+
+The default configuration is [customizable](README-config.md).
+
 For MCP clients that support MCP file configuration, add the following section under the `mcpServers` section:
 
 ## Using remote source with NPX
 
 The easiest way to use the server is with the published NPM package and NPX.
-The package will automatically be up to date with the latest version.
-
-> [!NOTE]
->
-> You can set the default network by setting the `DEFAULT_NETWORK` environment variable.
+The latest package version will be used automatically.
 
 ```json
 {
@@ -39,7 +39,7 @@ The package will automatically be up to date with the latest version.
 ### Clone the MCP server repository
 
 ```bash
-git clone https://github.com/unievo/mcp.git
+git clone https://github.com/unievo/mx-mcp.git
 ```
 
 ### Install dependencies
@@ -58,10 +58,6 @@ npm run build
 ```
 
 ### Add the section to your MCP client configuration file
-
-> [!NOTE]
->
-> You can set the default network by setting the `DEFAULT_NETWORK` environment variable.
 
 ```json
 {

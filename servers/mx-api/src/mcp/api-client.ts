@@ -9,7 +9,8 @@ export class MxApiClient {
             timeout: 10000,
             headers: {
                 'Content-Type': 'application/json',
-                'User-Agent': 'unievo-mcp-server'
+                'User-Agent': 'unievo-mx-api-mcp-server',
+                ...((config.apiKey || config.apiKeyHeader) && config.apiKey ? { [config.apiKeyHeader || 'x-api-key']: config.apiKey } : {}),
             }
         });
 

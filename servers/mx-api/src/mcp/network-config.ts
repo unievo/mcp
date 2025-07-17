@@ -7,7 +7,7 @@ import { handleGetAbout } from './server/tools/network.js';
  */
 export const getNetworkTool = {
     name: 'get-network',
-    description: 'Get the current MultiversX network configuration',
+    description: `Get the current network (${Object.keys(networkConfigs).join(', ')})`,
     inputSchema: {
         type: 'object',
         properties: {},
@@ -20,14 +20,14 @@ export const getNetworkTool = {
  */
 export const setNetworkTool = {
     name: 'set-network',
-    description: `Set the MultiversX network (${Object.keys(networkConfigs).join('/')})`,
+    description: `Set the current network (${Object.keys(networkConfigs).join(', ')})`,
     inputSchema: {
         type: 'object',
         properties: {
             network: {
                 type: 'string',
                 enum: Object.keys(networkConfigs),
-                description: 'Network type',
+                description: 'Network name',
             },
         },
         required: ['network'],

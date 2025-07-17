@@ -1,15 +1,28 @@
 export const networkConfigs = {
     devnet: {
-        apiUrl: 'https://devnet-api.multiversx.com',
+        apiUrl: process.env.DEVNET_API_URL || 'https://devnet-api.multiversx.com',
+        apiKey: process.env.DEVNET_API_KEY,
+        apiKeyHeader: process.env.DEVNET_API_KEY_HEADER,
     },
     testnet: {
-        apiUrl: 'https://testnet-api.multiversx.com',
+        apiUrl: process.env.TESTNET_API_URL || 'https://testnet-api.multiversx.com',
+        apiKey: process.env.TESTNET_API_KEY,
+        apiKeyHeader: process.env.TESTNET_API_KEY_HEADER,
     },
     mainnet: {
-        apiUrl: 'https://api.multiversx.com',
+        apiUrl: process.env.MAINNET_API_URL || 'https://api.multiversx.com',
+        apiKey: process.env.MAINNET_API_KEY,
+        apiKeyHeader: process.env.MAINNET_API_KEY_HEADER,
     },
     vibeox: {
-        apiUrl: 'https://vibeox-api.multiversx.com',
+        apiUrl: process.env.VIBEOX_API_URL || 'https://vibeox-api.multiversx.com',
+        apiKey: process.env.VIBEOX_API_KEY,
+        apiKeyHeader: process.env.VIBEOX_API_KEY_HEADER,
+    },
+    custom: {
+        apiUrl: process.env.CUSTOM_API_URL || 'SET_CUSTOM_API_URL_IN_ENV',
+        apiKey: process.env.CUSTOM_API_KEY,
+        apiKeyHeader: process.env.CUSTOM_API_KEY_HEADER,
     },
 } as const;
 
@@ -19,11 +32,15 @@ export const defaultNetwork: keyof typeof networkConfigs =
 export type NetworkConfig = {
     network: keyof typeof networkConfigs;
     apiUrl: string;
+    apiKey?: string;
+    apiKeyHeader?: string;
 };
 
 export const defaultConfig: NetworkConfig = {
     network: defaultNetwork,
-    apiUrl: networkConfigs[defaultNetwork].apiUrl
+    apiUrl: networkConfigs[defaultNetwork].apiUrl,
+    apiKey: process.env.API_KEY,
+    apiKeyHeader: process.env.API_KEY_HEADER,
 };
 
 let currentConfig: NetworkConfig = { ...defaultConfig };

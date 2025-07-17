@@ -14,11 +14,11 @@ There are multiple servers available, each focused on a specific domain:
 - [Tokens](/servers/mx-api/README-tokens.md): Fungible tokens
 - [Transactions](/servers/mx-api/README-transactions.md): Blockchain transactions and transfers
 
-The Index server contains all available tools from the specialized servers.
+Index server
 
-- [Index](/servers/mx-api/README-index.md): Includes all tools
+- [Index](/servers/mx-api/README-index.md): Includes all available tools from the specialized servers.
 
-There is also an Essentials server that provides a reduced version for essential tools across multiple domains:
+Essentials server
 
 - [Essentials](/servers/mx-api/README-essentials.md): Includes essential tools across multiple domains (Accounts, Collections, Tokens, Transactions)
 

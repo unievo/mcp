@@ -1,22 +1,33 @@
-import { Server } from '@modelcontextprotocol/sdk/server/index.js';
-import { ListResourcesRequestSchema } from '@modelcontextprotocol/sdk/types.js';
-import { serverInfoResource } from '../../server-info.js';
+import { ErrorCode, McpError, ReadResourceRequest } from '@modelcontextprotocol/sdk/types.js';
 
 
 export const allResources = [
-    serverInfoResource,
+    // Resources
+    // {
+    //     uri: 'resource://uri',
+    //     name: 'Resource name',
+    //     mimeType: 'text/plain',
+    //     description: 'Resource description',
+    // },
 ];
 
-export function setupResources(server: Server) {
-    server.setRequestHandler(ListResourcesRequestSchema, async () => ({
-        resources: allResources,
-    }));
 
-    // Register individual resource handlers
-    registerResourceHandlers(server);
-}
+export function handleResourceRead(request: ReadResourceRequest) {
+    return {}; // Remove this line and Implement resource read handlers
 
-// Function to register all individual resource handlers
-export function registerResourceHandlers(server: Server) {
-    // Add resource handlers here
+    // Resource read handlers
+    switch (request.params.uri) {
+        // case 'resource://uri':
+        // return {
+        //     contents: [
+        //         {
+        //             uri: request.params.uri,
+        //             mimeType: 'text/plain',
+        //             text: 'Resource content',
+        //         },
+        //     ],
+        // };
+        // default:
+        //     throw new McpError(ErrorCode.InvalidRequest, `Unknown resource: ${request.params.uri}`);
+    }
 }

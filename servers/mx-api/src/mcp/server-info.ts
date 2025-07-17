@@ -1,25 +1,22 @@
-import { ReadResourceRequestSchema } from '@modelcontextprotocol/sdk/types.js';
-import { Server } from '@modelcontextprotocol/sdk/server/index.js';
+import { ReadResourceRequest } from '@modelcontextprotocol/sdk/types.js';
 
-export const SERVER_INFO_DESCRIPTION = 'Read the MultiversX API MCP info and usage guide.';
+export const SERVER_INFO_DESCRIPTION = 'Server usage information, read this before using any other tools on this server.';
 
 export const mxApiMcpUseGuide = `
-## For all MultiversX API mcp servers (having "mx-api" in the name) follow these rules:
-- Each mx-api mcp server has its own get-network and set-network tool. If the current network is not specified, confirm the correct network before continuing.
-- Use the set-network tool on first use on each mx-api mcp server instance, or after resuming a task, to ensure the correct network is used. Use again on the same server instance only if a network change is needed.
-- If no network is known or specified by the user, display options to choose from.
-- By default, tools return a sub-set of most relevant fields. The "fields" parameter in tools can be used to explicitly specify which fields to retrieve, if required.
-- Using "fields": ["all"] will return all fields, only use if explicitly required to get all fields, otherwise use the default set of fields, to avoid unnecessary data transfer and token usage.
-- Some tools also have parameter names starting with "with{FieldName}" for getting additional field data. Specify them only if explicitly requested to get a specific "with" parameter.
-- When specifying "with{FieldName}" parameters always use "fields": ["all"] in the request.
-- For tool calls that return an array of items, if no count or size is explicitly specified, call the "{toolName}-count" version of the tool first (if available) to get the total number of items, and then proceed with a batch not greater than 5 items.
+## If any connected MultiversX API mcp servers (mx-api) are available, follow these rules:
+- Each mx-api mcp server has its own get-network and set-network tool.
+- If the current network is not known or specified, ALWAYS ask the user to confirm the correct network using an array of options before continuing.
+- Use the set-network tool for first time use on each mx-api mcp server, or after a task was interrupted and resumed. Only use again on the same server if a network change is needed.
+- By default tools return a sub-set of most relevant data fields.
+- The "fields" parameter in tools can be used to explicitly specify which fields to retrieve, if required.
+- Using "fields": ["all"] will return all fields, only use if explicitly required to get all field details, otherwise use the default set of fields.
+- Some tools also have parameter names starting with "with{FieldName}" for getting additional field data. Specify them only if explicitly requested to get a specific parameter.
+- When specifying "with{FieldName}" parameters always use "fields": ["all"] in the request to ensure all fields are returned.
+- For tool calls that return an array of items, if no count or size is explicitly specified, call the "{toolName}_count" version of the tool first (if available) to get the total number of items, and then proceed with a batch not greater than 5 items.
 `
 
 export const mxDataFormatGuide = `
-## For formatting data coming from the MultiversX networks follow these guidelines:
-- The available networks are: mainnet, testnet, devnet, vibechain (vibeox).
-- The native token is EGLD for mainnet, xEGLD for testnet and devnet, and VIBE for vibechain.
-- The native tokens have 18 decimals.
+## For formatting data coming from the MultiversX networks use the following guidelines:
 
 ### Format all available data using the following rules:
 - Format as bold numbered points for higher levels and nested indented bullet points for lower levels, separate top level by a new line.
@@ -27,14 +24,28 @@ export const mxDataFormatGuide = `
 - Replace base64 encoded strings with their values decoded.
 - For all image URLs always use exactly "[name](url)" not "![name](url)"
 - Format text as embedded links to explorer for:
-    - Accounts/contracts : {explorerUrl}/accounts/{address}
-    - Transactions : {explorerUrl}/transactions/{txHash}
-    - Tokens : {explorerUrl}/tokens/{identifier}
-    - Collections : {explorerUrl}/collections/{collection}
-    - NFTs : {explorerUrl}/nfts/{nftIdentifier}
-    - Blocks : {explorerUrl}/blocks/{blockHash}
-    - Validator Identities : {explorerUrl}/identities/{identity}
-- {explorerUrl} is:
+    - Dashboard: {explorer}
+    - Accounts (wallet addresses and contract addresses) : {explorer}/accounts/
+    - Account (transactions) : {explorer}/accounts/{address}
+    - Account tokens : {explorer}/accounts/{address}/tokens
+    - Account NFTs : {explorer}/accounts/{address}/nfts
+    - Account contracts : {explorer}/accounts/{address}/contracts
+    - Applications (contracts) : {explorer}/applications/
+    - Blocks : {explorer}/blocks/
+    - Block : {explorer}/blocks/{blockHash}
+    - Transactions : {explorer}/transactions/
+    - Transaction : {explorer}/transactions/{txHash}
+    - Tokens : {explorer}/tokens/
+    - Token : {explorer}/tokens/{identifier}
+    - Collections : {explorer}/collections/
+    - Collection : {explorer}/collections/{collection}
+    - NFTs : {explorer}/nfts/
+    - NFT : {explorer}/nfts/{nftIdentifier}
+    - Validators : {explorer}/validators/
+    - Validator : {explorer}/identities/{identity}
+    - Analytics : {explorer}/analytics/
+
+- {explorer} url is:
     - http://explorer.multiversx.com for mainnet
     - http://testnet-explorer.multiversx.com for testnet
     - http://devnet-explorer.multiversx.com for devnet
@@ -48,6 +59,7 @@ export const mxDataFormatGuide = `
 
 ### General formatting
 - Response must not include "\`\`\`markdown'" and "\`\`\`" syntax in the output
+- Exclude fields containing over 300 characters and replace them with a "Exceeded 300 character limit" text
 `
 
 export const SERVER_INFO_CONTENT = 
@@ -59,7 +71,7 @@ ${mxDataFormatGuide}
 - If no previous task given, stop and wait for further instructions.
 `;
 
-// Tool definition for server_info
+// Tool definition for server-info
 export const serverInfoTool = {
     name: 'server-info',
     description: SERVER_INFO_DESCRIPTION,
@@ -91,26 +103,21 @@ export async function handleServerInfoTool(): Promise<{ content: { type: string;
 // Resource definition for server-info
 export const serverInfoResource = {
     uri: 'server://info',
-    name: 'Server info',
+    name: 'Readme',
     mimeType: 'text/plain',
     description: SERVER_INFO_DESCRIPTION,
 };
 
-export function handleServerInfoResource(server: Server) {
-    server.setRequestHandler(ReadResourceRequestSchema, async (request) => {
-        if (request.params.uri === 'server://info') {
-            return {
-                contents: [
-                    {
+export async function handleServerInfoResource(request: ReadResourceRequest) {
+    if (request.params.uri === 'server://info') {
+        return {
+            contents: [
+                {
                         uri: request.params.uri,
                         mimeType: 'text/plain',
                         text: SERVER_INFO_CONTENT,
-                    },
-                ],
-            };
-        }
-        return {
-            contents: [],
+                },
+            ],
         };
-    });
+    }
 }

@@ -10,6 +10,7 @@ import {
     ListToolsRequestSchema,
     ListResourcesRequestSchema,
     CallToolRequestSchema,
+    ReadResourceRequestSchema,
 } from '@modelcontextprotocol/sdk/types.js';
 import { 
     handleToolCalls,
@@ -24,8 +25,8 @@ import {
     transactionTools,
 } from './mcp/server/tools/index.js';
 import { setNetworkTool, handleNetworkConfigToolCall, getNetworkTool } from './mcp/network-config.js';
-import { allResources, registerResourceHandlers } from './mcp/server/resources/index.js';
-import { handleServerInfoToolCall, serverInfoTool } from './mcp/server-info.js';
+import { allResources, handleResourceRead } from './mcp/server/resources/index.js';
+import { handleServerInfoResource, handleServerInfoToolCall, serverInfoResource, serverInfoTool } from './mcp/server-info.js';
 
 class MxMcpServer {
     private server: Server;
@@ -86,11 +87,19 @@ class MxMcpServer {
     private setupResources() {
         this.server.setRequestHandler(ListResourcesRequestSchema, async () => ({
             resources: [
+                serverInfoResource,
                 ...allResources,
             ],
         }));
 
-        registerResourceHandlers(this.server);
+        this.server.setRequestHandler(ReadResourceRequestSchema, async (request) => {
+            const serverInfoResponse = await handleServerInfoResource(request);
+            if (serverInfoResponse) {
+                return serverInfoResponse;
+            }
+
+            return handleResourceRead(request);
+        });
     }
 
     async run() {

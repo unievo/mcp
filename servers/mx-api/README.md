@@ -1,18 +1,18 @@
 # MultiversX API MCP Servers
 
-Model Context Protocol (MCP) servers providing tools for AI agents to interact with the MultiversX blockchain API.
+Model Context Protocol (MCP) servers providing tools for AI agents to interact with the MultiversX networks API.
 
 ## Overview
 
 There are multiple MultiversX API MCP servers, each focused on a specific domain:
 
-- [Accounts](README-accounts.md): Focus on account-related operations
-- [Collections](README-collections.md): Focus on NFT/SFT collections
-- [Contracts](README-contracts.md): Focus on smart contracts
-- [Network](README-network.md): Focus on network-related information
-- [Roles](README-roles.md): Focus on account roles for collections and tokens
-- [Tokens](README-tokens.md): Focus on fungible tokens
-- [Transactions](README-transactions.md): Focus on blockchain transactions and transfers
+- [Accounts](README-accounts.md): Account-related operations
+- [Collections](README-collections.md): NFT/SFT collections
+- [Contracts](README-contracts.md): Smart contracts
+- [Network](README-network.md): Network-related information
+- [Roles](README-roles.md): Account roles for collections and tokens
+- [Tokens](README-tokens.md): Fungible tokens
+- [Transactions](README-transactions.md): Blockchain transactions and transfers
 
 There is an Index MCP server that contains all tools from the specialized servers.
 
